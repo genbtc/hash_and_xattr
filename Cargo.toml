@@ -1,0 +1,9 @@
+[package]
+name = "hash_and_xattr"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+sha2 = "0.10"      # for SHA512 hashing
+walkdir = "2.3"    # for directory traversal
+xattr = "0.2"      # for interacting with extended attributes
