@@ -1,4 +1,4 @@
-//hash_and_xattr v0.13 - 2025 (c) genr8eofl @ gmx
+//hash_and_xattr v0.14 - 2025 (c) genr8eofl @ gmx
 use std::{env, fs::File, io::{self, Read,BufRead}, path::{Path,PathBuf}};
 use sha2::{Sha512, Digest};
 use walkdir::WalkDir;
@@ -66,16 +66,24 @@ fn get_files_from_directory(dir: &str) -> Vec<PathBuf> {
 fn get_files_from_stdin() -> Vec<PathBuf> {
     let stdin = io::stdin();
     let handle = stdin.lock();
-    
-    handle
-        .lines()
+    handle.lines()
         .filter_map(|line| line.ok())
         .map(|line| PathBuf::from(line))
         .collect()
 }
 
+fn get_files_from_file(file_path: &str) -> io::Result<Vec<PathBuf>> {
+    let file = File::open(file_path)?;
+    let reader = io::BufReader::new(file);
+    // Read each line, strip any surrounding whitespace, and convert it to PathBuf
+    let files: Vec<PathBuf> = reader.lines()
+        .filter_map(|line| line.ok())            // Filter out any lines that can't be read
+        .map(|line| PathBuf::from(line.trim()))  // Trim whitespace and convert to PathBuf
+        .collect();
+    Ok(files)
+}
+
 fn main() -> io::Result<()> {
-//    let dir = "./"; // Set the directory to scan, can be changed as needed. //TODO: and -f file.txt
     // Get the command-line arguments
     let args: Vec<String> = env::args().collect();
 
@@ -83,7 +91,7 @@ fn main() -> io::Result<()> {
     let dir = if args.len() > 1 {
         &args[1]
     } else {
-        "./" // Default to the current directory
+        "./" // Set default to the current directory
     };
 
     // Determine if we should read from stdin or use a directory argument
