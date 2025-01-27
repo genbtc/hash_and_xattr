@@ -1,0 +1,1527 @@
+
+Symbol table '.dynsym' contains 82 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND getenv@GLIBC_2.2.5 (2)
+     2: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND dl_iterate_phdr@GLIBC_2.2.5 (2)
+     3: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND free@GLIBC_2.2.5 (2)
+     4: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.34 (3)
+     5: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND abort@GLIBC_2.2.5 (2)
+     6: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_Backtrace@GCC_3.3 (4)
+     7: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __errno_location@GLIBC_2.2.5 (2)
+     8: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTable
+     9: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_getattr_np@GLIBC_2.32 (5)
+    10: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND isatty@GLIBC_2.2.5 (2)
+    11: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sigaction@GLIBC_2.2.5 (2)
+    12: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND __cxa_thread_atexit_impl@GLIBC_2.18 (6)
+    13: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __xpg_strerror_r@GLIBC_2.3.4 (7)
+    14: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND readlink@GLIBC_2.2.5 (2)
+    15: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND fcntl@GLIBC_2.2.5 (2)
+    16: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetRegionStart@GCC_3.0 (8)
+    17: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND write@GLIBC_2.2.5 (2)
+    18: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetTextRelBase@GCC_3.0 (8)
+    19: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_RaiseException@GCC_3.0 (8)
+    20: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND lstat64@GLIBC_2.33 (9)
+    21: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND opendir@GLIBC_2.2.5 (2)
+    22: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strlen@GLIBC_2.2.5 (2)
+    23: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND stat64@GLIBC_2.33 (9)
+    24: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_setname_np@GLIBC_2.34 (3)
+    25: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_key_create@GLIBC_2.34 (3)
+    26: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND memset@GLIBC_2.2.5 (2)
+    27: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND getcwd@GLIBC_2.2.5 (2)
+    28: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetIPInfo@GCC_4.2.0 (10)
+    29: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND close@GLIBC_2.2.5 (2)
+    30: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND closedir@GLIBC_2.2.5 (2)
+    31: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sched_yield@GLIBC_2.2.5 (2)
+    32: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetLanguageSpecificData@GCC_3.0 (8)
+    33: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_key_delete@GLIBC_2.34 (3)
+    34: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND read@GLIBC_2.2.5 (2)
+    35: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_attr_init@GLIBC_2.2.5 (2)
+    36: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __tls_get_addr@GLIBC_2.3 (11)
+    37: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND fstatat64@GLIBC_2.33 (9)
+    38: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND calloc@GLIBC_2.2.5 (2)
+    39: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND signal@GLIBC_2.2.5 (2)
+    40: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND dirfd@GLIBC_2.2.5 (2)
+    41: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND syscall@GLIBC_2.2.5 (2)
+    42: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_attr_getstack@GLIBC_2.34 (3)
+    43: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+    44: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND realpath@GLIBC_2.3 (12)
+    45: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND memcpy@GLIBC_2.14 (13)
+    46: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetIP@GCC_3.0 (8)
+    47: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_attr_getguardsize@GLIBC_2.34 (3)
+    48: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND mmap64@GLIBC_2.2.5 (2)
+    49: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pause@GLIBC_2.2.5 (2)
+    50: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.2.5 (2)
+    51: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_detach@GLIBC_2.34 (3)
+    52: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND lsetxattr@GLIBC_2.3 (12)
+    53: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND bcmp@GLIBC_2.2.5 (2)
+    54: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND realloc@GLIBC_2.2.5 (2)
+    55: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND munmap@GLIBC_2.2.5 (2)
+    56: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND getauxval@GLIBC_2.16 (14)
+    57: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND statx@GLIBC_2.28 (15)
+    58: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetDataRelBase@GCC_3.0 (8)
+    59: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND poll@GLIBC_2.2.5 (2)
+    60: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_SetGR@GCC_3.0 (8)
+    61: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_create@GLIBC_2.34 (3)
+    62: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND open64@GLIBC_2.2.5 (2)
+    63: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND memmove@GLIBC_2.2.5 (2)
+    64: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND readdir64@GLIBC_2.2.5 (2)
+    65: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_self@GLIBC_2.2.5 (2)
+    66: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND mprotect@GLIBC_2.2.5 (2)
+    67: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sysconf@GLIBC_2.2.5 (2)
+    68: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND dlsym@GLIBC_2.34 (3)
+    69: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_attr_destroy@GLIBC_2.2.5 (2)
+    70: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND lseek64@GLIBC_2.2.5 (2)
+    71: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND fstat64@GLIBC_2.33 (9)
+    72: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND posix_memalign@GLIBC_2.2.5 (2)
+    73: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable
+    74: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sched_getaffinity@GLIBC_2.3.4 (7)
+    75: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_DeleteException@GCC_3.0 (8)
+    76: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sigaltstack@GLIBC_2.2.5 (2)
+    77: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_Resume@GCC_3.0 (8)
+    78: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_setspecific@GLIBC_2.34 (3)
+    79: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_SetIP@GCC_3.0 (8)
+    80: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_attr_setstacksize@GLIBC_2.34 (3)
+    81: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5 (2)
+
+Symbol table '.symtab' contains 1439 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS hash_and_xattr.1f4b4a7c70193e6a-cgu.4
+     2: 000000000000e790   200 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon_core::job::StackJob<rayon_core::latch::SpinLatch,rayon_core::join::join_context::call_b<(),rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}}>::{{closure}},()>>
+     3: 000000000007a3f4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1
+     4: 000000000007a448     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table2
+     5: 000000000007a46c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table3
+     6: 000000000007a48c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table4
+     7: 000000000000eaf0    65 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sys::thread_local::abort_on_dtor_unwind::DtorUnwindGuard>
+     8: 000000000007a49c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table8
+     9: 000000000007a4b0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table10
+    10: 000000000000e920   164 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<(),std::io::error::Error>>
+    11: 000000000007a4c4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table13
+    12: 000000000007a4d0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table14
+    13: 000000000007a4e4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table16
+    14: 000000000007a4f8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table17
+    15: 000000000007a508     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table19
+    16: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS hash_and_xattr.1f4b4a7c70193e6a-cgu.5
+    17: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS hash_and_xattr.1f4b4a7c70193e6a-cgu.6
+    18: 000000000000f230   507 FUNC    LOCAL  DEFAULT   14 crossbeam_epoch::default::with_handle
+    19: 000000000000f430    57 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<crossbeam_epoch::guard::Guard>
+    20: 000000000007a524     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table2
+    21: 000000000007a550     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table5
+    22: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS rayon_core.bce2ab038fd17560-cgu.0
+    23: 0000000000010510    29 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<alloc::sync::Arc<rayon_core::registry::Registry>,rayon_core::ThreadPoolBuildError>>
+    24: 000000000007a638     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table0
+    25: 0000000000010210   243 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<crossbeam_deque::deque::Worker<rayon_core::job::JobRef>>>
+    26: 000000000007a670     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table5
+    27: 0000000000010310   243 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<crossbeam_deque::deque::Stealer<rayon_core::job::JobRef>>>
+    28: 000000000007a68c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+    29: 0000000000010410   243 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sync::mutex::Mutex<alloc::vec::Vec<crossbeam_deque::deque::Worker<rayon_core::job::JobRef>>>>
+    30: 000000000007a6a8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table7
+    31: 0000000000010530    95 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::option::Option<alloc::boxed::Box<dyn core::ops::function::FnMut<(usize,)>+Output = alloc::string::String>>>
+    32: 000000000007a6c4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table9
+    33: 0000000000010590    60 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::iter::adapters::enumerate::Enumerate<core::iter::adapters::zip::Zip<alloc::vec::into_iter::IntoIter<crossbeam_deque::deque::Worker<rayon_core::job::JobRef>>,alloc::vec::into_iter::IntoIter<crossbeam_deque::deque::Stealer<rayon_core::job::JobRef>>>>>
+    34: 000000000007a6d0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table10
+    35: 000000000007a6ec     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table11
+    36: 000000000007a720     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table12
+    37: 0000000000010820   115 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon_core::registry::Terminator>
+    38: 00000000000108a0   397 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon_core::registry::WorkerThread>
+    39: 000000000007a72c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table14
+    40: 0000000000010a30   174 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon_core::registry::ThreadBuilder>
+    41: 000000000007a758     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table15
+    42: 0000000000010ae0    65 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sync::mutex::MutexGuard<bool>>
+    43: 0000000000010b30   243 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<rayon_core::registry::ThreadInfo>>
+    44: 000000000007a77c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table18
+    45: 0000000000010c30  1037 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::sync::ArcInner<rayon_core::registry::Registry>>
+    46: 000000000007a798     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table19
+    47: 0000000000011040    90 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::boxed::Box<dyn core::any::Any+core::marker::Send>>
+    48: 000000000007a7e0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table20
+    49: 00000000000110a0    65 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<bool>>>
+    50: 00000000000110f0   265 FUNC    LOCAL  DEFAULT   14 <rayon_core::latch::LockLatch as rayon_core::latch::Latch>::set
+    51: 000000000007a7ec     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table24
+    52: 000000000007a81c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table25
+    53: 000000000007a8a0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table27
+    54: 000000000007a8e4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table28
+    55: 000000000007a910     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table31
+    56: 0000000000081080     8 OBJECT  LOCAL  DEFAULT   28 rayon_core::registry::XorShift64Star::new::COUNTER
+    57: 000000000007a9e4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table41
+    58: 000000000007aa00     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table45
+    59: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS rayon_core.bce2ab038fd17560-cgu.1
+    60: 0000000000012f20    74 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sys::thread_local::abort_on_dtor_unwind::DtorUnwindGuard>
+    61: 000000000007aa30     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table7
+    62: 000000000007aa44     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table21
+    63: 0000000000012f10    11 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<(),std::io::error::Error>>
+    64: 000000000007aa50     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table41
+    65: 000000000007aa90     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table54
+    66: 000000000007aad4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table57
+    67: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS rayon_core.bce2ab038fd17560-cgu.2
+    68: 0000000000013c90   506 FUNC    LOCAL  DEFAULT   14 crossbeam_epoch::default::with_handle
+    69: 0000000000013ed0    57 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<crossbeam_epoch::guard::Guard>
+    70: 000000000007ab04     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table3
+    71: 000000000007ab30     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+    72: 000000000007ab44     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table7
+    73: 000000000007ab58     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table10
+    74: 000000000007ab68     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table13
+    75: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS rayon_core.bce2ab038fd17560-cgu.4
+    76: 000000000007ac20     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table8
+    77: 000000000007ac3c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table9
+    78: 000000000007ac70     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table11
+    79: 000000000007ac94     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table12
+    80: 000000000007acb8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table14
+    81: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS rayon_core.bce2ab038fd17560-cgu.8
+    82: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crossbeam_epoch.b5e7fe256b45da7f-cgu.0
+    83: 0000000000016af0    32 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Debug>::fmt
+    84: 0000000000016b10   141 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<crossbeam_epoch::internal::Local>
+    85: 000000000007af64     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table4
+    86: 000000000007af8c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+    87: 000000000007afb4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table8
+    88: 000000000007afe8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table10
+    89: 0000000000017130    60 FUNC    LOCAL  DEFAULT   14 <crossbeam_epoch::guard::Guard as core::ops::drop::Drop>::drop
+    90: 00000000000173e0    52 FUNC    LOCAL  DEFAULT   14 crossbeam_epoch::internal::Local::unpin
+    91: 000000000007b00c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table23
+    92: 0000000000081088    16 OBJECT  LOCAL  DEFAULT   28 crossbeam_epoch::default::collector::COLLECTOR
+    93: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crossbeam_epoch.b5e7fe256b45da7f-cgu.1
+    94: 000000000007b040     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table7
+    95: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS walkdir.139765e1a1c62177-cgu.2
+    96: 000000000007b258     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table2
+    97: 000000000007b264     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table17
+    98: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS sha2.1a9a249948460f6e-cgu.2
+    99: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS std.e3d5a4021c918d10-cgu.0
+   100: 0000000000022030    26 FUNC    LOCAL  DEFAULT   14 <T as core::any::Any>::type_id
+   101: 0000000000022050    26 FUNC    LOCAL  DEFAULT   14 <T as core::any::Any>::type_id
+   102: 0000000000022070    26 FUNC    LOCAL  DEFAULT   14 <T as core::any::Any>::type_id
+   103: 0000000000022090   116 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Debug>::fmt
+   104: 0000000000022110    39 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Debug>::fmt
+   105: 0000000000022140    24 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Debug>::fmt
+   106: 0000000000022160    21 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Debug>::fmt
+   107: 0000000000022180    39 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Debug>::fmt
+   108: 00000000000221b0    26 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Debug>::fmt
+   109: 00000000000221d0   124 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Display>::fmt
+   110: 0000000000022250    24 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Display>::fmt
+   111: 0000000000022270    36 FUNC    LOCAL  DEFAULT   14 core::fmt::num::<impl core::fmt::Debug for i32>::fmt
+   112: 00000000000222a0    36 FUNC    LOCAL  DEFAULT   14 core::fmt::num::<impl core::fmt::Debug for usize>::fmt
+   113: 00000000000222d0   246 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_char
+   114: 0000000000023aa0   164 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::error::Error>
+   115: 000000000007b484     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table49
+   116: 00000000000223d0   261 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_char
+   117: 0000000000008c30   213 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle
+   118: 00000000000224e0   246 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_char
+   119: 000000000007b498     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table52
+   120: 00000000000225e0   404 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_char
+   121: 000000000007b4ac     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table53
+   122: 0000000000022780    21 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_fmt
+   123: 00000000000227a0    21 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_fmt
+   124: 00000000000227c0    21 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_fmt
+   125: 00000000000227e0    21 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_fmt
+   126: 0000000000022800    21 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_fmt
+   127: 0000000000022820    17 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+   128: 0000000000022840    10 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+   129: 0000000000045490   297 FUNC    LOCAL  DEFAULT   14 std::sys::backtrace::_print_fmt::{{closure}}
+   130: 0000000000022850    73 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+   131: 00000000000228a0    30 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+   132: 0000000000044d50   624 FUNC    LOCAL  DEFAULT   14 std::sync::once::Once::call_once::{{closure}}
+   133: 00000000000228c0   129 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+   134: 0000000000045880   260 FUNC    LOCAL  DEFAULT   14 std::sys::backtrace::output_filename
+   135: 0000000000022950    10 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+   136: 00000000000455c0   676 FUNC    LOCAL  DEFAULT   14 std::sys::backtrace::_print_fmt::{{closure}}::{{closure}}
+   137: 0000000000022960   130 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+   138: 0000000000024230    38 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::panicking::begin_panic_handler::FormatStringPayload>
+   139: 000000000007b4c0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table71
+   140: 00000000000229f0   128 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+   141: 0000000000022a70    17 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+   142: 0000000000022a90    49 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once
+   143: 0000000000022ad0    49 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once
+   144: 0000000000022b10    21 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::sync::Arc<std::sync::mutex::Mutex<alloc::vec::Vec<u8>>>>
+   145: 000000000002d310    78 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   146: 0000000000022b30   201 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::collections::btree::map::BTreeMap<u64,gimli::read::abbrev::Abbreviation>>
+   147: 000000000002c940  1030 FUNC    LOCAL  DEFAULT   14 alloc::collections::btree::map::IntoIter<K,V,A>::dying_next
+   148: 0000000000022c00   136 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<std::backtrace_rs::symbolize::gimli::parse_running_mmaps::MapsEntry>>
+   149: 0000000000022c90   305 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<addr2line::Context<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>>
+   150: 000000000002d1c0   143 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   151: 0000000000022dd0   242 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<addr2line::ResUnit<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>>
+   152: 00000000000232d0   237 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::boxed::Box<[addr2line::SupUnit<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>]>>
+   153: 0000000000023210   190 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::boxed::Box<[addr2line::ResUnit<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>]>>
+   154: 000000000007b4cc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table87
+   155: 000000000002d250   190 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   156: 00000000000234a0   153 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::option::Option<gimli::read::line::IncompleteLineProgram<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>,usize>>>
+   157: 0000000000024380   249 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<addr2line::Lines,gimli::read::Error>>
+   158: 0000000000023540   229 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<addr2line::function::Functions<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>,gimli::read::Error>>
+   159: 00000000000239d0   165 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<core::option::Option<alloc::boxed::Box<(alloc::sync::Arc<gimli::read::dwarf::Dwarf<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>>,gimli::read::dwarf::Unit<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>,usize>)>>,gimli::read::Error>>
+   160: 000000000007b4fc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table88
+   161: 0000000000022ed0    74 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<addr2line::SupUnit<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>>
+   162: 000000000007b51c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table89
+   163: 0000000000022f20    91 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<gimli::read::dwarf::Dwarf<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>>
+   164: 0000000000023ca0   221 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<gimli::read::abbrev::AbbreviationsCache>
+   165: 000000000007b528     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table93
+   166: 0000000000022f80   105 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::boxed::Box<dyn core::ops::function::FnOnce<()>+Output = ()>>
+   167: 000000000007b544     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table94
+   168: 0000000000022ff0    74 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<gimli::read::dwarf::Unit<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>,usize>>
+   169: 000000000007b550     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table95
+   170: 0000000000023040   198 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<addr2line::ResUnit<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>>>
+   171: 000000000007b55c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table96
+   172: 0000000000023110   245 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<addr2line::SupUnit<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>>>
+   173: 000000000007b578     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table97
+   174: 000000000007b594     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table99
+   175: 000000000007b5b0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table100
+   176: 00000000000233c0    91 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::sync::ArcInner<gimli::read::dwarf::Dwarf<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>>>
+   177: 000000000007b5cc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table101
+   178: 0000000000023420    50 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<addr2line::FrameIter<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>,gimli::read::Error>>
+   179: 0000000000023460    59 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sync::reentrant_lock::ReentrantLockGuard<core::cell::RefCell<std::io::buffered::linewriter::LineWriter<std::io::stdio::StdoutRaw>>>>
+   180: 0000000000023630    36 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sys::thread_local::native::lazy::State<core::cell::Cell<core::option::Option<alloc::sync::Arc<std::sync::mutex::Mutex<alloc::vec::Vec<u8>>>>>,()>>
+   181: 0000000000023660   100 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<(gimli::read::UnitOffset,addr2line::lazy::LazyCell<core::result::Result<addr2line::function::Function<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>,gimli::read::Error>>)>
+   182: 00000000000236d0   188 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<(gimli::read::UnitOffset,addr2line::lazy::LazyCell<core::result::Result<addr2line::function::Function<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>,gimli::read::Error>>)>>
+   183: 0000000000023790   144 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<gimli::read::line::LineRows<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>,gimli::read::line::IncompleteLineProgram<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>,usize>,usize>>
+   184: 0000000000023820   115 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<<alloc::collections::btree::map::IntoIter<K,V,A> as core::ops::drop::Drop>::drop::DropGuard<u64,core::result::Result<alloc::sync::Arc<gimli::read::abbrev::Abbreviations>,gimli::read::Error>,alloc::alloc::Global>>
+   185: 000000000002cd50  1030 FUNC    LOCAL  DEFAULT   14 alloc::collections::btree::map::IntoIter<K,V,A>::dying_next
+   186: 00000000000238a0   120 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<(alloc::sync::Arc<gimli::read::dwarf::Dwarf<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>>,gimli::read::dwarf::Unit<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>,usize>)>
+   187: 000000000007b5e8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table112
+   188: 0000000000023920   175 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::boxed::Box<[(gimli::read::UnitOffset,addr2line::lazy::LazyCell<core::result::Result<addr2line::function::Function<gimli::read::endian_slice::EndianSlice<gimli::endianity::LittleEndian>>,gimli::read::Error>>)]>>
+   189: 000000000007b608     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table115
+   190: 000000000002d160    87 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   191: 0000000000023a80    30 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::string::String>
+   192: 000000000007b628     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table121
+   193: 0000000000042380   303 FUNC    LOCAL  DEFAULT   14 std::io::Write::write_fmt
+   194: 0000000000024260    18 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<(),std::io::error::Error>>
+   195: 0000000000023b50    97 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::stdio::StdinLock>
+   196: 0000000000023bc0    30 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::ffi::os_str::OsString>
+   197: 0000000000023be0    30 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::ffi::c_str::NulError>
+   198: 0000000000023c00   145 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<gimli::read::abbrev::Abbreviations>
+   199: 000000000007b634     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table137
+   200: 0000000000023d80   140 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<alloc::string::String>>
+   201: 0000000000023e10    73 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::backtrace_rs::symbolize::gimli::Library>
+   202: 0000000000023e60   169 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::backtrace_rs::symbolize::gimli::Mapping>
+   203: 0000000000024050   221 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::backtrace_rs::symbolize::gimli::stash::Stash>
+   204: 000000000007b658     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table140
+   205: 0000000000023f10   144 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<addr2line::LineSequence>>
+   206: 0000000000023fa0    26 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::option::Option<std::thread::Thread>>
+   207: 0000000000023fc0   140 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<std::ffi::os_str::OsString>>
+   208: 0000000000024130   106 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::panicking::rust_panic_without_hook::RewrapBox>
+   209: 000000000007b668     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table146
+   210: 00000000000241a0   130 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::boxed::Box<[alloc::string::String]>>
+   211: 0000000000024280    47 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::buffered::bufreader::BufReader<std::fs::File>>
+   212: 00000000000242b0    35 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sync::rwlock::RwLockReadGuard<std::panicking::Hook>>
+   213: 00000000000242e0   146 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::sync::ArcInner<gimli::read::abbrev::Abbreviations>>
+   214: 0000000000024480    29 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<std::fs::File,std::io::error::Error>>
+   215: 00000000000244a0    88 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::sync::ArcInner<std::sys::pal::unix::fs::InnerReadDir>>
+   216: 000000000007b674     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table162
+   217: 0000000000024500    23 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::Write::write_fmt::Adapter<alloc::vec::Vec<u8>>>
+   218: 0000000000024520    84 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::buffered::bufwriter::BufWriter<W>::flush_buf::BufGuard>
+   219: 0000000000024580   242 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::buffered::linewriter::LineWriter<std::io::stdio::StdoutRaw>>
+   220: 00000000000406d0   671 FUNC    LOCAL  DEFAULT   14 std::io::buffered::bufwriter::BufWriter<W>::flush_buf
+   221: 000000000007b680     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table168
+   222: 0000000000024680   148 FUNC    LOCAL  DEFAULT   14 core::str::validations::next_code_point
+   223: 0000000000024720   287 FUNC    LOCAL  DEFAULT   14 core::str::<impl str>::split_once
+   224: 0000000000036240   522 FUNC    LOCAL  DEFAULT   14 <core::str::pattern::CharSearcher as core::str::pattern::Searcher>::next_match
+   225: 0000000000024840   658 FUNC    LOCAL  DEFAULT   14 core::str::<impl str>::trim_matches
+   226: 0000000000024ae0   384 FUNC    LOCAL  DEFAULT   14 core::str::<impl str>::trim_start_matches
+   227: 0000000000024c60   142 FUNC    LOCAL  DEFAULT   14 core::str::iter::SplitInternal<P>::next_back
+   228: 0000000000036450   426 FUNC    LOCAL  DEFAULT   14 <core::str::pattern::CharSearcher as core::str::pattern::ReverseSearcher>::next_match_back
+   229: 0000000000008b00   242 FUNC    LOCAL  DEFAULT   14 core::str::pattern::simd_contains::{{closure}}
+   230: 0000000000024cf0     8 FUNC    LOCAL  DEFAULT   14 core::panic::PanicPayload::as_str
+   231: 0000000000024d00   259 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::pivot::median3_rec
+   232: 0000000000024e10   179 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::pivot::median3_rec
+   233: 0000000000024ed0   178 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::pivot::median3_rec
+   234: 0000000000024f90   179 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::pivot::median3_rec
+   235: 0000000000025050   175 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::pivot::median3_rec
+   236: 0000000000025100   172 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::pivot::median3_rec
+   237: 00000000000251b0   368 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::smallsort::sort4_stable
+   238: 0000000000025320   886 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::smallsort::sort8_stable
+   239: 00000000000256a0  1383 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::smallsort::small_sort_general
+   240: 000000000007b694     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table191
+   241: 0000000000025c10   309 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::driftsort_main
+   242: 0000000000027dc0  1701 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::drift::sort
+   243: 000000000007b6a4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table192
+   244: 0000000000025d50   329 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::driftsort_main
+   245: 0000000000026280  1717 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::drift::sort
+   246: 000000000007b6b8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table193
+   247: 0000000000025ea0   309 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::driftsort_main
+   248: 00000000000276d0  1767 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::drift::sort
+   249: 000000000007b6cc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table194
+   250: 0000000000025fe0   337 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::driftsort_main
+   251: 0000000000027020  1701 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::drift::sort
+   252: 000000000007b6e0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table195
+   253: 0000000000026140   309 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::driftsort_main
+   254: 0000000000026940  1755 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::drift::sort
+   255: 000000000007b6f4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table196
+   256: 0000000000028ec0  2541 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::quicksort::quicksort
+   257: 00000000000298b0  2468 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::quicksort::quicksort
+   258: 0000000000028470  2627 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::quicksort::quicksort
+   259: 000000000002ac90  2778 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::quicksort::quicksort
+   260: 000000000002a260  2601 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::quicksort::quicksort
+   261: 000000000007b708     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table202
+   262: 000000000007b71c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table203
+   263: 000000000007b730     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table204
+   264: 000000000007b744     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table205
+   265: 000000000007b758     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table206
+   266: 000000000002b770   230 FUNC    LOCAL  DEFAULT   14 core::slice::sort::unstable::ipnsort
+   267: 000000000002b970  1107 FUNC    LOCAL  DEFAULT   14 core::slice::sort::unstable::quicksort::quicksort
+   268: 000000000002b860   262 FUNC    LOCAL  DEFAULT   14 core::slice::sort::unstable::heapsort::heapsort
+   269: 0000000000008bf2    48 FUNC    LOCAL  DEFAULT   14 core::panicking::assert_failed
+   270: 000000000002bdd0    14 FUNC    LOCAL  DEFAULT   14 <*mut T as core::fmt::Debug>::fmt
+   271: 000000000002bde0    21 FUNC    LOCAL  DEFAULT   14 <&mut T as core::fmt::Display>::fmt
+   272: 000000000002be00   123 FUNC    LOCAL  DEFAULT   14 <T as alloc::slice::hack::ConvertVec>::to_vec
+   273: 000000000002be80  2290 FUNC    LOCAL  DEFAULT   14 <&str as core::str::pattern::Pattern>::is_contained_in
+   274: 000000000002c780    25 FUNC    LOCAL  DEFAULT   14 <alloc::string::String as core::fmt::Debug>::fmt
+   275: 000000000002c7a0   293 FUNC    LOCAL  DEFAULT   14 <alloc::string::String as core::fmt::Write>::write_char
+   276: 000000000002dd70   156 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   277: 000000000002c8d0   103 FUNC    LOCAL  DEFAULT   14 <alloc::string::String as core::fmt::Write>::write_str
+   278: 000000000007b76c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table226
+   279: 000000000007b794     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table227
+   280: 000000000007b7bc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table239
+   281: 000000000002d360   118 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::finish_grow
+   282: 000000000002d3e0   199 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   283: 000000000002d4b0   199 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   284: 000000000002d580   208 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   285: 0000000000081030    48 OBJECT  LOCAL  DEFAULT   27 std::backtrace_rs::symbolize::gimli::Cache::with_global::MAPPINGS_CACHE
+   286: 000000000002d650   192 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   287: 000000000002d710   199 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   288: 000000000002d7e0   198 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   289: 000000000002d8b0   192 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   290: 000000000002d970   193 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   291: 000000000002da40   193 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   292: 000000000002db10   195 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   293: 000000000002dbe0   195 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   294: 000000000002dcb0   192 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   295: 000000000002de10   198 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   296: 000000000002dee0   645 FUNC    LOCAL  DEFAULT   14 gimli::read::line::parse_file_v5
+   297: 000000000002e520  2595 FUNC    LOCAL  DEFAULT   14 gimli::read::line::parse_attribute
+   298: 000000000002e170   934 FUNC    LOCAL  DEFAULT   14 gimli::read::line::FileEntryFormat::parse
+   299: 000000000007b7dc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table259
+   300: 000000000002ef50   225 FUNC    LOCAL  DEFAULT   14 gimli::read::line::parse_directory_v5
+   301: 000000000002f040   590 FUNC    LOCAL  DEFAULT   14 gimli::read::line::FileEntry<R,Offset>::parse
+   302: 000000000002f290  5200 FUNC    LOCAL  DEFAULT   14 gimli::read::unit::parse_attribute
+   303: 0000000000034f20   264 FUNC    LOCAL  DEFAULT   14 gimli::read::reader::Reader::read_sized_offset
+   304: 0000000000034dc0   174 FUNC    LOCAL  DEFAULT   14 gimli::read::reader::Reader::read_offset
+   305: 00000000000306e0  1382 FUNC    LOCAL  DEFAULT   14 gimli::read::unit::skip_attributes
+   306: 0000000000030c50  1467 FUNC    LOCAL  DEFAULT   14 gimli::read::unit::Attribute<R>::value
+   307: 0000000000031550    96 FUNC    LOCAL  DEFAULT   14 gimli::read::unit::AttributeValue<R,Offset>::udata_value
+   308: 0000000000036600    85 FUNC    LOCAL  DEFAULT   14 <gimli::read::unit::AttributeValue<R,Offset> as core::clone::Clone>::clone
+   309: 0000000000031210   819 FUNC    LOCAL  DEFAULT   14 gimli::read::unit::EntriesCursor<R>::next_entry
+   310: 00000000000315b0  1509 FUNC    LOCAL  DEFAULT   14 gimli::read::unit::DebugInfoUnitHeadersIter<R>::next
+   311: 0000000000031ba0  9869 FUNC    LOCAL  DEFAULT   14 gimli::read::dwarf::Unit<R>::new
+   312: 0000000000034230   494 FUNC    LOCAL  DEFAULT   14 gimli::read::dwarf::Dwarf<R>::attr_string
+   313: 0000000000034e70   175 FUNC    LOCAL  DEFAULT   14 gimli::read::reader::Reader::read_uleb128
+   314: 000000000007b7ec     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table269
+   315: 0000000000034420  2454 FUNC    LOCAL  DEFAULT   14 gimli::read::index::UnitIndex<R>::parse
+   316: 0000000000035030   658 FUNC    LOCAL  DEFAULT   14 gimli::read::aranges::ArangeHeader<R,Offset>::parse
+   317: 00000000000352d0  3834 FUNC    LOCAL  DEFAULT   14 gimli::read::rnglists::RngListIter<R>::next
+   318: 00000000000361d0    25 FUNC    LOCAL  DEFAULT   14 <alloc::string::String as core::fmt::Display>::fmt
+   319: 00000000000361f0    68 FUNC    LOCAL  DEFAULT   14 <alloc::ffi::c_str::NulError as core::fmt::Debug>::fmt
+   320: 0000000000036660  1397 FUNC    LOCAL  DEFAULT   14 <gimli::read::line::LineProgramHeader<R,Offset> as core::clone::Clone>::clone
+   321: 000000000007b86c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table298
+   322: 0000000000036be0  1152 FUNC    LOCAL  DEFAULT   14 addr2line::render_file
+   323: 000000000007b89c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table300
+   324: 0000000000037060   339 FUNC    LOCAL  DEFAULT   14 addr2line::Context<R>::find_unit
+   325: 00000000000371c0  1334 FUNC    LOCAL  DEFAULT   14 addr2line::ResUnit<R>::find_function_or_location
+   326: 0000000000037700  7202 FUNC    LOCAL  DEFAULT   14 addr2line::ResUnit<R>::find_function_or_location::{{closure}}
+   327: 0000000000039880  6655 FUNC    LOCAL  DEFAULT   14 addr2line::Lines::parse
+   328: 000000000003cac0   420 FUNC    LOCAL  DEFAULT   14 addr2line::function::name_attr
+   329: 000000000003b6a0  5149 FUNC    LOCAL  DEFAULT   14 addr2line::function::Function<R>::parse_children
+   330: 000000000007b8c4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table303
+   331: 0000000000039330  1359 FUNC    LOCAL  DEFAULT   14 addr2line::LoopingLookup<T,L,F>::new_lookup
+   332: 000000000007b918     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table304
+   333: 000000000007b94c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table305
+   334: 000000000003b280  1050 FUNC    LOCAL  DEFAULT   14 addr2line::function::name_entry
+   335: 0000000000081098     4 OBJECT  LOCAL  DEFAULT   28 std::rt::cleanup::CLEANUP
+   336: 00000000000811b9     1 OBJECT  LOCAL  DEFAULT   28 std::sys::pal::unix::ON_BROKEN_PIPE_FLAG_USED
+   337: 00000000000811a8     8 OBJECT  LOCAL  DEFAULT   28 std::sys::pal::unix::stack_overflow::imp::PAGE_SIZE
+   338: 0000000000000060     8 TLS     LOCAL  DEFAULT   21 std::sys::pal::unix::stack_overflow::imp::GUARD::{{constant}}::{{closure}}::VAL
+   339: 0000000000000068     8 TLS     LOCAL  DEFAULT   21 std::sys::pal::unix::stack_overflow::imp::GUARD::{{constant}}::{{closure}}::VAL
+   340: 00000000000811b8     1 OBJECT  LOCAL  DEFAULT   28 std::sys::pal::unix::stack_overflow::imp::NEED_ALTSTACK
+   341: 00000000000487f0   897 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::stack_overflow::imp::make_handler
+   342: 00000000000811b0     8 OBJECT  LOCAL  DEFAULT   28 std::sys::pal::unix::stack_overflow::imp::MAIN_ALTSTACK
+   343: 0000000000048600   482 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::stack_overflow::imp::signal_handler
+   344: 0000000000081188     8 OBJECT  LOCAL  DEFAULT   28 std::sys::pal::unix::args::imp::ARGC
+   345: 0000000000081190     8 OBJECT  LOCAL  DEFAULT   28 std::sys::pal::unix::args::imp::ARGV
+   346: 0000000000081180     8 OBJECT  LOCAL  DEFAULT   28 std::thread::ThreadId::new::COUNTER
+   347: 000000000004add0   260 FUNC    LOCAL  DEFAULT   14 std::sys::thread_local::guard::key::enable
+   348: 000000000004a890   425 FUNC    LOCAL  DEFAULT   14 std::sys::exit_guard::unique_thread_exit
+   349: 0000000000008f20    59 FUNC    LOCAL  DEFAULT   14 std::thread::ThreadId::new::exhausted
+   350: 0000000000000050     8 TLS     LOCAL  DEFAULT   21 std::panicking::panic_count::LOCAL_PANIC_COUNT::{{constant}}::{{closure}}::VAL
+   351: 0000000000000058     1 TLS     LOCAL  DEFAULT   21 std::panicking::panic_count::LOCAL_PANIC_COUNT::{{constant}}::{{closure}}::VAL
+   352: 000000000007b9b8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table310
+   353: 0000000000008d10    67 FUNC    LOCAL  DEFAULT   14 std::thread::scoped::ScopeData::overflow
+   354: 000000000007ba0c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table315
+   355: 0000000000008d60   445 FUNC    LOCAL  DEFAULT   14 std::thread::current::init_current
+   356: 000000000007ba1c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table317
+   357: 000000000007ba34     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table331
+   358: 000000000007ba48     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table332
+   359: 0000000000040020   385 FUNC    LOCAL  DEFAULT   14 std::fs::buffer_capacity_required
+   360: 0000000000041f90   736 FUNC    LOCAL  DEFAULT   14 std::io::default_read_to_end
+   361: 0000000000049010   890 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::thread::cgroups::quota_v1::{{closure}}
+   362: 000000000007ba5c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table337
+   363: 0000000000081144     8 OBJECT  LOCAL  DEFAULT   28 std::sys::backtrace::lock::LOCK
+   364: 000000000004b080    54 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::backtrace::libunwind::trace::trace_fn
+   365: 0000000000046d90  1777 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::print::BacktraceFrameFmt::print_raw_with_column
+   366: 000000000007bb54     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table349
+   367: 0000000000081198    12 OBJECT  LOCAL  DEFAULT   28 std::sys::pal::unix::os::ENV_LOCK
+   368: 000000000007bb6c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table358
+   369: 00000000000484a0   338 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::os::getenv::{{closure}}
+   370: 00000000000092d0   184 FUNC    LOCAL  DEFAULT   14 std::sys::pal::common::small_c_string::run_with_cstr_allocating
+   371: 000000000007bb80     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table359
+   372: 0000000000047c80   474 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::fs::readlink::{{closure}}
+   373: 0000000000049ea0   179 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::decode_error_kind
+   374: 000000000007bb98     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table366
+   375: 000000000007bbac     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table368
+   376: 000000000007bbc8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table369
+   377: 0000000000049f70   692 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::fs::try_statx
+   378: 000000000007bbdc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table400
+   379: 000000000007bbf0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table402
+   380: 0000000000009390   146 FUNC    LOCAL  DEFAULT   14 std::sys::pal::common::small_c_string::run_with_cstr_allocating
+   381: 0000000000047830   257 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::fs::DirEntry::metadata
+   382: 0000000000043de0   654 FUNC    LOCAL  DEFAULT   14 <std::path::Components as core::cmp::PartialEq>::eq
+   383: 000000000007bc14     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table441
+   384: 0000000000008f60   293 FUNC    LOCAL  DEFAULT   14 std::io::buffered::bufwriter::BufWriter<W>::write_all_cold
+   385: 000000000007bc3c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table458
+   386: 000000000007bc54     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table460
+   387: 000000000007bc6c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table461
+   388: 00000000000810b0    56 OBJECT  LOCAL  DEFAULT   28 std::io::stdio::stdin::INSTANCE
+   389: 000000000000909a    85 FUNC    LOCAL  DEFAULT   14 std::sync::once_lock::OnceLock<T>::initialize
+   390: 00000000000427e0  1676 FUNC    LOCAL  DEFAULT   14 std::io::read_until
+   391: 000000000007bc84     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table511
+   392: 00000000000810e8    64 OBJECT  LOCAL  DEFAULT   28 std::io::stdio::STDOUT
+   393: 00000000000090ef    85 FUNC    LOCAL  DEFAULT   14 std::sync::once_lock::OnceLock<T>::initialize
+   394: 000000000007bca4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table526
+   395: 000000000007bcd8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table530
+   396: 000000000007bd08     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table546
+   397: 000000000007bd3c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table550
+   398: 00000000000810a8     1 OBJECT  LOCAL  DEFAULT   28 std::io::stdio::OUTPUT_CAPTURE_USED
+   399: 0000000000000070    16 TLS     LOCAL  DEFAULT   21 std::io::stdio::OUTPUT_CAPTURE::{{constant}}::{{closure}}::VAL
+   400: 0000000000009ba0   188 FUNC    LOCAL  DEFAULT   14 std::sys::thread_local::native::lazy::Storage<T,D>::initialize
+   401: 000000000007bd50     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table553
+   402: 000000000007bd64     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table554
+   403: 0000000000041ac0   552 FUNC    LOCAL  DEFAULT   14 std::io::stdio::print_to_buffer_if_capture_used
+   404: 00000000000424b0   303 FUNC    LOCAL  DEFAULT   14 std::io::Write::write_fmt
+   405: 000000000007bd74     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table555
+   406: 000000000007bd90     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table556
+   407: 000000000007bda4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table557
+   408: 000000000007bdc8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table558
+   409: 0000000000042270   259 FUNC    LOCAL  DEFAULT   14 std::io::default_read_to_end::small_probe_read
+   410: 000000000007bdec     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table571
+   411: 000000000007be14     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table572
+   412: 00000000000425e0   103 FUNC    LOCAL  DEFAULT   14 <std::io::Write::write_fmt::Adapter<T> as core::fmt::Write>::write_str
+   413: 0000000000042650    80 FUNC    LOCAL  DEFAULT   14 <std::io::Write::write_fmt::Adapter<T> as core::fmt::Write>::write_str
+   414: 000000000007be3c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table574
+   415: 00000000000426a0   228 FUNC    LOCAL  DEFAULT   14 <std::io::Write::write_fmt::Adapter<T> as core::fmt::Write>::write_str
+   416: 000000000007be4c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table576
+   417: 0000000000042790    80 FUNC    LOCAL  DEFAULT   14 <std::io::Write::write_fmt::Adapter<T> as core::fmt::Write>::write_str
+   418: 000000000007be60     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table577
+   419: 000000000007be70     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table578
+   420: 0000000000046a70   176 FUNC    LOCAL  DEFAULT   14 std::panicking::rust_panic_without_hook
+   421: 0000000000081140     1 OBJECT  LOCAL  DEFAULT   28 std::panic::SHOULD_CAPTURE
+   422: 0000000000042f50   333 FUNC    LOCAL  DEFAULT   14 std::path::Components::len_before_body
+   423: 0000000000043600   227 FUNC    LOCAL  DEFAULT   14 std::path::Components::parse_next_component_back
+   424: 00000000000474c0   190 FUNC    LOCAL  DEFAULT   14 <std::path::Component as core::cmp::PartialEq>::eq
+   425: 0000000000044070   288 FUNC    LOCAL  DEFAULT   14 std::path::PathBuf::push
+   426: 000000000007be98     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table719
+   427: 000000000007bea8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table736
+   428: 000000000007bebc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table740
+   429: 000000000007bed0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table741
+   430: 0000000000009144    89 FUNC    LOCAL  DEFAULT   14 std::sync::once_lock::OnceLock<T>::initialize
+   431: 000000000007bee4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table805
+   432: 0000000000044fc0    73 FUNC    LOCAL  DEFAULT   14 std::sync::once::Once::call_once_force::{{closure}}
+   433: 0000000000045010   128 FUNC    LOCAL  DEFAULT   14 std::sync::once::Once::call_once_force::{{closure}}
+   434: 0000000000045090   129 FUNC    LOCAL  DEFAULT   14 std::sync::once::Once::call_once_force::{{closure}}
+   435: 00000000000091a0   156 FUNC    LOCAL  DEFAULT   14 std::sys::pal::common::small_c_string::run_with_cstr_allocating
+   436: 0000000000009240   134 FUNC    LOCAL  DEFAULT   14 std::sys::pal::common::small_c_string::run_with_cstr_allocating
+   437: 000000000007bf14     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table843
+   438: 0000000000047940   334 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::fs::File::open_c
+   439: 0000000000009430   189 FUNC    LOCAL  DEFAULT   14 std::sys::pal::common::small_c_string::run_with_cstr_allocating
+   440: 000000000007bf28     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table845
+   441: 0000000000045190    88 FUNC    LOCAL  DEFAULT   14 std::sys::backtrace::BacktraceLock::print
+   442: 000000000007bf3c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table852
+   443: 0000000000045470    31 FUNC    LOCAL  DEFAULT   14 std::sys::backtrace::_print_fmt::{{closure}}
+   444: 000000000007bf58     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table854
+   445: 000000000007bf6c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table855
+   446: 0000000000045870     9 FUNC    LOCAL  DEFAULT   14 std::sys::backtrace::__rust_end_short_backtrace
+   447: 00000000000466a0   210 FUNC    LOCAL  DEFAULT   14 std::panicking::begin_panic_handler::{{closure}}
+   448: 000000000007bf8c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table858
+   449: 0000000000081150     8 OBJECT  LOCAL  DEFAULT   28 std::alloc::HOOK
+   450: 0000000000045ad0   342 FUNC    LOCAL  DEFAULT   14 std::alloc::default_alloc_error_hook
+   451: 000000000007bfa0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table872
+   452: 000000000007bfb8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table877
+   453: 000000000007bfd0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table878
+   454: 00000000000461f1   353 FUNC    LOCAL  DEFAULT   14 std::panicking::default_hook::{{closure}}
+   455: 000000000007bfe8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table881
+   456: 0000000000081011     1 OBJECT  LOCAL  DEFAULT   27 std::panicking::default_hook::{{closure}}::FIRST_PANIC
+   457: 000000000007c010     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table882
+   458: 000000000007c020     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table890
+   459: 000000000007c034     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table891
+   460: 0000000000046660    16 FUNC    LOCAL  DEFAULT   14 <std::panicking::begin_panic_handler::StaticStrPayload as core::panic::PanicPayload>::get
+   461: 0000000000046670    13 FUNC    LOCAL  DEFAULT   14 <std::panicking::begin_panic_handler::StaticStrPayload as core::panic::PanicPayload>::as_str
+   462: 000000000007c044     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table897
+   463: 000000000007c058     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table899
+   464: 000000000007c08c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table900
+   465: 0000000000046b40    13 FUNC    LOCAL  DEFAULT   14 <std::panicking::rust_panic_without_hook::RewrapBox as core::panic::PanicPayload>::get
+   466: 0000000000047490    45 FUNC    LOCAL  DEFAULT   14 <std::io::error::ErrorKind as core::fmt::Debug>::fmt
+   467: 0000000000047580    53 FUNC    LOCAL  DEFAULT   14 <std::path::StripPrefixError as core::fmt::Debug>::fmt
+   468: 0000000000009550    76 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::weak::DlsymWeak<F>::initialize
+   469: 0000000000081060     8 OBJECT  LOCAL  DEFAULT   27 std::sys::pal::unix::thread::min_stack_size::DLSYM
+   470: 000000000007c0a4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table943
+   471: 000000000007c0c8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table954
+   472: 000000000007c0ec     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table965
+   473: 0000000000047fb0   216 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::fs::stat::{{closure}}
+   474: 00000000000481e0   219 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::fs::lstat::{{closure}}
+   475: 000000000007c108     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1013
+   476: 000000000007c12c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1042
+   477: 000000000007c140     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1043
+   478: 0000000000048e90   244 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::thread::Thread::new::thread_start
+   479: 000000000007c168     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1051
+   480: 000000000007c19c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1052
+   481: 000000000007c1b4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1056
+   482: 0000000000049390  2821 FUNC    LOCAL  DEFAULT   14 std::sys::pal::unix::thread::cgroups::find_mountpoint
+   483: 000000000007c1f0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1057
+   484: 00000000000811ba     1 OBJECT  LOCAL  DEFAULT   28 std::sys::pal::unix::fs::try_statx::STATX_SAVED_STATE
+   485: 000000000004a230    17 FUNC    LOCAL  DEFAULT   14 std::sys::personality::gcc::find_eh_action::{{closure}}
+   486: 000000000004a250    17 FUNC    LOCAL  DEFAULT   14 std::sys::personality::gcc::find_eh_action::{{closure}}
+   487: 000000000007c260     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1080
+   488: 00000000000811c0    24 OBJECT  LOCAL  DEFAULT   28 std::sys::exit_guard::unique_thread_exit::EXITING_THREAD_ID
+   489: 000000000007c278     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1102
+   490: 000000000004ac70    68 FUNC    LOCAL  DEFAULT   14 std::sys::thread_local::native::lazy::destroy
+   491: 000000000007c28c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1106
+   492: 0000000000081018     8 OBJECT  LOCAL  DEFAULT   27 _rust_extern_with_linkage___dso_handle
+   493: 0000000000000000    32 TLS     LOCAL  DEFAULT   20 std::sys::thread_local::destructors::list::DTORS
+   494: 000000000007c29c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1108
+   495: 0000000000081020    16 OBJECT  LOCAL  DEFAULT   27 std::sys::thread_local::guard::key::enable::DTORS
+   496: 000000000004aee0   326 FUNC    LOCAL  DEFAULT   14 std::sys::thread_local::guard::key::enable::run
+   497: 000000000007c2b0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1110
+   498: 000000000007c2c8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1131
+   499: 000000000004b0c0   247 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::stash::Stash::allocate
+   500: 000000000007c2d8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1132
+   501: 000000000004b1c0 13212 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::Context::new
+   502: 0000000000053ac0   926 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::elf::Object::section
+   503: 000000000007c2e8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1133
+   504: 000000000004e560   675 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::mmap
+   505: 000000000007c440     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1134
+   506: 0000000000054480  2825 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::libs_dl_iterate_phdr::callback
+   507: 00000000000533a0  1809 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::elf::Object::parse
+   508: 0000000000053f20   374 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::elf::Object::build_id
+   509: 0000000000054170   777 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::elf::locate_build_id
+   510: 0000000000052390  3065 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::elf::<impl std::backtrace_rs::symbolize::gimli::Mapping>::new_debug
+   511: 0000000000052f90  1039 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::elf::<impl std::backtrace_rs::symbolize::gimli::Mapping>::load_dwarf_package
+   512: 0000000000053e60   180 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::elf::Object::search_symtab
+   513: 00000000000811d8     1 OBJECT  LOCAL  DEFAULT   28 std::backtrace_rs::symbolize::gimli::elf::debug_path_exists::DEBUG_PATH_EXISTS
+   514: 000000000007c464     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1135
+   515: 000000000007c634     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1138
+   516: 000000000007c6bc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1139
+   517: 000000000007c700     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1140
+   518: 00000000000540a0   204 FUNC    LOCAL  DEFAULT   14 std::backtrace_rs::symbolize::gimli::elf::decompress_zlib
+   519: 000000000007c718     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1145
+   520: 000000000007c73c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1146
+   521: 0000000000055640   191 FUNC    LOCAL  DEFAULT   14 <std::backtrace_rs::symbolize::gimli::parse_running_mmaps::MapsEntry as core::str::traits::FromStr>::from_str::{{closure}}
+   522: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS addr2line.14a50d7b1234fc0d-cgu.0
+   523: 0000000000055b56    55 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::string::String>
+   524: 000000000007c7ec     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table0
+   525: 0000000000055e62   132 FUNC    LOCAL  DEFAULT   14 addr2line::has_windows_root
+   526: 000000000007c808     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table7
+   527: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS gimli.4d9d9558e353e152-cgu.0
+   528: 0000000000055f0d    40 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<gimli::read::abbrev::Attributes>
+   529: 000000000007c820     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table13
+   530: 000000000007c834     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table14
+   531: 000000000007c840     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table18
+   532: 000000000007c850     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table27
+   533: 000000000007c864     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table30
+   534: 000000000007c874     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table32
+   535: 000000000007c8a4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table33
+   536: 000000000007c8b4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table34
+   537: 000000000007c8d4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table37
+   538: 000000000007c8f0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table61
+   539: 000000000007c900     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table62
+   540: 000000000007c90c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table63
+   541: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS alloc.d3b20e39f9459a56-cgu.0
+   542: 0000000000060f30    21 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_fmt
+   543: 0000000000060f50    30 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::string::String>
+   544: 0000000000060f70    26 FUNC    LOCAL  DEFAULT   14 <core::fmt::Error as core::fmt::Debug>::fmt
+   545: 0000000000060f90    26 FUNC    LOCAL  DEFAULT   14 <core::alloc::layout::LayoutError as core::fmt::Debug>::fmt
+   546: 0000000000060fb0    59 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::capacity_overflow
+   547: 0000000000060ff0   156 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   548: 0000000000061090   118 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::finish_grow
+   549: 0000000000009cc0   151 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle
+   550: 000000000007c924     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table31
+   551: 000000000007c93c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table34
+   552: 000000000007c954     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table52
+   553: 000000000007c964     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table57
+   554: 00000000000619a0    92 FUNC    LOCAL  DEFAULT   14 <alloc::string::String as core::fmt::Write>::write_str
+   555: 0000000000061a00   282 FUNC    LOCAL  DEFAULT   14 <alloc::string::String as core::fmt::Write>::write_char
+   556: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS core.c69983dec69e7809-cgu.0
+   557: 0000000000061bf0    75 FUNC    LOCAL  DEFAULT   14 <core::ops::range::Range<Idx> as core::fmt::Debug>::fmt
+   558: 0000000000066550   536 FUNC    LOCAL  DEFAULT   14 core::fmt::num::<impl core::fmt::Debug for usize>::fmt
+   559: 0000000000061c60   546 FUNC    LOCAL  DEFAULT   14 core::char::methods::<impl char>::escape_debug_ext
+   560: 0000000000066c80    24 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Display>::fmt
+   561: 000000000007c994     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table132
+   562: 0000000000066c60    21 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Debug>::fmt
+   563: 00000000000628a0    21 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_fmt
+   564: 0000000000063040    84 FUNC    LOCAL  DEFAULT   14 core::fmt::Formatter::pad_integral::write_prefix
+   565: 0000000000065a50   281 FUNC    LOCAL  DEFAULT   14 core::unicode::printable::check
+   566: 000000000006dae4   136 OBJECT  LOCAL  DEFAULT   16 core::unicode::unicode_data::grapheme_extend::SHORT_OFFSET_RUNS
+   567: 000000000006db6c   751 OBJECT  LOCAL  DEFAULT   16 core::unicode::unicode_data::grapheme_extend::OFFSETS
+   568: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS hash_and_xattr.1f4b4a7c70193e6a-cgu.0
+   569: 000000000000a840   168 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::Write::write_fmt::Adapter<std::sys::pal::unix::stdio::Stderr>>
+   570: 0000000000079f88     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table5
+   571: 0000000000079f94     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+   572: 0000000000079fa8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table7
+   573: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS hash_and_xattr.1f4b4a7c70193e6a-cgu.1
+   574: 000000000000aac0   355 FUNC    LOCAL  DEFAULT   14 <core::iter::adapters::map::Map<I,F> as core::iter::traits::iterator::Iterator>::next
+   575: 000000000000ae90   258 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<walkdir::error::Error>
+   576: 0000000000079fb8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table0
+   577: 000000000000ac30    65 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::iter::adapters::map::Map<core::iter::adapters::filter_map::FilterMap<std::io::Lines<std::io::stdio::StdinLock>,hash_and_xattr::get_files_from_stdin::{{closure}}>,hash_and_xattr::get_files_from_stdin::{{closure}}>>
+   578: 000000000000ac80    81 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<walkdir::DirList>
+   579: 000000000000ace0   426 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::iter::adapters::map::Map<core::iter::adapters::filter::Filter<core::iter::adapters::filter_map::FilterMap<walkdir::IntoIter,hash_and_xattr::get_files_from_directory::{{closure}}>,hash_and_xattr::get_files_from_directory::{{closure}}>,hash_and_xattr::get_files_from_directory::{{closure}}>>
+   580: 000000000000afa0   287 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<walkdir::DirList>>
+   581: 000000000000b0c0   130 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<walkdir::Ancestor>>
+   582: 000000000000b270   130 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<walkdir::dent::DirEntry>>
+   583: 0000000000079fcc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table3
+   584: 0000000000079ff4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table4
+   585: 000000000007a004     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table5
+   586: 000000000000b150   130 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<std::path::PathBuf>>
+   587: 000000000000b1e0   130 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<alloc::string::String>>
+   588: 000000000007a020     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table18
+   589: 000000000007a064     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table19
+   590: 000000000007a0a4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table21
+   591: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS hash_and_xattr.1f4b4a7c70193e6a-cgu.2
+   592: 000000000007a104     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1
+   593: 000000000007a130     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table2
+   594: 000000000007a144     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table3
+   595: 000000000007a164     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table4
+   596: 000000000000c090  1077 FUNC    LOCAL  DEFAULT   14 rayon_core::join::join_context::{{closure}}
+   597: 000000000000c9c0   200 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon_core::job::StackJob<rayon_core::latch::SpinLatch,rayon_core::join::join_context::call_b<(),rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}}>::{{closure}},()>>
+   598: 000000000007a178     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table5
+   599: 000000000007a1d8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table7
+   600: 000000000007a1f0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table8
+   601: 000000000000c910   164 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::error::Error>
+   602: 000000000007a218     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table10
+   603: 000000000007a244     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table14
+   604: 000000000007a250     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table15
+   605: 000000000000ca90   186 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon_core::join::join_context<rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},(),()>::{{closure}}>
+   606: 000000000000cb50    65 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sync::mutex::MutexGuard<bool>>
+   607: 000000000007a264     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table20
+   608: 000000000007a270     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table21
+   609: 000000000000cd80    65 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<bool>>>
+   610: 000000000000cdd0    44 FUNC    LOCAL  DEFAULT   14 <std::sync::poison::PoisonError<T> as core::fmt::Debug>::fmt
+   611: 000000000007a27c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table31
+   612: 000000000007a2c4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table32
+   613: 000000000007a324     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table33
+   614: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS hash_and_xattr.1f4b4a7c70193e6a-cgu.3
+   615: 000000000000dfc0    20 FUNC    LOCAL  DEFAULT   14 <alloc::string::String as core::fmt::Display>::fmt
+   616: 000000000000de80   164 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::error::Error>
+   617: 000000000007a364     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table0
+   618: 000000000007a3d4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table5
+   619: 000000000000df30   130 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<alloc::string::String>>
+   620: 000000000000dfe0   741 FUNC    LOCAL  DEFAULT   14 hash_and_xattr::main
+   621: 000000000007a3e0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table9
+   622: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS hash_and_xattr.1f4b4a7c70193e6a-cgu.7
+   623: 000000000000f690   117 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon::vec::SliceDrain<std::path::PathBuf>>
+   624: 000000000007a594     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table9
+   625: 000000000007a5cc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table10
+   626: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS hash_and_xattr.1f4b4a7c70193e6a-cgu.8
+   627: 000000000000fb60    95 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::option::Option<alloc::boxed::Box<dyn core::ops::function::Fn<(usize,)>+Output = ()+core::marker::Send+core::marker::Sync>>>
+   628: 000000000007a5f0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table3
+   629: 000000000007a5fc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table5
+   630: 000000000007a62c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+   631: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS dk7iu8nj8iglk2mpo6y63qlpi
+   632: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS atty.275130aeaf876dd5-cgu.0
+   633: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS rayon_core.bce2ab038fd17560-cgu.3
+   634: 000000000007abac     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+   635: 000000000007abc8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table13
+   636: 000000000007abec     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table23
+   637: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS rayon_core.bce2ab038fd17560-cgu.5
+   638: 0000000000015030   168 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::Write::write_fmt::Adapter<std::sys::pal::unix::stdio::Stderr>>
+   639: 000000000007acd4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+   640: 000000000007ace0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table8
+   641: 000000000007acf4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table9
+   642: 000000000007ad10     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table10
+   643: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS rayon_core.bce2ab038fd17560-cgu.6
+   644: 0000000000015dc0   176 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::thread::Builder::spawn_unchecked_<<rayon_core::registry::DefaultSpawn as rayon_core::registry::ThreadSpawn>::spawn::{{closure}},()>::{{closure}}>
+   645: 0000000000015f20   197 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::sync::ArcInner<std::thread::Packet<()>>>
+   646: 0000000000015ca0   174 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<<rayon_core::registry::DefaultSpawn as rayon_core::registry::ThreadSpawn>::spawn::{{closure}}>
+   647: 000000000007ad2c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table0
+   648: 0000000000015990   679 FUNC    LOCAL  DEFAULT   14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+   649: 000000000007ad98     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1
+   650: 000000000007addc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table2
+   651: 000000000007ade8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table3
+   652: 0000000000015d50   103 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::cell::UnsafeCell<core::option::Option<core::result::Result<(),alloc::boxed::Box<dyn core::any::Any+core::marker::Send>>>>>
+   653: 000000000007ae0c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table4
+   654: 000000000007ae18     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table5
+   655: 000000000007ae40     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+   656: 000000000007ae4c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table7
+   657: 000000000007ae74     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table8
+   658: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS rayon_core.bce2ab038fd17560-cgu.7
+   659: 000000000007aea8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table0
+   660: 000000000007aec0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1
+   661: 00000000000163f0   103 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::cell::UnsafeCell<core::option::Option<core::result::Result<(),alloc::boxed::Box<dyn core::any::Any+core::marker::Send>>>>>
+   662: 000000000007aee8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table3
+   663: 0000000000016460    95 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::option::Option<alloc::boxed::Box<dyn core::ops::function::Fn<(usize,)>+Output = ()+core::marker::Send+core::marker::Sync>>>
+   664: 000000000007aef4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table4
+   665: 000000000007af00     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table5
+   666: 000000000007af0c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+   667: 000000000007af34     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table9
+   668: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS crossbeam_epoch.b5e7fe256b45da7f-cgu.2
+   669: 000000000007b054     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table12
+   670: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS xattr.9e8dc5642fccf2de-cgu.1
+   671: 000000000007b070     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table0
+   672: 0000000000018030    24 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<<alloc::boxed::Box<dyn core::error::Error+core::marker::Send+core::marker::Sync> as core::convert::From<alloc::string::String>>::from::StringError>
+   673: 0000000000018050     3 FUNC    LOCAL  DEFAULT   14 core::error::Error::cause
+   674: 0000000000018060     1 FUNC    LOCAL  DEFAULT   14 core::error::Error::provide
+   675: 0000000000018070    21 FUNC    LOCAL  DEFAULT   14 core::error::Error::type_id
+   676: 000000000007b084     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table15
+   677: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS xattr.9e8dc5642fccf2de-cgu.0
+   678: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS walkdir.139765e1a1c62177-cgu.1
+   679: 00000000000182b0   238 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<core::result::Result<walkdir::dent::DirEntry,walkdir::error::Error>>>
+   680: 000000000007b0bc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table3
+   681: 00000000000183a0    81 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<walkdir::DirList>
+   682: 0000000000018570   258 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<walkdir::error::Error>
+   683: 0000000000018400    65 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<same_file::Handle>
+   684: 000000000007b0dc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+   685: 0000000000018450   104 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::fs::DirEntry>
+   686: 000000000007b0e8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table7
+   687: 00000000000184c0   164 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::error::Error>
+   688: 000000000007b0f4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table8
+   689: 000000000007b100     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table9
+   690: 0000000000019d30   329 FUNC    LOCAL  DEFAULT   14 walkdir::IntoIter::pop
+   691: 0000000000018df0  2435 FUNC    LOCAL  DEFAULT   14 walkdir::IntoIter::handle_entry
+   692: 000000000007b110     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table14
+   693: 0000000000019780  1450 FUNC    LOCAL  DEFAULT   14 walkdir::IntoIter::push
+   694: 000000000007b16c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table16
+   695: 000000000007b1f0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table17
+   696: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS walkdir.139765e1a1c62177-cgu.3
+   697: 000000000001a430   238 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<core::result::Result<walkdir::dent::DirEntry,walkdir::error::Error>>>
+   698: 000000000007b298     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table0
+   699: 000000000007b2b8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1
+   700: 000000000001a660   710 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::smallsort::sort4_stable
+   701: 000000000007b2c8     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table3
+   702: 000000000007b2dc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table4
+   703: 000000000007b30c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table5
+   704: 000000000007b334     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+   705: 000000000007b340     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table7
+   706: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS walkdir.139765e1a1c62177-cgu.4
+   707: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS walkdir.139765e1a1c62177-cgu.0
+   708: 000000000001bdf0   238 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<core::result::Result<walkdir::dent::DirEntry,walkdir::error::Error>>>
+   709: 000000000007b35c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+   710: 000000000001bee0    81 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<walkdir::DirList>
+   711: 000000000001bf40   104 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::fs::DirEntry>
+   712: 000000000007b37c     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table8
+   713: 000000000007b388     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table10
+   714: 000000000007b398     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table14
+   715: 000000000001d6a0   372 FUNC    LOCAL  DEFAULT   14 <walkdir::DirList as core::iter::traits::iterator::Iterator>::next::{{closure}}
+   716: 000000000007b3b4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table20
+   717: 000000000007b404     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table21
+   718: 000000000007b440     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table24
+   719: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS same_file.837e5342232f1134-cgu.0
+   720: 000000000007b478     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table5
+   721: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS sha2.1a9a249948460f6e-cgu.0
+   722: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS sha2.1a9a249948460f6e-cgu.1
+   723: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS panic_unwind.df1a0965d41b173a-cgu.0
+   724: 0000000000055700   105 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<panic_unwind::imp::Exception>
+   725: 000000000007c7a4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table0
+   726: 0000000000055770   141 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::boxed::Box<panic_unwind::imp::Exception>>
+   727: 000000000007c7b0     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table1
+   728: 000000000006c21c     1 OBJECT  LOCAL  DEFAULT   16 panic_unwind::imp::CANARY
+   729: 0000000000055910    24 FUNC    LOCAL  DEFAULT   14 panic_unwind::imp::panic::exception_cleanup
+   730: 000000000007c7bc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table3
+   731: 000000000007c7dc     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table4
+   732: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS object.92ca88714ab9ade9-cgu.0
+   733: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS memchr.eea0fcfd436e9a78-cgu.0
+   734: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS rustc_demangle.137e527e459f1858-cgu.0
+   735: 00000000000574c0  1046 FUNC    LOCAL  DEFAULT   14 <core::iter::sources::from_fn::FromFn<F> as core::iter::traits::iterator::Iterator>::next
+   736: 0000000000058180    27 FUNC    LOCAL  DEFAULT   14 <core::str::iter::Chars as core::iter::traits::iterator::Iterator>::count
+   737: 0000000000057cc0   116 FUNC    LOCAL  DEFAULT   14 <&mut T as core::fmt::Debug>::fmt
+   738: 0000000000057910    24 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Debug>::fmt
+   739: 00000000000578e0    39 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Debug>::fmt
+   740: 0000000000057930    48 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Debug>::fmt
+   741: 0000000000057960    77 FUNC    LOCAL  DEFAULT   14 <&T as core::fmt::Display>::fmt
+   742: 000000000005ad40  1824 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_path
+   743: 00000000000579b0    26 FUNC    LOCAL  DEFAULT   14 <() as core::fmt::Debug>::fmt
+   744: 00000000000579d0   217 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_char
+   745: 0000000000057ab0    21 FUNC    LOCAL  DEFAULT   14 core::fmt::Write::write_fmt
+   746: 0000000000057ad0   494 FUNC    LOCAL  DEFAULT   14 core::char::methods::<impl char>::escape_debug_ext
+   747: 0000000000057d40    26 FUNC    LOCAL  DEFAULT   14 <core::fmt::Error as core::fmt::Debug>::fmt
+   748: 0000000000057d60    70 FUNC    LOCAL  DEFAULT   14 <core::num::error::ParseIntError as core::fmt::Debug>::fmt
+   749: 0000000000057db0   973 FUNC    LOCAL  DEFAULT   14 <core::str::pattern::StrSearcher as core::str::pattern::Searcher>::next
+   750: 00000000000581a0   522 FUNC    LOCAL  DEFAULT   14 <core::str::pattern::CharSearcher as core::str::pattern::Searcher>::next_match
+   751: 0000000000059460   389 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::HexNibbles::try_parse_uint
+   752: 00000000000595f0   164 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Parser::hex_nibbles
+   753: 00000000000596a0   187 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Parser::integer_62
+   754: 0000000000059760   228 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Parser::disambiguator
+   755: 0000000000059850    89 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Parser::namespace
+   756: 00000000000598b0   475 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Parser::ident
+   757: 0000000000059a90    86 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::skipping_printing
+   758: 0000000000059af0   413 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_backref
+   759: 000000000005b5a0  1284 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_type
+   760: 0000000000059c90   432 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_backref
+   761: 0000000000059e40   432 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_backref
+   762: 000000000005c430  1671 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_const
+   763: 0000000000059ff0   342 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_quoted_escaped_chars
+   764: 000000000005a150   249 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_lifetime_from_index
+   765: 000000000005a250   844 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::in_binder
+   766: 000000000005c220   516 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_dyn_trait
+   767: 000000000005a5a0   590 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::in_binder
+   768: 000000000005bab0  1288 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_type::{{closure}}
+   769: 000000000005a7f0   154 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_sep_list
+   770: 000000000005b460   309 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_generic_arg
+   771: 000000000005a890   681 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_sep_list
+   772: 000000000005ab40   169 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_sep_list
+   773: 000000000005abf0   159 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_sep_list
+   774: 000000000005ac90   164 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_sep_list
+   775: 000000000005bfc0   607 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_path_maybe_open_generics
+   776: 000000000005cac0   505 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_const_uint
+   777: 000000000005ccc0   736 FUNC    LOCAL  DEFAULT   14 rustc_demangle::v0::Printer::print_const_str_literal
+   778: 000000000005dc30    43 FUNC    LOCAL  DEFAULT   14 <rustc_demangle::SizeLimitedFmtAdapter<F> as core::fmt::Write>::write_str
+   779: 000000000005de40    26 FUNC    LOCAL  DEFAULT   14 <rustc_demangle::SizeLimitExhausted as core::fmt::Debug>::fmt
+   780: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS miniz_oxide.8739010a5f1cea1a-cgu.0
+   781: 000000000005de60  1094 FUNC    LOCAL  DEFAULT   14 miniz_oxide::inflate::core::init_tree
+   782: 000000000005e2b0  1211 FUNC    LOCAL  DEFAULT   14 miniz_oxide::inflate::core::transfer
+   783: 000000000005e770   475 FUNC    LOCAL  DEFAULT   14 miniz_oxide::inflate::core::apply_match
+   784: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS adler.370ccb685bbcb9cb-cgu.0
+   785: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS compiler_builtins.de1721af4f7cf758-cgu.035
+   786: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS compiler_builtins.de1721af4f7cf758-cgu.019
+   787: 000000000007c9a4     0 NOTYPE  LOCAL  DEFAULT   19 GCC_except_table6
+   788: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS compiler_builtins.de1721af4f7cf758-cgu.011
+   789: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS generic_array.f3f55f323f6d48e0-cgu.0
+   790: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS sha2.1a9a249948460f6e-cgu.3
+   791: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS 
+   792: 0000000000045d50   140 FUNC    LOCAL  DEFAULT   14 __rdl_alloc_zeroed
+   793: 0000000000007f90   241 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle
+   794: 0000000000019f30   108 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::finish_grow
+   795: 000000000001c0f0   379 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::pivot::median3_rec
+   796: 0000000000008950    75 FUNC    LOCAL  DEFAULT   14 crossbeam_epoch::sync::once_lock::OnceLock<T>::initialize
+   797: 000000000000ff00   123 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   798: 000000000001b5e0   191 FUNC    LOCAL  DEFAULT   14 <alloc::vec::into_iter::IntoIter<T,A> as core::ops::drop::Drop>::drop
+   799: 00000000000151a0   226 FUNC    LOCAL  DEFAULT   14 <alloc::vec::into_iter::IntoIter<T,A> as core::ops::drop::Drop>::drop
+   800: 0000000000008aa0    85 FUNC    LOCAL  DEFAULT   14 sha2::sha512::x86::avx2_cpuid::init_get::init_inner
+   801: 000000000000fbc0   111 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   802: 0000000000016700   714 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   803: 000000000000f710   367 FUNC    LOCAL  DEFAULT   14 rayon::iter::ParallelIterator::for_each
+   804: 000000000001ab90  2147 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::smallsort::small_sort_general_with_scratch
+   805: 0000000000014530   394 FUNC    LOCAL  DEFAULT   14 rayon_core::ThreadPoolBuildError::is_unsupported
+   806: 000000000001a930   596 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::smallsort::insertion_sort_shift_left
+   807: 0000000000014dc0   378 FUNC    LOCAL  DEFAULT   14 <core::iter::adapters::chain::Chain<A,B> as core::iter::traits::iterator::Iterator>::try_fold
+   808: 000000000000b890  1066 FUNC    LOCAL  DEFAULT   14 <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter
+   809: 0000000000066e70   239 FUNC    LOCAL  DEFAULT   14 compiler_builtins::int::specialized_div_rem::u128_div_rem
+   810: 000000000000bf70   273 FUNC    LOCAL  DEFAULT   14 rayon_core::job::StackJob<L,F,R>::into_result
+   811: 0000000000017780   262 FUNC    LOCAL  DEFAULT   14 core::sync::atomic::atomic_compare_exchange
+   812: 0000000000015290   226 FUNC    LOCAL  DEFAULT   14 <alloc::vec::into_iter::IntoIter<T,A> as core::ops::drop::Drop>::drop
+   813: 0000000000014be0   473 FUNC    LOCAL  DEFAULT   14 core::iter::traits::iterator::Iterator::unzip
+   814: 0000000000007410   635 FUNC    LOCAL  DEFAULT   14 crossbeam_deque::deque::Worker<T>::resize
+   815: 0000000000014700   243 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<crossbeam_deque::deque::Stealer<rayon_core::job::JobRef>>>
+   816: 000000000001c3e0  2341 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::drift::sort
+   817: 00000000000142d0   595 FUNC    LOCAL  DEFAULT   14 rayon_core::ThreadPoolBuilder<S>::get_num_threads
+   818: 0000000000015380  1539 FUNC    LOCAL  DEFAULT   14 std::thread::Builder::spawn_unchecked
+   819: 000000000000cba0   186 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::cell::UnsafeCell<core::option::Option<rayon_core::registry::Registry::in_worker_cross<rayon_core::join::join_context<rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},(),()>::{{closure}},((),())>::{{closure}}>>>
+   820: 0000000000045c30    93 FUNC    LOCAL  DEFAULT   14 __rdl_alloc
+   821: 000000000001c0c0    44 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<walkdir::dent::DirEntry,walkdir::error::Error>>
+   822: 000000000000eb40   280 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon_core::job::StackJob<rayon_core::latch::LatchRef<rayon_core::latch::LockLatch>,rayon_core::registry::Registry::in_worker_cold<rayon_core::join::join_context<rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},(),()>::{{closure}},((),())>::{{closure}}::{{closure}},((),())>>
+   823: 000000000000ccd0   168 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::Write::write_fmt::Adapter<std::sys::pal::unix::stdio::Stderr>>
+   824: 0000000000013a40   592 FUNC    LOCAL  DEFAULT   14 crossbeam_deque::deque::Injector<T>::steal
+   825: 000000000000a8f0   192 FUNC    LOCAL  DEFAULT   14 <std::io::Write::write_fmt::Adapter<T> as core::fmt::Write>::write_str
+   826: 0000000000007060   307 FUNC    LOCAL  DEFAULT   14 rayon_core::registry::Registry::in_worker_cold
+   827: 0000000000016670    58 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   828: 0000000000016a80   108 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::finish_grow
+   829: 000000000000f600   130 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon::vec::IntoIter<std::path::PathBuf>>
+   830: 000000000001d970    27 FUNC    LOCAL  DEFAULT   14 sha2::sha512::x86::avx2_cpuid::init_get::init_inner::cpuid_count
+   831: 0000000000017de0   353 FUNC    LOCAL  DEFAULT   14 <crossbeam_epoch::sync::queue::Queue<T> as core::ops::drop::Drop>::drop
+   832: 000000000001d990 15105 FUNC    LOCAL  DEFAULT   14 sha2::sha512::soft::compress
+   833: 000000000000fc30   714 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   834: 000000000001d8f0    13 FUNC    LOCAL  DEFAULT   14 core::core_arch::x86::xsave::_xgetbv
+   835: 0000000000017680   252 FUNC    LOCAL  DEFAULT   14 <crossbeam_epoch::sync::list::Iter<T,C> as core::iter::traits::iterator::Iterator>::next
+   836: 0000000000016ba0   246 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::sync::ArcInner<crossbeam_epoch::internal::Global>>
+   837: 000000000000ef70   315 FUNC    LOCAL  DEFAULT   14 crossbeam_deque::deque::Worker<T>::pop
+   838: 0000000000045c90    11 FUNC    LOCAL  DEFAULT   14 __rdl_dealloc
+   839: 0000000000017f50   224 FUNC    LOCAL  DEFAULT   14 std::io::error::Error::new
+   840: 0000000000014100   393 FUNC    LOCAL  DEFAULT   14 alloc::vec::in_place_collect::<impl alloc::vec::spec_from_iter::SpecFromIter<T,I> for alloc::vec::Vec<T>>::from_iter
+   841: 00000000000169d0    63 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   842: 0000000000015c40    95 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<(),alloc::boxed::Box<dyn core::any::Any+core::marker::Send>>>
+   843: 000000000000fff0   510 FUNC    LOCAL  DEFAULT   14 std::sync::once::Once::call_once::{{closure}}
+   844: 0000000000013e90    59 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::sync::ArcInner<crossbeam_utils::cache_padded::CachePadded<crossbeam_deque::deque::Inner<rayon_core::job::JobRef>>>>
+   845: 000000000001b400   338 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::driftsort_main
+   846: 0000000000008620   134 FUNC    LOCAL  DEFAULT   14 crossbeam_epoch::internal::Global::try_advance
+   847: 0000000000012db0    79 FUNC    LOCAL  DEFAULT   14 std::sys::backtrace::__rust_begin_short_backtrace
+   848: 00000000000135a0   285 FUNC    LOCAL  DEFAULT   14 crossbeam_deque::deque::Worker<T>::new_lifo
+   849: 00000000000105d0   410 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon_core::ThreadPoolBuilder>
+   850: 0000000000045ca0   167 FUNC    LOCAL  DEFAULT   14 __rdl_realloc
+   851: 000000000000b300   900 FUNC    LOCAL  DEFAULT   14 <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter
+   852: 000000000000d500  2424 FUNC    LOCAL  DEFAULT   14 core::ops::function::impls::<impl core::ops::function::FnMut<A> for &F>::call_mut
+   853: 0000000000019e80   164 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::error::Error>
+   854: 000000000001bfb0   258 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<walkdir::error::Error>
+   855: 0000000000013f10   119 FUNC    LOCAL  DEFAULT   14 <crossbeam_deque::deque::Injector<T> as core::ops::drop::Drop>::drop
+   856: 000000000000e9d0   280 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon_core::job::StackJob<rayon_core::latch::SpinLatch,rayon_core::registry::Registry::in_worker_cross<rayon_core::join::join_context<rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},(),()>::{{closure}},((),())>::{{closure}},((),())>>
+   857: 0000000000017890   282 FUNC    LOCAL  DEFAULT   14 crossbeam_epoch::atomic::Atomic<T>::compare_exchange_weak
+   858: 000000000000c7a0   296 FUNC    LOCAL  DEFAULT   14 std::rt::lang_start::{{closure}}
+   859: 0000000000012f70    65 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sync::poison::PoisonError<std::sync::mutex::MutexGuard<bool>>>
+   860: 0000000000016120   407 FUNC    LOCAL  DEFAULT   14 std::io::Write::write_all
+   861: 0000000000007c90   635 FUNC    LOCAL  DEFAULT   14 crossbeam_deque::deque::Worker<T>::resize
+   862: 0000000000012b80   392 FUNC    LOCAL  DEFAULT   14 rayon_core::registry::WorkerThread::find_work
+   863: 000000000000e680   178 FUNC    LOCAL  DEFAULT   14 rayon_core::registry::in_worker
+   864: 000000000000eda0   149 FUNC    LOCAL  DEFAULT   14 <alloc::vec::into_iter::IntoIter<T,A> as core::ops::drop::Drop>::drop
+   865: 000000000000bcc0   211 FUNC    LOCAL  DEFAULT   14 rayon_core::job::StackJob<L,F,R>::run_inline
+   866: 0000000000013480   285 FUNC    LOCAL  DEFAULT   14 crossbeam_deque::deque::Worker<T>::new_fifo
+   867: 00000000000164c0   168 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::Write::write_fmt::Adapter<std::sys::pal::unix::stdio::Stderr>>
+   868: 0000000000019fa0   207 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   869: 000000000004b060    19 FUNC    LOCAL  DEFAULT   14 __rg_oom
+   870: 000000000000a9b0   260 FUNC    LOCAL  DEFAULT   14 <std::io::Lines<B> as core::iter::traits::iterator::Iterator>::next
+   871: 00000000000071a0   224 FUNC    LOCAL  DEFAULT   14 rayon_core::registry::Registry::in_worker_cross
+   872: 0000000000013840   500 FUNC    LOCAL  DEFAULT   14 crossbeam_deque::deque::Injector<T>::push
+   873: 000000000001c270   368 FUNC    LOCAL  DEFAULT   14 core::slice::sort::shared::pivot::choose_pivot
+   874: 0000000000007310   241 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle
+   875: 00000000000166b0    72 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   876: 000000000001d290  1028 FUNC    LOCAL  DEFAULT   14 <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter
+   877: 00000000000131a0   335 FUNC    LOCAL  DEFAULT   14 rayon_core::sleep::Sleep::wake_specific_thread
+   878: 0000000000014000   243 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<alloc::vec::Vec<rayon_core::registry::ThreadInfo>>
+   879: 0000000000008081    46 FUNC    LOCAL  DEFAULT   14 core::panicking::assert_failed
+   880: 000000000000c670   298 FUNC    LOCAL  DEFAULT   14 std::io::Write::write_fmt
+   881: 000000000000ef00   108 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::finish_grow
+   882: 00000000000078d0   144 FUNC    LOCAL  DEFAULT   14 std::sys::thread_local::native::lazy::Storage<T,D>::initialize
+   883: 000000000000fac0    85 FUNC    LOCAL  DEFAULT   14 <rayon::vec::DrainProducer<T> as core::ops::drop::Drop>::drop
+   884: 000000000000beb0   187 FUNC    LOCAL  DEFAULT   14 rayon_core::job::StackJob<L,F,R>::into_result
+   885: 0000000000080340     0 OBJECT  LOCAL  DEFAULT   25 _DYNAMIC
+   886: 000000000001b6a0  1862 FUNC    LOCAL  DEFAULT   14 core::slice::sort::stable::quicksort::quicksort
+   887: 00000000000089a0   241 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle
+   888: 0000000000012e10   167 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::io::error::Error>
+   889: 0000000000012ec0    65 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<std::sync::mutex::MutexGuard<bool>>
+   890: 000000000001a520   314 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<walkdir::dent::DirEntry,walkdir::error::Error>>
+   891: 0000000000010770   173 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon_core::ThreadPoolBuildError>
+   892: 000000000001a210   534 FUNC    LOCAL  DEFAULT   14 walkdir::dent::DirEntry::from_path
+   893: 000000000000b690   499 FUNC    LOCAL  DEFAULT   14 <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter
+   894: 0000000000016a10   111 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   895: 000000000001a140   207 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   896: 000000000000e860   186 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon_core::join::join_context<rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},(),()>::{{closure}}>
+   897: 000000000000f470     5 FUNC    LOCAL  DEFAULT   14 std::sys::backtrace::__rust_begin_short_backtrace
+   898: 000000000000f880   568 FUNC    LOCAL  DEFAULT   14 rayon::iter::plumbing::bridge_producer_consumer::helper
+   899: 00000000000162c0   298 FUNC    LOCAL  DEFAULT   14 std::io::Write::write_fmt
+   900: 0000000000015ff0   294 FUNC    LOCAL  DEFAULT   14 <std::thread::Packet<T> as core::ops::drop::Drop>::drop
+   901: 000000000000c4d0   407 FUNC    LOCAL  DEFAULT   14 std::io::Write::write_all
+   902: 0000000000017c50   385 FUNC    LOCAL  DEFAULT   14 crossbeam_epoch::sync::queue::Queue<T>::try_pop_if
+   903: 00000000000117f0  4086 FUNC    LOCAL  DEFAULT   14 rayon_core::registry::Registry::new
+   904: 000000000006df5c     0 NOTYPE  LOCAL  DEFAULT   17 __GNU_EH_FRAME_HDR
+   905: 0000000000018270    62 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<alloc::ffi::c_str::CString,alloc::ffi::c_str::NulError>>
+   906: 0000000000080550     0 OBJECT  LOCAL  DEFAULT   26 _GLOBAL_OFFSET_TABLE_
+   907: 0000000000015e70   164 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<(),std::io::error::Error>>
+   908: 00000000000214a0  2960 FUNC    LOCAL  DEFAULT   14 sha2::sha512::x86::sha512_compress_x86_64_avx2
+   909: 000000000000e300   888 FUNC    LOCAL  DEFAULT   14 rayon_core::join::join_context::{{closure}}
+   910: 000000000000bda0   269 FUNC    LOCAL  DEFAULT   14 rayon_core::job::StackJob<L,F,R>::into_result
+   911: 00000000000136c0   371 FUNC    LOCAL  DEFAULT   14 crossbeam_deque::deque::Stealer<T>::steal
+   912: 000000000001d950    27 FUNC    LOCAL  DEFAULT   14 sha2::sha512::x86::avx2_cpuid::init_get::init_inner::cpuid
+   913: 000000000001a070   200 FUNC    LOCAL  DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   914: 000000000000ee40   191 FUNC    LOCAL  DEFAULT   14 <alloc::vec::into_iter::IntoIter<T,A> as core::ops::drop::Drop>::drop
+   915: 000000000000f480   370 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<rayon::vec::Drain<std::path::PathBuf>>
+   916: 0000000000013340   315 FUNC    LOCAL  DEFAULT   14 crossbeam_deque::deque::Worker<T>::pop
+   917: 00000000000175b0   200 FUNC    LOCAL  DEFAULT   14 <crossbeam_epoch::sync::list::List<T,C> as core::ops::drop::Drop>::drop
+   918: 000000000001b560   123 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   919: 00000000000179b0   244 FUNC    LOCAL  DEFAULT   14 crossbeam_epoch::guard::Guard::defer_unchecked
+   920: 0000000000016570   244 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   921: 000000000001cd10  1402 FUNC    LOCAL  DEFAULT   14 <alloc::vec::Vec<T> as alloc::vec::spec_from_iter::SpecFromIter<T,I>>::from_iter
+   922: 00000000000149e0   506 FUNC    LOCAL  DEFAULT   14 core::iter::traits::iterator::Iterator::unzip
+   923: 0000000000014800   473 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<(alloc::vec::Vec<crossbeam_deque::deque::Worker<rayon_core::job::JobRef>>,alloc::vec::Vec<crossbeam_deque::deque::Stealer<rayon_core::job::JobRef>>)>
+   924: 000000000000cc60    97 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::cell::UnsafeCell<rayon_core::job::JobResult<()>>>
+   925: 000000000000f0b0   372 FUNC    LOCAL  DEFAULT   14 crossbeam_deque::deque::Stealer<T>::steal
+   926: 000000000000ec60   314 FUNC    LOCAL  DEFAULT   14 core::ptr::drop_in_place<core::result::Result<walkdir::dent::DirEntry,walkdir::error::Error>>
+   927: 00000000000150e0   192 FUNC    LOCAL  DEFAULT   14 <std::io::Write::write_fmt::Adapter<T> as core::fmt::Write>::write_str
+   928: 0000000000016ca0   299 FUNC    LOCAL  DEFAULT   14 alloc::sync::Arc<T,A>::drop_slow
+   929: 0000000000007960   730 FUNC    LOCAL  DEFAULT   14 rayon_core::sleep::Sleep::sleep
+   930: 0000000000007280   144 FUNC    LOCAL  DEFAULT   14 std::sys::thread_local::native::lazy::Storage<T,D>::initialize
+   931: 000000000007daf0    16 OBJECT  GLOBAL HIDDEN    24 anon.784937f9565a66340bcf47357629e375.6.llvm.5529126180458976960
+   932: 0000000000018680  1903 FUNC    GLOBAL DEFAULT   14 <walkdir::IntoIter as core::iter::traits::iterator::Iterator>::next
+   933: 0000000000013f90   103 FUNC    GLOBAL HIDDEN    14 <&T as core::fmt::Debug>::fmt
+   934: 0000000000056cc9   416 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Internal>,alloc::collections::btree::node::marker::Edge>::insert
+   935: 0000000000007f10   117 FUNC    GLOBAL DEFAULT   14 rayon_core::join::join_recover_from_panic
+   936: 000000000007dce8    16 OBJECT  GLOBAL HIDDEN    24 anon.32285c8026ec27d6360200d0d2647d5e.10.llvm.15762452276475826662
+   937: 0000000000064040   289 FUNC    GLOBAL DEFAULT   14 core::slice::memchr::memrchr
+   938: 0000000000065cb0   221 FUNC    GLOBAL DEFAULT   14 core::num::<impl core::str::traits::FromStr for usize>::from_str
+   939: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND getenv@GLIBC_2.2.5
+   940: 000000000000a640   259 FUNC    GLOBAL HIDDEN    14 generic_array::hex::<impl core::fmt::LowerHex for generic_array::GenericArray<u8,T>>::fmt
+   941: 0000000000061b90    83 FUNC    GLOBAL DEFAULT   14 core::num::from_str_radix_panic_rt
+   942: 0000000000056f49    58 FUNC    GLOBAL DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+   943: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND dl_iterate_phdr@GLIBC_2.2.5
+   944: 0000000000040980   121 FUNC    GLOBAL DEFAULT   14 std::io::error::Error::_new
+   945: 00000000000676ca    48 OBJECT  GLOBAL HIDDEN    16 anon.2fa5d3d02ad7c3ec83a2614536a6fe67.22.llvm.2794874665537641141
+   946: 000000000003ff00   281 FUNC    GLOBAL DEFAULT   14 std::fs::File::metadata
+   947: 0000000000063920    22 FUNC    GLOBAL DEFAULT   14 <core::fmt::Formatter as core::fmt::Write>::write_char
+   948: 0000000000042e70     9 FUNC    GLOBAL DEFAULT   14 std::panic::resume_unwind
+   949: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND free@GLIBC_2.2.5
+   950: 0000000000047a90   495 FUNC    GLOBAL DEFAULT   14 std::sys::pal::unix::fs::readdir
+   951: 0000000000061600   574 FUNC    GLOBAL DEFAULT   14 alloc::string::String::from_utf8_lossy
+   952: 000000000007d7f0    32 OBJECT  GLOBAL HIDDEN    24 anon.2fa5d3d02ad7c3ec83a2614536a6fe67.4.llvm.2794874665537641141
+   953: 0000000000012d60    74 FUNC    GLOBAL HIDDEN    14 std::sys::thread_local::native::lazy::destroy
+   954: 000000000007db30    48 OBJECT  GLOBAL HIDDEN    24 anon.077a5c6dca91f6f4435c340bacb77700.4.llvm.7794303373412539916
+   955: 0000000000017590    23 FUNC    GLOBAL HIDDEN    14 crossbeam_epoch::deferred::Deferred::new::call
+   956: 0000000000046b70   111 FUNC    GLOBAL DEFAULT   14 rust_panic
+   957: 00000000000451f0   639 FUNC    GLOBAL DEFAULT   14 <std::sys::backtrace::BacktraceLock::print::DisplayBacktrace as core::fmt::Display>::fmt
+   958: 0000000000048410    14 FUNC    GLOBAL DEFAULT   14 std::sys::pal::unix::os::errno
+   959: 0000000000007c40    71 FUNC    GLOBAL DEFAULT   14 rayon_core::sleep::Sleep::wake_any_threads
+   960: 000000000000a450    55 FUNC    GLOBAL DEFAULT   14 core::str::traits::str_index_overflow_fail
+   961: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __libc_start_main@GLIBC_2.34
+   962: 00000000000810a0     8 OBJECT  GLOBAL DEFAULT   28 std::thread::Builder::spawn_unchecked_::{{closure}}::MIN
+   963: 000000000005dbe0    78 FUNC    GLOBAL DEFAULT   14 rustc_demangle::try_demangle
+   964: 0000000000055fb8   179 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::map::BTreeMap<K,V,A>::entry
+   965: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND abort@GLIBC_2.2.5
+   966: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_Backtrace@GCC_3.3
+   967: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __errno_location@GLIBC_2.2.5
+   968: 0000000000046780   131 FUNC    GLOBAL DEFAULT   14 std::panicking::payload_as_str
+   969: 0000000000057185    30 FUNC    GLOBAL DEFAULT   14 <alloc::raw_vec::RawVec<T,A> as core::ops::drop::Drop>::drop
+   970: 000000000003d780    11 FUNC    GLOBAL DEFAULT   14 std::thread::yield_now
+   971: 000000000003fee0    31 FUNC    GLOBAL DEFAULT   14 <std::ffi::os_str::Display as core::fmt::Debug>::fmt
+   972: 000000000005606b   196 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::map::entry::VacantEntry<K,V,A>::insert
+   973: 000000000004e810 15219 FUNC    GLOBAL DEFAULT   14 std::backtrace_rs::symbolize::gimli::resolve
+   974: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_deregisterTMCloneTable
+   975: 0000000000063f50   234 FUNC    GLOBAL DEFAULT   14 core::slice::memchr::memchr_aligned
+   976: 000000000001d820    36 FUNC    GLOBAL DEFAULT   14 <same_file::unix::Handle as core::ops::drop::Drop>::drop
+   977: 0000000000009d90    83 FUNC    GLOBAL DEFAULT   14 core::cell::panic_already_borrowed
+   978: 0000000000063560   173 FUNC    GLOBAL DEFAULT   14 core::fmt::Formatter::debug_struct_field1_finish
+   979: 00000000000678fa   103 OBJECT  GLOBAL HIDDEN    16 anon.10d76aeb55e09c1d9aa2243a970344e8.42.llvm.2912277768642560520
+   980: 00000000000636e0    73 FUNC    GLOBAL DEFAULT   14 core::fmt::Formatter::debug_tuple
+   981: 000000000007d4d0    24 OBJECT  GLOBAL HIDDEN    24 anon.5270e10160a3957d75493cb94edaa161.4.llvm.17084923259219835523
+   982: 00000000000583b0  2779 FUNC    GLOBAL DEFAULT   14 <rustc_demangle::legacy::Demangle as core::fmt::Display>::fmt
+   983: 00000000000677fb    43 OBJECT  GLOBAL HIDDEN    16 anon.10d76aeb55e09c1d9aa2243a970344e8.5.llvm.2912277768642560520
+   984: 000000000007d988    24 OBJECT  GLOBAL HIDDEN    24 anon.10d76aeb55e09c1d9aa2243a970344e8.33.llvm.2912277768642560520
+   985: 00000000000569e5   405 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Internal>,alloc::collections::btree::node::marker::KV>::split
+   986: 000000000003d9a0   132 FUNC    GLOBAL DEFAULT   14 std::thread::Thread::new_unnamed
+   987: 0000000000068108   108 OBJECT  GLOBAL HIDDEN    16 anon.503ca531e27ec3e59dc2d9e689183a17.13.llvm.16641832649548754658
+   988: 000000000000a210    59 FUNC    GLOBAL DEFAULT   14 core::slice::sort::shared::smallsort::panic_on_ord_violation
+   989: 00000000000405a0   107 FUNC    GLOBAL DEFAULT   14 <std::fs::ReadDir as core::iter::traits::iterator::Iterator>::next
+   990: 0000000000062b00  1339 FUNC    GLOBAL DEFAULT   14 core::fmt::Formatter::pad_integral
+   991: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_getattr_np@GLIBC_2.32
+   992: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND isatty@GLIBC_2.2.5
+   993: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sigaction@GLIBC_2.2.5
+   994: 000000000004b030    33 FUNC    GLOBAL DEFAULT   14 std::alloc::rust_oom
+   995: 0000000000081128    24 OBJECT  GLOBAL DEFAULT   28 std::io::stdio::stderr::INSTANCE
+   996: 0000000000045de0   193 FUNC    GLOBAL DEFAULT   14 __rust_drop_panic
+   997: 000000000007da18    16 OBJECT  GLOBAL HIDDEN    24 anon.10d76aeb55e09c1d9aa2243a970344e8.50.llvm.2912277768642560520
+   998: 000000000000a011    20 FUNC    GLOBAL DEFAULT   14 core::panicking::panic_cannot_unwind
+   999: 000000000007d770    24 OBJECT  GLOBAL HIDDEN    24 anon.2dd2ccc698d57a324afa19441a325c60.2.llvm.3831898828544099544
+  1000: 0000000000012e00     9 FUNC    GLOBAL HIDDEN    14 <&T as core::fmt::Debug>::fmt
+  1001: 000000000007db18    24 OBJECT  GLOBAL HIDDEN    24 anon.077a5c6dca91f6f4435c340bacb77700.3.llvm.7794303373412539916
+  1002: 0000000000066ca0    23 FUNC    GLOBAL DEFAULT   14 core::unicode::unicode_data::cc::lookup
+  1003: 0000000000000038    16 TLS     GLOBAL DEFAULT   21 crossbeam_epoch::default::HANDLE::{{constant}}::{{closure}}::VAL
+  1004: 00000000000465b0    89 FUNC    GLOBAL DEFAULT   14 <std::panicking::begin_panic_handler::FormatStringPayload as core::fmt::Display>::fmt
+  1005: 000000000000d340   440 FUNC    GLOBAL HIDDEN    14 <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  1006: 0000000000068500    14 OBJECT  GLOBAL HIDDEN    16 anon.a2df7a2220b9488355fb2074e3647d6d.1.llvm.4460418179505818006
+  1007: 0000000000044cf0    34 FUNC    GLOBAL DEFAULT   14 std::sync::condvar::Condvar::notify_one
+  1008: 0000000000044b10   225 FUNC    GLOBAL DEFAULT   14 std::path::Path::is_file
+  1009: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND __cxa_thread_atexit_impl@GLIBC_2.18
+  1010: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __xpg_strerror_r@GLIBC_2.3.4
+  1011: 0000000000046cb0   214 FUNC    GLOBAL DEFAULT   14 <std::backtrace_rs::symbolize::SymbolName as core::fmt::Display>::fmt
+  1012: 0000000000067201    73 OBJECT  GLOBAL HIDDEN    16 anon.5270e10160a3957d75493cb94edaa161.12.llvm.17084923259219835523
+  1013: 000000000007d848    24 OBJECT  GLOBAL HIDDEN    24 anon.2fa5d3d02ad7c3ec83a2614536a6fe67.24.llvm.2794874665537641141
+  1014: 000000000003d5a0    17 FUNC    GLOBAL DEFAULT   14 std::thread::scoped::ScopeData::increment_num_running_threads
+  1015: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND readlink@GLIBC_2.2.5
+  1016: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND fcntl@GLIBC_2.2.5
+  1017: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetRegionStart@GCC_3.0
+  1018: 0000000000067dc8    73 OBJECT  GLOBAL HIDDEN    16 anon.077a5c6dca91f6f4435c340bacb77700.2.llvm.7794303373412539916
+  1019: 0000000000009ee0    60 FUNC    GLOBAL DEFAULT   14 core::panicking::panic
+  1020: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND write@GLIBC_2.2.5
+  1021: 0000000000063730   198 FUNC    GLOBAL DEFAULT   14 core::fmt::Formatter::debug_tuple_field1_finish
+  1022: 000000000003da30    52 FUNC    GLOBAL DEFAULT   14 std::thread::Thread::name
+  1023: 00000000000676fa   102 OBJECT  GLOBAL HIDDEN    16 anon.2fa5d3d02ad7c3ec83a2614536a6fe67.23.llvm.2794874665537641141
+  1024: 0000000000048090   331 FUNC    GLOBAL DEFAULT   14 std::sys::pal::unix::fs::lstat
+  1025: 0000000000061c40    31 FUNC    GLOBAL DEFAULT   14 <core::cell::BorrowMutError as core::fmt::Debug>::fmt
+  1026: 00000000000146c0    55 FUNC    GLOBAL HIDDEN    14 crossbeam_epoch::deferred::Deferred::new::call
+  1027: 0000000000062280   431 FUNC    GLOBAL DEFAULT   14 core::fmt::builders::DebugStruct::field
+  1028: 0000000000065b70   305 FUNC    GLOBAL DEFAULT   14 core::unicode::printable::is_printable
+  1029: 0000000000066410   151 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::LowerHex for usize>::fmt
+  1030: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetTextRelBase@GCC_3.0
+  1031: 0000000000011200   701 FUNC    GLOBAL DEFAULT   14 rayon_core::registry::ThreadBuilder::run
+  1032: 00000000000127f0   149 FUNC    GLOBAL DEFAULT   14 rayon_core::registry::Registry::inject
+  1033: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_RaiseException@GCC_3.0
+  1034: 0000000000065470   436 FUNC    GLOBAL DEFAULT   14 <core::str::lossy::Utf8Chunks as core::iter::traits::iterator::Iterator>::next
+  1035: 0000000000081068     0 NOTYPE  GLOBAL DEFAULT   27 _edata
+  1036: 000000000000a250   103 FUNC    GLOBAL DEFAULT   14 core::slice::index::slice_start_index_len_fail
+  1037: 0000000000067f28     8 OBJECT  GLOBAL HIDDEN    16 anon.32285c8026ec27d6360200d0d2647d5e.11.llvm.15762452276475826662
+  1038: 0000000000046680    24 FUNC    GLOBAL DEFAULT   14 <std::panicking::begin_panic_handler::StaticStrPayload as core::fmt::Display>::fmt
+  1039: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND lstat64@GLIBC_2.33
+  1040: 0000000000068418     8 OBJECT  GLOBAL DEFAULT   16 crossbeam_epoch::guard::unprotected::UNPROTECTED
+  1041: 0000000000081008     8 OBJECT  WEAK   HIDDEN    27 DW.ref.rust_eh_personality
+  1042: 0000000000066190   147 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::LowerHex for i8>::fmt
+  1043: 0000000000045990   307 FUNC    GLOBAL DEFAULT   14 std::sys_common::fs::exists
+  1044: 0000000000046610    80 FUNC    GLOBAL DEFAULT   14 <std::panicking::begin_panic_handler::StaticStrPayload as core::panic::PanicPayload>::take_box
+  1045: 000000000000a4e0    55 FUNC    GLOBAL DEFAULT   14 core::panicking::panic_const::panic_const_rem_by_zero
+  1046: 0000000000066370   148 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::UpperHex for i32>::fmt
+  1047: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND opendir@GLIBC_2.2.5
+  1048: 0000000000041a10   174 FUNC    GLOBAL DEFAULT   14 std::io::stdio::try_set_output_capture
+  1049: 000000000007d4b8    24 OBJECT  GLOBAL HIDDEN    24 anon.76fd18b15d20a127422fb30068b33f22.1.llvm.10637573989617586971
+  1050: 000000000000a750   213 FUNC    GLOBAL HIDDEN    14 core::fmt::Write::write_char
+  1051: 00000000000662d0   148 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::LowerHex for u32>::fmt
+  1052: 000000000003f840   344 FUNC    GLOBAL DEFAULT   14 std::env::_var_os
+  1053: 0000000000044470    32 FUNC    GLOBAL DEFAULT   14 <std::ffi::os_str::OsString as core::fmt::Debug>::fmt
+  1054: 0000000000041820   285 FUNC    GLOBAL DEFAULT   14 <std::io::stdio::StderrLock as std::io::Write>::write_all
+  1055: 000000000007dc50    24 OBJECT  GLOBAL HIDDEN    24 anon.503ca531e27ec3e59dc2d9e689183a17.16.llvm.16641832649548754658
+  1056: 000000000000a190   118 FUNC    GLOBAL DEFAULT   14 core::result::unwrap_failed
+  1057: 0000000000017450    46 FUNC    GLOBAL HIDDEN    14 std::sync::once::Once::call_once::{{closure}}
+  1058: 0000000000009c83    48 FUNC    GLOBAL DEFAULT   14 core::panicking::assert_failed
+  1059: 0000000000066f60     0 FUNC    GLOBAL HIDDEN    15 _fini
+  1060: 000000000000d070   710 FUNC    GLOBAL HIDDEN    14 <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  1061: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND strlen@GLIBC_2.2.5
+  1062: 0000000000012d10    67 FUNC    GLOBAL HIDDEN    14 <rayon_core::ThreadPoolBuildError as core::fmt::Debug>::fmt
+  1063: 0000000000017ab0   409 FUNC    GLOBAL DEFAULT   14 crossbeam_epoch::guard::Guard::flush
+  1064: 0000000000056487   263 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert_fit
+  1065: 0000000000057337   318 FUNC    GLOBAL DEFAULT   14 gimli::read::abbrev::Attributes::push
+  1066: 0000000000061110    14 FUNC    GLOBAL DEFAULT   14 <<alloc::boxed::Box<dyn core::error::Error+core::marker::Send+core::marker::Sync> as core::convert::From<alloc::string::String>>::from::StringError as core::error::Error>::description
+  1067: 00000000000114c0   556 FUNC    GLOBAL DEFAULT   14 <rayon_core::registry::DefaultSpawn as rayon_core::registry::ThreadSpawn>::spawn
+  1068: 0000000000012890    12 FUNC    GLOBAL DEFAULT   14 rayon_core::registry::Registry::notify_worker_latch_is_set
+  1069: 000000000007dcf8    24 OBJECT  GLOBAL HIDDEN    24 anon.32285c8026ec27d6360200d0d2647d5e.13.llvm.15762452276475826662
+  1070: 000000000004ab20   126 FUNC    GLOBAL DEFAULT   14 std::sys::os_str::bytes::Slice::to_owned
+  1071: 000000000006de5b   256 OBJECT  GLOBAL DEFAULT   16 core::unicode::unicode_data::white_space::WHITESPACE_MAP
+  1072: 000000000003d5c0    65 FUNC    GLOBAL DEFAULT   14 std::thread::scoped::ScopeData::decrement_num_running_threads
+  1073: 000000000007db00    24 OBJECT  GLOBAL HIDDEN    24 anon.077a5c6dca91f6f4435c340bacb77700.1.llvm.7794303373412539916
+  1074: 000000000003d7d0   246 FUNC    GLOBAL DEFAULT   14 <std::thread::thread_name_string::ThreadNameString as core::convert::From<alloc::string::String>>::from
+  1075: 0000000000058e90  1477 FUNC    GLOBAL DEFAULT   14 <rustc_demangle::v0::Ident as core::fmt::Display>::fmt
+  1076: 00000000000662d0   148 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::LowerHex for i32>::fmt
+  1077: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND stat64@GLIBC_2.33
+  1078: 0000000000009930   399 FUNC    GLOBAL DEFAULT   14 std::sys::sync::rwlock::futex::RwLock::read_contended
+  1079: 000000000000ff80     5 FUNC    GLOBAL DEFAULT   14 __rust_alloc
+  1080: 0000000000009df0    25 FUNC    GLOBAL DEFAULT   14 core::option::unwrap_failed
+  1081: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_setname_np@GLIBC_2.34
+  1082: 00000000000571a3   286 FUNC    GLOBAL DEFAULT   14 gimli::read::abbrev::Abbreviations::insert
+  1083: 0000000000066410   151 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::LowerHex for u64>::fmt
+  1084: 0000000000064170    42 FUNC    GLOBAL DEFAULT   14 core::slice::sort::stable::drift::sqrt_approx
+  1085: 000000000003fec0    25 FUNC    GLOBAL DEFAULT   14 std::sys::os_str::bytes::Slice::to_str
+  1086: 0000000000016dd0   351 FUNC    GLOBAL DEFAULT   14 <crossbeam_epoch::collector::Collector as core::default::Default>::default
+  1087: 000000000003d8d0   202 FUNC    GLOBAL DEFAULT   14 std::thread::Thread::new
+  1088: 0000000000055980   470 FUNC    GLOBAL DEFAULT   14 memchr::memchr::x86::sse2::memchr
+  1089: 0000000000066e40    45 FUNC    GLOBAL HIDDEN    14 compiler_builtins::int::udiv::__udivti3
+  1090: 00000000000463b0    28 FUNC    GLOBAL DEFAULT   14 rust_begin_unwind
+  1091: 0000000000054f90  1702 FUNC    GLOBAL DEFAULT   14 <std::backtrace_rs::symbolize::gimli::parse_running_mmaps::MapsEntry as core::str::traits::FromStr>::from_str
+  1092: 000000000005dc60   478 FUNC    GLOBAL DEFAULT   14 <rustc_demangle::Demangle as core::fmt::Display>::fmt
+  1093: 00000000000670c0    40 OBJECT  GLOBAL HIDDEN    16 anon.5270e10160a3957d75493cb94edaa161.2.llvm.17084923259219835523
+  1094: 0000000000017480    46 FUNC    GLOBAL HIDDEN    14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+  1095: 000000000004a270  1558 FUNC    GLOBAL DEFAULT   14 rust_eh_personality
+  1096: 0000000000065d90   476 FUNC    GLOBAL DEFAULT   14 core::num::<impl u32>::from_str_radix
+  1097: 0000000000043a70   876 FUNC    GLOBAL DEFAULT   14 <std::path::Components as core::iter::traits::double_ended::DoubleEndedIterator>::next_back
+  1098: 0000000000009e10    91 FUNC    GLOBAL DEFAULT   14 core::option::expect_failed
+  1099: 00000000000572c1   118 FUNC    GLOBAL DEFAULT   14 gimli::read::abbrev::Abbreviation::new
+  1100: 0000000000048420   126 FUNC    GLOBAL DEFAULT   14 std::sys::pal::unix::os::split_paths::bytes_to_path
+  1101: 0000000000061170   305 FUNC    GLOBAL DEFAULT   14 <&str as alloc::ffi::c_str::CString::new::SpecNewImpl>::spec_new_impl
+  1102: 0000000000063500    22 FUNC    GLOBAL DEFAULT   14 core::fmt::Formatter::write_str
+  1103: 000000000003fb60    25 FUNC    GLOBAL DEFAULT   14 std::env::args
+  1104: 0000000000066cc0   353 FUNC    GLOBAL DEFAULT   14 core::unicode::unicode_data::grapheme_extend::lookup_slow
+  1105: 0000000000056e9d    52 FUNC    GLOBAL DEFAULT   14 alloc::boxed::Box<T,A>::new_uninit_in
+  1106: 0000000000055860   165 FUNC    GLOBAL DEFAULT   14 __rust_start_panic
+  1107: 000000000000ff90     5 FUNC    GLOBAL DEFAULT   14 __rust_dealloc
+  1108: 000000000007d548    24 OBJECT  GLOBAL HIDDEN    24 anon.5270e10160a3957d75493cb94edaa161.13.llvm.17084923259219835523
+  1109: 0000000000063cf0   146 FUNC    GLOBAL DEFAULT   14 <char as core::fmt::Debug>::fmt
+  1110: 000000000000ffb0     5 FUNC    GLOBAL DEFAULT   14 __rust_alloc_zeroed
+  1111: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_key_create@GLIBC_2.34
+  1112: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND memset@GLIBC_2.2.5
+  1113: 0000000000044470    32 FUNC    GLOBAL DEFAULT   14 <std::path::PathBuf as core::fmt::Debug>::fmt
+  1114: 0000000000081178     8 OBJECT  GLOBAL DEFAULT   28 std::panicking::panic_count::GLOBAL_PANIC_COUNT
+  1115: 00000000000628c0    22 FUNC    GLOBAL DEFAULT   14 <core::fmt::Arguments as core::fmt::Display>::fmt
+  1116: 0000000000061e90   283 FUNC    GLOBAL DEFAULT   14 core::ffi::c_str::CStr::from_bytes_with_nul
+  1117: 0000000000081078     4 OBJECT  GLOBAL DEFAULT   28 rayon_core::registry::THE_REGISTRY_SET
+  1118: 0000000000009d80    10 FUNC    GLOBAL DEFAULT   14 core::num::from_str_radix_panic
+  1119: 000000000000a2c0   103 FUNC    GLOBAL DEFAULT   14 core::slice::index::slice_end_index_len_fail
+  1120: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND getcwd@GLIBC_2.2.5
+  1121: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetIPInfo@GCC_4.2.0
+  1122: 00000000000430a0  1362 FUNC    GLOBAL DEFAULT   14 std::path::Components::as_path
+  1123: 0000000000049000    14 FUNC    GLOBAL DEFAULT   14 <std::sys::pal::unix::thread::Thread as core::ops::drop::Drop>::drop
+  1124: 0000000000062720   320 FUNC    GLOBAL DEFAULT   14 core::fmt::builders::DebugSet::entry
+  1125: 0000000000055bc7   267 FUNC    GLOBAL DEFAULT   14 <addr2line::LocationRangeUnitIter as core::iter::traits::iterator::Iterator>::next
+  1126: 00000000000683a9   105 OBJECT  GLOBAL HIDDEN    16 anon.32285c8026ec27d6360200d0d2647d5e.12.llvm.15762452276475826662
+  1127: 00000000000482c0   335 FUNC    GLOBAL DEFAULT   14 std::sys::pal::unix::fs::canonicalize
+  1128: 0000000000046803   620 FUNC    GLOBAL DEFAULT   14 std::panicking::rust_panic_with_hook
+  1129: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND close@GLIBC_2.2.5
+  1130: 0000000000067f20     8 OBJECT  GLOBAL HIDDEN    16 anon.503ca531e27ec3e59dc2d9e689183a17.12.llvm.16641832649548754658
+  1131: 00000000000403a0   512 FUNC    GLOBAL DEFAULT   14 std::fs::OpenOptions::_open
+  1132: 000000000005715d     6 FUNC    GLOBAL DEFAULT   14 <alloc::vec::Vec<T,A> as core::ops::drop::Drop>::drop
+  1133: 000000000008106a     1 OBJECT  GLOBAL DEFAULT   28 __rust_no_alloc_shim_is_unstable
+  1134: 000000000003d700   116 FUNC    GLOBAL DEFAULT   14 std::thread::Builder::name
+  1135: 0000000000066410   151 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::LowerHex for i64>::fmt
+  1136: 0000000000081069     1 OBJECT  GLOBAL DEFAULT   28 __rust_alloc_error_handler_should_panic
+  1137: 0000000000045f71   640 FUNC    GLOBAL DEFAULT   14 std::panicking::default_hook
+  1138: 000000000000a039   329 FUNC    GLOBAL DEFAULT   14 core::panicking::assert_failed_inner
+  1139: 0000000000065f70   467 FUNC    GLOBAL DEFAULT   14 core::num::<impl u64>::from_str_radix
+  1140: 0000000000067894   102 OBJECT  GLOBAL HIDDEN    16 anon.10d76aeb55e09c1d9aa2243a970344e8.32.llvm.2912277768642560520
+  1141: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND closedir@GLIBC_2.2.5
+  1142: 00000000000670e8    97 OBJECT  GLOBAL HIDDEN    16 anon.5270e10160a3957d75493cb94edaa161.3.llvm.17084923259219835523
+  1143: 000000000007d7b0    40 OBJECT  GLOBAL HIDDEN    24 anon.2fa5d3d02ad7c3ec83a2614536a6fe67.0.llvm.2794874665537641141
+  1144: 00000000000096c0   613 FUNC    GLOBAL DEFAULT   14 std::sys::sync::once::futex::Once::call
+  1145: 000000000007d4e8    24 OBJECT  GLOBAL HIDDEN    24 anon.5270e10160a3957d75493cb94edaa161.5.llvm.17084923259219835523
+  1146: 0000000000009d6b    19 FUNC    GLOBAL DEFAULT   14 alloc::alloc::handle_alloc_error
+  1147: 000000000000950d    67 FUNC    GLOBAL DEFAULT   14 std::panicking::try::cleanup
+  1148: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sched_yield@GLIBC_2.2.5
+  1149: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetLanguageSpecificData@GCC_3.0
+  1150: 0000000000062720   320 FUNC    GLOBAL DEFAULT   14 core::fmt::builders::DebugList::entry
+  1151: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_key_delete@GLIBC_2.34
+  1152: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND read@GLIBC_2.2.5
+  1153: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_attr_init@GLIBC_2.2.5
+  1154: 000000000005658e   732 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert_recursing
+  1155: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __tls_get_addr@GLIBC_2.3
+  1156: 0000000000009fb5    92 FUNC    GLOBAL DEFAULT   14 core::panicking::panic_bounds_check
+  1157: 000000000006754d    47 OBJECT  GLOBAL HIDDEN    16 anon.2dd2ccc698d57a324afa19441a325c60.0.llvm.3831898828544099544
+  1158: 000000000007dba8    24 OBJECT  GLOBAL HIDDEN    24 anon.afb3ef2aaf1fdf9424b8d1358589b3f7.5.llvm.11874819469323094645
+  1159: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND fstatat64@GLIBC_2.33
+  1160: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND calloc@GLIBC_2.2.5
+  1161: 0000000000040f70    37 FUNC    GLOBAL DEFAULT   14 std::io::stdio::stdin
+  1162: 00000000000475e0   382 FUNC    GLOBAL DEFAULT   14 <std::sys::pal::unix::fs::ReadDir as core::iter::traits::iterator::Iterator>::next
+  1163: 0000000000009e70    32 FUNC    GLOBAL DEFAULT   14 core::panicking::panic_fmt
+  1164: 0000000000000048     8 TLS     GLOBAL DEFAULT   21 std::thread::current::id::ID
+  1165: 0000000000040650   122 FUNC    GLOBAL DEFAULT   14 std::fs::DirEntry::file_type
+  1166: 0000000000066370   148 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::UpperHex for u32>::fmt
+  1167: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND signal@GLIBC_2.2.5
+  1168: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND dirfd@GLIBC_2.2.5
+  1169: 0000000000056f83    58 FUNC    GLOBAL DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+  1170: 00000000000563eb   156 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::KV>::split
+  1171: 000000000007daa8    24 OBJECT  GLOBAL HIDDEN    24 anon.a5a7cc11ff3bad24a964453fa9411950.2.llvm.7225618134499630233
+  1172: 000000000006798c   103 OBJECT  GLOBAL HIDDEN    16 anon.149db9cbbb39948084bb013ee1d7d971.0.llvm.10715647244877794682
+  1173: 0000000000056b7a   335 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Internal>,alloc::collections::btree::node::marker::Edge>::insert_fit
+  1174: 0000000000061140    25 FUNC    GLOBAL DEFAULT   14 <<alloc::boxed::Box<dyn core::error::Error+core::marker::Send+core::marker::Sync> as core::convert::From<alloc::string::String>>::from::StringError as core::fmt::Debug>::fmt
+  1175: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND syscall@GLIBC_2.2.5
+  1176: 0000000000040610    50 FUNC    GLOBAL DEFAULT   14 std::fs::DirEntry::path
+  1177: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_attr_getstack@GLIBC_2.34
+  1178: 0000000000064990   198 FUNC    GLOBAL DEFAULT   14 core::str::count::char_count_general_case
+  1179: 0000000000063e70   216 FUNC    GLOBAL DEFAULT   14 core::fmt::pointer_fmt_inner
+  1180: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND __gmon_start__
+  1181: 00000000000475c0    23 FUNC    GLOBAL DEFAULT   14 std::sys::pal::unix::args::imp::ARGV_INIT_ARRAY::init_wrapper
+  1182: 0000000000047760   206 FUNC    GLOBAL DEFAULT   14 <std::sys::pal::unix::fs::Dir as core::ops::drop::Drop>::drop
+  1183: 000000000003d610   162 FUNC    GLOBAL DEFAULT   14 std::thread::current::set_current
+  1184: 0000000000081070     8 OBJECT  GLOBAL DEFAULT   28 rayon_core::registry::THE_REGISTRY
+  1185: 00000000000570ac   177 FUNC    GLOBAL DEFAULT   14 alloc::raw_vec::RawVecInner<A>::try_allocate_in
+  1186: 0000000000017420    44 FUNC    GLOBAL DEFAULT   14 crossbeam_epoch::default::default_collector
+  1187: 0000000000081000     0 OBJECT  GLOBAL HIDDEN    27 __dso_handle
+  1188: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND realpath@GLIBC_2.3
+  1189: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND memcpy@GLIBC_2.14
+  1190: 000000000007db70    24 OBJECT  GLOBAL HIDDEN    24 anon.077a5c6dca91f6f4435c340bacb77700.7.llvm.7794303373412539916
+  1191: 000000000003fb80   539 FUNC    GLOBAL DEFAULT   14 std::env::args_os
+  1192: 000000000000a490    10 FUNC    GLOBAL DEFAULT   14 core::str::slice_error_fail
+  1193: 000000000007dbc0    32 OBJECT  GLOBAL HIDDEN    24 anon.afb3ef2aaf1fdf9424b8d1358589b3f7.6.llvm.11874819469323094645
+  1194: 00000000000401b0   245 FUNC    GLOBAL DEFAULT   14 <&std::fs::File as std::io::Read>::read_to_string
+  1195: 0000000000062220    95 FUNC    GLOBAL DEFAULT   14 <core::fmt::builders::PadAdapter as core::fmt::Write>::write_char
+  1196: 0000000000063520    50 FUNC    GLOBAL DEFAULT   14 core::fmt::Formatter::debug_struct
+  1197: 000000000007dcb8    24 OBJECT  GLOBAL HIDDEN    24 anon.32285c8026ec27d6360200d0d2647d5e.7.llvm.15762452276475826662
+  1198: 0000000000044970   406 FUNC    GLOBAL DEFAULT   14 std::path::Path::_join
+  1199: 0000000000068327    52 OBJECT  GLOBAL HIDDEN    16 anon.32285c8026ec27d6360200d0d2647d5e.1.llvm.15762452276475826662
+  1200: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetIP@GCC_3.0
+  1201: 0000000000066230   147 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::UpperHex for u8>::fmt
+  1202: 000000000007d860    24 OBJECT  GLOBAL HIDDEN    24 anon.2fa5d3d02ad7c3ec83a2614536a6fe67.25.llvm.2794874665537641141
+  1203: 000000000007db60    16 OBJECT  GLOBAL HIDDEN    24 anon.077a5c6dca91f6f4435c340bacb77700.6.llvm.7794303373412539916
+  1204: 00000000000664b0   151 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::UpperHex for isize>::fmt
+  1205: 000000000007d560    48 OBJECT  GLOBAL HIDDEN    24 anon.5270e10160a3957d75493cb94edaa161.14.llvm.17084923259219835523
+  1206: 000000000000ffc0     5 FUNC    GLOBAL DEFAULT   14 __rust_alloc_error_handler
+  1207: 000000000007dcd0    24 OBJECT  GLOBAL HIDDEN    24 anon.32285c8026ec27d6360200d0d2647d5e.8.llvm.15762452276475826662
+  1208: 0000000000061120    25 FUNC    GLOBAL DEFAULT   14 <<alloc::boxed::Box<dyn core::error::Error+core::marker::Send+core::marker::Sync> as core::convert::From<alloc::string::String>>::from::StringError as core::fmt::Display>::fmt
+  1209: 000000000000ffd0    28 FUNC    GLOBAL DEFAULT   14 atty::is
+  1210: 00000000000402b0   238 FUNC    GLOBAL DEFAULT   14 <std::fs::File as std::io::Read>::read_to_end
+  1211: 000000000003d6c0    50 FUNC    GLOBAL DEFAULT   14 <std::thread::local::AccessError as core::fmt::Debug>::fmt
+  1212: 000000000007dea0    16 OBJECT  GLOBAL DEFAULT   24 generic_array::hex::LOWER_CHARS
+  1213: 0000000000081158    32 OBJECT  GLOBAL DEFAULT   28 std::panicking::HOOK
+  1214: 0000000000048b80    68 FUNC    GLOBAL DEFAULT   14 <std::sys::pal::unix::stdio::Stderr as std::io::Write>::write
+  1215: 0000000000017420    44 FUNC    GLOBAL DEFAULT   14 crossbeam_epoch::default::collector
+  1216: 0000000000061170   305 FUNC    GLOBAL DEFAULT   14 <&[u8] as alloc::ffi::c_str::CString::new::SpecNewImpl>::spec_new_impl
+  1217: 000000000007dc90    16 OBJECT  GLOBAL HIDDEN    24 anon.32285c8026ec27d6360200d0d2647d5e.5.llvm.15762452276475826662
+  1218: 0000000000044490   746 FUNC    GLOBAL DEFAULT   14 std::path::Path::_strip_prefix
+  1219: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_attr_getguardsize@GLIBC_2.34
+  1220: 000000000006835b    61 OBJECT  GLOBAL HIDDEN    16 anon.32285c8026ec27d6360200d0d2647d5e.4.llvm.15762452276475826662
+  1221: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND mmap64@GLIBC_2.2.5
+  1222: 0000000000015020    16 FUNC    GLOBAL HIDDEN    14 core::fmt::Write::write_fmt
+  1223: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pause@GLIBC_2.2.5
+  1224: 000000000004aba0   201 FUNC    GLOBAL DEFAULT   14 std::sys::sync::condvar::futex::Condvar::wait
+  1225: 000000000003fec0    25 FUNC    GLOBAL DEFAULT   14 std::ffi::os_str::<impl core::convert::TryFrom<&std::ffi::os_str::OsStr> for &str>::try_from
+  1226: 0000000000044d20    34 FUNC    GLOBAL DEFAULT   14 std::sync::condvar::Condvar::notify_all
+  1227: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND malloc@GLIBC_2.2.5
+  1228: 0000000000041dc0   232 FUNC    GLOBAL DEFAULT   14 std::io::stdio::_print
+  1229: 0000000000040ff0   180 FUNC    GLOBAL DEFAULT   14 <std::io::stdio::StdinLock as std::io::BufRead>::read_line
+  1230: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_detach@GLIBC_2.34
+  1231: 000000000000a830    16 FUNC    GLOBAL HIDDEN    14 core::fmt::Write::write_fmt
+  1232: 0000000000017120     1 FUNC    GLOBAL HIDDEN    14 crossbeam_epoch::deferred::Deferred::NO_OP::no_op_call
+  1233: 0000000000063610   199 FUNC    GLOBAL DEFAULT   14 core::fmt::Formatter::debug_struct_field2_finish
+  1234: 0000000000009090    10 FUNC    GLOBAL DEFAULT   14 std::process::abort
+  1235: 0000000000040fa0    80 FUNC    GLOBAL DEFAULT   14 std::io::stdio::Stdin::lock
+  1236: 00000000000613e0   115 FUNC    GLOBAL DEFAULT   14 alloc::ffi::c_str::<impl core::convert::From<&core::ffi::c_str::CStr> for alloc::boxed::Box<core::ffi::c_str::CStr>>::from
+  1237: 0000000000066150    61 FUNC    GLOBAL DEFAULT   14 core::num::<impl usize>::from_str_radix
+  1238: 000000000000cba0   186 FUNC    GLOBAL HIDDEN    14 core::ptr::drop_in_place<core::cell::UnsafeCell<core::option::Option<rayon_core::registry::Registry::in_worker_cold<rayon_core::join::join_context<rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<std::path::PathBuf>,rayon::iter::for_each::ForEachConsumer<hash_and_xattr::process_files::{{closure}}>>::{{closure}},(),()>::{{closure}},((),())>::{{closure}}::{{closure}}>>>
+  1239: 00000000000811e0     0 NOTYPE  GLOBAL DEFAULT   28 _end
+  1240: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND lsetxattr@GLIBC_2.3
+  1241: 000000000001d900    75 FUNC    GLOBAL DEFAULT   14 sha2::sha512::compress512
+  1242: 000000000006757c    92 OBJECT  GLOBAL HIDDEN    16 anon.2dd2ccc698d57a324afa19441a325c60.1.llvm.3831898828544099544
+  1243: 000000000000a520    38 FUNC    GLOBAL DEFAULT   14 _start
+  1244: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND bcmp@GLIBC_2.2.5
+  1245: 0000000000056268   387 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,NodeType>,alloc::collections::btree::node::marker::KV>::split_leaf_data
+  1246: 0000000000012ff0   420 FUNC    GLOBAL DEFAULT   14 rayon_core::latch::LockLatch::wait_and_reset
+  1247: 0000000000014f40   213 FUNC    GLOBAL HIDDEN    14 core::fmt::Write::write_char
+  1248: 00000000000628e0   539 FUNC    GLOBAL DEFAULT   14 core::fmt::write
+  1249: 00000000000116f0   241 FUNC    GLOBAL DEFAULT   14 rayon_core::registry::global_registry
+  1250: 0000000000068420    32 OBJECT  GLOBAL HIDDEN    16 anon.a2df7a2220b9488355fb2074e3647d6d.0.llvm.4460418179505818006
+  1251: 0000000000041320   642 FUNC    GLOBAL DEFAULT   14 <std::io::stdio::StdoutLock as std::io::Write>::write_all
+  1252: 00000000000436f0   888 FUNC    GLOBAL DEFAULT   14 <std::path::Components as core::iter::traits::iterator::Iterator>::next
+  1253: 000000000005e950  8711 FUNC    GLOBAL DEFAULT   14 miniz_oxide::inflate::core::decompress
+  1254: 00000000000664b0   151 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::UpperHex for usize>::fmt
+  1255: 000000000000a330   103 FUNC    GLOBAL DEFAULT   14 core::slice::index::slice_index_order_fail
+  1256: 0000000000044c00   225 FUNC    GLOBAL DEFAULT   14 std::path::Path::is_dir
+  1257: 0000000000048420   126 FUNC    GLOBAL DEFAULT   14 std::path::Path::to_path_buf
+  1258: 0000000000041cf0   208 FUNC    GLOBAL DEFAULT   14 std::io::stdio::attempt_print_to_stderr
+  1259: 0000000000017170   617 FUNC    GLOBAL DEFAULT   14 crossbeam_epoch::internal::Local::defer
+  1260: 000000000007d938    32 OBJECT  GLOBAL HIDDEN    24 anon.10d76aeb55e09c1d9aa2243a970344e8.4.llvm.2912277768642560520
+  1261: 0000000000056e69    52 FUNC    GLOBAL DEFAULT   14 alloc::boxed::Box<T,A>::new_uninit_in
+  1262: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND realloc@GLIBC_2.2.5
+  1263: 0000000000044780   483 FUNC    GLOBAL DEFAULT   14 std::path::Path::_starts_with
+  1264: 0000000000055930    78 FUNC    GLOBAL DEFAULT   14 <&[u8] as object::read::read_ref::ReadRef>::read_bytes_at_until
+  1265: 0000000000066190   147 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::LowerHex for u8>::fmt
+  1266: 00000000000641a0   520 FUNC    GLOBAL DEFAULT   14 core::str::converts::from_utf8
+  1267: 0000000000081068     0 NOTYPE  GLOBAL DEFAULT   28 __bss_start
+  1268: 0000000000041eb0   214 FUNC    GLOBAL DEFAULT   14 std::io::stdio::_eprint
+  1269: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND munmap@GLIBC_2.2.5
+  1270: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND getauxval@GLIBC_2.16
+  1271: 000000000000e2d0    39 FUNC    GLOBAL DEFAULT   14 main
+  1272: 0000000000013300    59 FUNC    GLOBAL DEFAULT   14 <rayon_core::unwind::AbortIfPanic as core::ops::drop::Drop>::drop
+  1273: 0000000000062430   168 FUNC    GLOBAL DEFAULT   14 core::fmt::builders::DebugStruct::finish_non_exhaustive
+  1274: 0000000000066800   549 FUNC    GLOBAL DEFAULT   14 core::fmt::num::imp::<impl core::fmt::Display for i32>::fmt
+  1275: 0000000000040cf0   626 FUNC    GLOBAL DEFAULT   14 <std::io::error::Error as core::fmt::Display>::fmt
+  1276: 000000000001d870   119 FUNC    GLOBAL DEFAULT   14 same_file::unix::Handle::from_file
+  1277: 000000000005612f   137 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>::push_with_handle
+  1278: 000000000004acc0   261 FUNC    GLOBAL DEFAULT   14 std::sys::thread_local::destructors::linux_like::register
+  1279: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND statx@GLIBC_2.28
+  1280: 0000000000067cb7   102 OBJECT  GLOBAL HIDDEN    16 anon.a5a7cc11ff3bad24a964453fa9411950.1.llvm.7225618134499630233
+  1281: 00000000000101f0    18 FUNC    GLOBAL HIDDEN    14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+  1282: 00000000000132f0     7 FUNC    GLOBAL DEFAULT   14 rayon_core::unwind::resume_unwinding
+  1283: 0000000000007690   564 FUNC    GLOBAL DEFAULT   14 rayon_core::registry::WorkerThread::wait_until_cold
+  1284: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_GetDataRelBase@GCC_3.0
+  1285: 0000000000018090   478 FUNC    GLOBAL DEFAULT   14 xattr::sys::linux_macos::set_path
+  1286: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND poll@GLIBC_2.2.5
+  1287: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_SetGR@GCC_3.0
+  1288: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_create@GLIBC_2.34
+  1289: 000000000005715d     6 FUNC    GLOBAL DEFAULT   14 <alloc::vec::Vec<T,A> as core::ops::drop::Drop>::drop
+  1290: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND open64@GLIBC_2.2.5
+  1291: 000000000005cfa0  3124 FUNC    GLOBAL DEFAULT   14 rustc_demangle::demangle
+  1292: 0000000000063cd0    23 FUNC    GLOBAL DEFAULT   14 <str as core::fmt::Display>::fmt
+  1293: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND memmove@GLIBC_2.2.5
+  1294: 0000000000045eb0   193 FUNC    GLOBAL DEFAULT   14 __rust_foreign_exception
+  1295: 00000000000643b0  1490 FUNC    GLOBAL DEFAULT   14 core::str::count::do_count_chars
+  1296: 00000000000664b0   151 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::UpperHex for u64>::fmt
+  1297: 0000000000063d90   213 FUNC    GLOBAL DEFAULT   14 <char as core::fmt::Display>::fmt
+  1298: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND readdir64@GLIBC_2.2.5
+  1299: 00000000000671e5    28 OBJECT  GLOBAL HIDDEN    16 anon.5270e10160a3957d75493cb94edaa161.10.llvm.17084923259219835523
+  1300: 000000000003f580   528 FUNC    GLOBAL DEFAULT   14 std::env::current_dir
+  1301: 00000000000664b0   151 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::UpperHex for i64>::fmt
+  1302: 000000000003fda0   222 FUNC    GLOBAL DEFAULT   14 <std::env::Args as core::iter::traits::iterator::Iterator>::next
+  1303: 000000000003cc70  2347 FUNC    GLOBAL DEFAULT   14 std::rt::lang_start_internal
+  1304: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_self@GLIBC_2.2.5
+  1305: 00000000000096a0    31 FUNC    GLOBAL DEFAULT   14 std::sys::sync::mutex::futex::Mutex::wake
+  1306: 0000000000016f30   496 FUNC    GLOBAL DEFAULT   14 crossbeam_epoch::collector::Collector::register
+  1307: 000000000005686a   379 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Leaf>,alloc::collections::btree::node::marker::Edge>::insert
+  1308: 00000000000095a0   247 FUNC    GLOBAL DEFAULT   14 std::sys::sync::mutex::futex::Mutex::lock_contended
+  1309: 0000000000062860    53 FUNC    GLOBAL DEFAULT   14 core::fmt::builders::DebugList::finish
+  1310: 0000000000061b20   105 FUNC    GLOBAL DEFAULT   14 alloc::sync::arcinner_layout_for_value_layout
+  1311: 0000000000040970    11 FUNC    GLOBAL DEFAULT   14 <std::io::error::Error as core::fmt::Debug>::fmt
+  1312: 000000000003f790   176 FUNC    GLOBAL DEFAULT   14 std::env::_var
+  1313: 0000000000046360    72 FUNC    GLOBAL DEFAULT   14 std::panicking::panic_count::increase
+  1314: 00000000000638e0    56 FUNC    GLOBAL DEFAULT   14 core::fmt::Formatter::debug_list
+  1315: 0000000000062540   326 FUNC    GLOBAL DEFAULT   14 core::fmt::builders::DebugTuple::field
+  1316: 0000000000055f35   131 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::map::BTreeMap<K,V,A>::get
+  1317: 0000000000044190   726 FUNC    GLOBAL DEFAULT   14 std::path::PathBuf::_set_extension
+  1318: 0000000000000030     8 TLS     GLOBAL DEFAULT   21 rayon_core::registry::WORKER_THREAD_STATE::{{constant}}::{{closure}}::VAL
+  1319: 0000000000081010     1 OBJECT  GLOBAL HIDDEN    27 sha2::sha512::x86::avx2_cpuid::STORAGE
+  1320: 0000000000055ee6    39 FUNC    GLOBAL DEFAULT   14 <&T as core::fmt::Debug>::fmt
+  1321: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND mprotect@GLIBC_2.2.5
+  1322: 0000000000066b40   282 FUNC    GLOBAL DEFAULT   14 core::fmt::num::imp::<impl core::fmt::Display for usize>::fmt
+  1323: 00000000000415b0   611 FUNC    GLOBAL DEFAULT   14 <&std::io::stdio::Stderr as std::io::Write>::write_fmt
+  1324: 000000000007dbf8    40 OBJECT  GLOBAL HIDDEN    24 anon.503ca531e27ec3e59dc2d9e689183a17.8.llvm.16641832649548754658
+  1325: 000000000000a3a0    55 FUNC    GLOBAL DEFAULT   14 core::slice::index::slice_end_index_overflow_fail
+  1326: 000000000003f9a0   440 FUNC    GLOBAL DEFAULT   14 std::env::current_exe
+  1327: 000000000007dc38    24 OBJECT  GLOBAL HIDDEN    24 anon.503ca531e27ec3e59dc2d9e689183a17.14.llvm.16641832649548754658
+  1328: 000000000007d5b8    48 OBJECT  GLOBAL HIDDEN    24 anon.5270e10160a3957d75493cb94edaa161.18.llvm.17084923259219835523
+  1329: 0000000000048f90    97 FUNC    GLOBAL DEFAULT   14 std::sys::pal::unix::thread::Thread::set_name
+  1330: 00000000000128a0   727 FUNC    GLOBAL DEFAULT   14 <rayon_core::registry::WorkerThread as core::convert::From<rayon_core::registry::ThreadBuilder>>::from
+  1331: 0000000000063500    22 FUNC    GLOBAL DEFAULT   14 <core::fmt::Formatter as core::fmt::Write>::write_str
+  1332: 0000000000009f70    69 FUNC    GLOBAL DEFAULT   14 core::panicking::panic_nounwind_nobacktrace
+  1333: 0000000000067e11    86 OBJECT  GLOBAL HIDDEN    16 anon.077a5c6dca91f6f4435c340bacb77700.5.llvm.7794303373412539916
+  1334: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sysconf@GLIBC_2.2.5
+  1335: 0000000000062690   140 FUNC    GLOBAL DEFAULT   14 core::fmt::builders::DebugTuple::finish
+  1336: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND dlsym@GLIBC_2.34
+  1337: 000000000006724a    86 OBJECT  GLOBAL HIDDEN    16 anon.5270e10160a3957d75493cb94edaa161.15.llvm.17084923259219835523
+  1338: 0000000000009d57    20 FUNC    GLOBAL DEFAULT   14 alloc::raw_vec::handle_error
+  1339: 0000000000045120    99 FUNC    GLOBAL DEFAULT   14 std::sys::backtrace::lock
+  1340: 00000000000463d0   298 FUNC    GLOBAL DEFAULT   14 <std::panicking::begin_panic_handler::FormatStringPayload as core::panic::PanicPayload>::take_box
+  1341: 0000000000055800    82 FUNC    GLOBAL DEFAULT   14 __rust_panic_cleanup
+  1342: 0000000000000080     8 TLS     GLOBAL DEFAULT   21 std::thread::current::CURRENT
+  1343: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_attr_destroy@GLIBC_2.2.5
+  1344: 0000000000044470    32 FUNC    GLOBAL DEFAULT   14 <std::sys::os_str::bytes::Buf as core::fmt::Debug>::fmt
+  1345: 0000000000057475    61 FUNC    GLOBAL DEFAULT   14 <gimli::read::abbrev::Attributes as core::ops::deref::Deref>::deref
+  1346: 0000000000046500   169 FUNC    GLOBAL DEFAULT   14 <std::panicking::begin_panic_handler::FormatStringPayload as core::panic::PanicPayload>::get
+  1347: 0000000000061900   160 FUNC    GLOBAL DEFAULT   14 <alloc::string::String as core::convert::From<alloc::borrow::Cow<str>>>::from
+  1348: 0000000000012fc0    44 FUNC    GLOBAL HIDDEN    14 <std::sync::poison::PoisonError<T> as core::fmt::Debug>::fmt
+  1349: 00000000000682d8    79 OBJECT  GLOBAL HIDDEN    16 anon.32285c8026ec27d6360200d0d2647d5e.0.llvm.15762452276475826662
+  1350: 000000000001d850    21 FUNC    GLOBAL DEFAULT   14 <same_file::unix::Handle as core::cmp::PartialEq>::eq
+  1351: 0000000000065630  1056 FUNC    GLOBAL DEFAULT   14 core::str::slice_error_fail_rt
+  1352: 000000000003d790    50 FUNC    GLOBAL DEFAULT   14 std::thread::ThreadId::new
+  1353: 0000000000063800   224 FUNC    GLOBAL DEFAULT   14 core::fmt::Formatter::debug_tuple_field2_finish
+  1354: 0000000000066a30   272 FUNC    GLOBAL DEFAULT   14 core::fmt::num::imp::<impl core::fmt::Display for u32>::fmt
+  1355: 0000000000047e60   328 FUNC    GLOBAL DEFAULT   14 std::sys::pal::unix::fs::stat
+  1356: 000000000007da28    24 OBJECT  GLOBAL HIDDEN    24 anon.149db9cbbb39948084bb013ee1d7d971.1.llvm.10715647244877794682
+  1357: 0000000000009f20    66 FUNC    GLOBAL DEFAULT   14 core::panicking::panic_nounwind
+  1358: 0000000000057163    34 FUNC    GLOBAL DEFAULT   14 <[A] as core::slice::cmp::SlicePartialEq<B>>::equal
+  1359: 00000000000613e0   115 FUNC    GLOBAL DEFAULT   14 alloc::ffi::c_str::<impl alloc::borrow::ToOwned for core::ffi::c_str::CStr>::to_owned
+  1360: 00000000000086b0   669 FUNC    GLOBAL DEFAULT   14 crossbeam_epoch::internal::Local::finalize
+  1361: 0000000000000020    16 TLS     GLOBAL DEFAULT   21 rayon_core::registry::Registry::in_worker_cold::LOCK_LATCH::{{constant}}::{{closure}}::VAL
+  1362: 0000000000063940   897 FUNC    GLOBAL DEFAULT   14 <str as core::fmt::Debug>::fmt
+  1363: 0000000000081068     0 OBJECT  GLOBAL HIDDEN    27 __TMC_END__
+  1364: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND lseek64@GLIBC_2.2.5
+  1365: 0000000000056ed1   120 FUNC    GLOBAL DEFAULT   14 alloc::raw_vec::finish_grow
+  1366: 00000000000561b8   176 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,alloc::collections::btree::node::marker::Internal>::push
+  1367: 000000000007d5a0    24 OBJECT  GLOBAL HIDDEN    24 anon.5270e10160a3957d75493cb94edaa161.17.llvm.17084923259219835523
+  1368: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND fstat64@GLIBC_2.33
+  1369: 0000000000061160     6 FUNC    GLOBAL DEFAULT   14 <alloc::collections::btree::mem::replace::PanicGuard as core::ops::drop::Drop>::drop
+  1370: 000000000000a3e0   103 FUNC    GLOBAL DEFAULT   14 core::slice::<impl [T]>::copy_from_slice::len_mismatch_fail
+  1371: 00000000000624e0    94 FUNC    GLOBAL DEFAULT   14 core::fmt::builders::DebugStruct::finish
+  1372: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND posix_memalign@GLIBC_2.2.5
+  1373: 0000000000000000     0 NOTYPE  WEAK   DEFAULT  UND _ITM_registerTMCloneTable
+  1374: 000000000000fb20    55 FUNC    GLOBAL HIDDEN    14 crossbeam_epoch::deferred::Deferred::new::call
+  1375: 0000000000009c5c    39 FUNC    GLOBAL DEFAULT   14 alloc::raw_vec::RawVecInner<A>::reserve::do_reserve_and_handle
+  1376: 000000000000c8f0    18 FUNC    GLOBAL HIDDEN    14 core::ops::function::FnOnce::call_once{{vtable.shim}}
+  1377: 00000000000174b0   212 FUNC    GLOBAL HIDDEN    14 crossbeam_epoch::deferred::Deferred::new::call
+  1378: 0000000000055cd2   400 FUNC    GLOBAL DEFAULT   14 addr2line::path_push
+  1379: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sched_getaffinity@GLIBC_2.3.4
+  1380: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_DeleteException@GCC_3.0
+  1381: 0000000000046be0   207 FUNC    GLOBAL DEFAULT   14 std::backtrace_rs::symbolize::Symbol::name
+  1382: 000000000003fe80    50 FUNC    GLOBAL DEFAULT   14 <std::env::Args as core::iter::traits::iterator::Iterator>::size_hint
+  1383: 0000000000067e67   107 OBJECT  GLOBAL HIDDEN    16 anon.afb3ef2aaf1fdf9424b8d1358589b3f7.4.llvm.11874819469323094645
+  1384: 00000000000080b0  1383 FUNC    GLOBAL DEFAULT   14 crossbeam_epoch::internal::Global::collect
+  1385: 000000000007d590    16 OBJECT  GLOBAL HIDDEN    24 anon.5270e10160a3957d75493cb94edaa161.16.llvm.17084923259219835523
+  1386: 0000000000067961    43 OBJECT  GLOBAL HIDDEN    16 anon.10d76aeb55e09c1d9aa2243a970344e8.49.llvm.2912277768642560520
+  1387: 0000000000056268   387 FUNC    GLOBAL DEFAULT   14 alloc::collections::btree::node::Handle<alloc::collections::btree::node::NodeRef<alloc::collections::btree::node::marker::Mut,K,V,NodeType>,alloc::collections::btree::node::marker::KV>::split_leaf_data
+  1388: 0000000000064a60  1350 FUNC    GLOBAL DEFAULT   14 core::str::pattern::StrSearcher::new
+  1389: 0000000000061460   406 FUNC    GLOBAL DEFAULT   14 alloc::fmt::format::format_inner
+  1390: 0000000000068174   113 OBJECT  GLOBAL HIDDEN    16 anon.503ca531e27ec3e59dc2d9e689183a17.15.llvm.16641832649548754658
+  1391: 0000000000066770   138 FUNC    GLOBAL DEFAULT   14 core::fmt::num::imp::<impl core::fmt::Display for u8>::fmt
+  1392: 0000000000040a00   743 FUNC    GLOBAL DEFAULT   14 std::io::error::<impl core::fmt::Debug for std::io::error::repr_bitpacked::Repr>::fmt
+  1393: 00000000000630a0  1111 FUNC    GLOBAL DEFAULT   14 core::fmt::Formatter::pad
+  1394: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND sigaltstack@GLIBC_2.2.5
+  1395: 0000000000068398    17 OBJECT  GLOBAL HIDDEN    16 anon.32285c8026ec27d6360200d0d2647d5e.9.llvm.15762452276475826662
+  1396: 000000000000ffa0     5 FUNC    GLOBAL DEFAULT   14 __rust_realloc
+  1397: 00000000000410b0   611 FUNC    GLOBAL DEFAULT   14 <&std::io::stdio::Stdout as std::io::Write>::write_fmt
+  1398: 000000000007d530    24 OBJECT  GLOBAL HIDDEN    24 anon.5270e10160a3957d75493cb94edaa161.11.llvm.17084923259219835523
+  1399: 000000000000e740    74 FUNC    GLOBAL HIDDEN    14 std::sys::thread_local::native::lazy::destroy
+  1400: 0000000000061fb0   615 FUNC    GLOBAL DEFAULT   14 <core::fmt::builders::PadAdapter as core::fmt::Write>::write_str
+  1401: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_Resume@GCC_3.0
+  1402: 0000000000067831    99 OBJECT  GLOBAL HIDDEN    16 anon.10d76aeb55e09c1d9aa2243a970344e8.21.llvm.2912277768642560520
+  1403: 00000000000094f0    29 FUNC    GLOBAL DEFAULT   14 std::panicking::panic_count::is_zero_slow_path
+  1404: 000000000000ce00   618 FUNC    GLOBAL HIDDEN    14 <rayon_core::job::StackJob<L,F,R> as rayon_core::job::Job>::execute
+  1405: 000000000000c8d0    19 FUNC    GLOBAL HIDDEN    14 <&T as core::fmt::Display>::fmt
+  1406: 0000000000067dac    28 OBJECT  GLOBAL HIDDEN    16 anon.077a5c6dca91f6f4435c340bacb77700.0.llvm.7794303373412539916
+  1407: 0000000000066e30    11 FUNC    WEAK   HIDDEN    14 __udivti3
+  1408: 0000000000066b40   282 FUNC    GLOBAL DEFAULT   14 core::fmt::num::imp::<impl core::fmt::Display for u64>::fmt
+  1409: 0000000000042e80   198 FUNC    GLOBAL DEFAULT   14 std::panic::get_backtrace_style
+  1410: 0000000000066410   151 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::LowerHex for isize>::fmt
+  1411: 000000000000a025    20 FUNC    GLOBAL DEFAULT   14 core::panicking::panic_in_cleanup
+  1412: 00000000000612b0   295 FUNC    GLOBAL DEFAULT   14 alloc::ffi::c_str::CString::_from_vec_unchecked
+  1413: 0000000000000000     0 FUNC    WEAK   DEFAULT  UND __cxa_finalize@GLIBC_2.2.5
+  1414: 0000000000007000     0 FUNC    GLOBAL HIDDEN    11 _init
+  1415: 0000000000061840   186 FUNC    GLOBAL DEFAULT   14 alloc::string::String::try_reserve
+  1416: 0000000000055b8d    58 FUNC    GLOBAL DEFAULT   14 alloc::raw_vec::RawVec<T,A>::grow_one
+  1417: 0000000000048bd0   689 FUNC    GLOBAL DEFAULT   14 std::sys::pal::unix::thread::Thread::new
+  1418: 0000000000056fbd   239 FUNC    GLOBAL DEFAULT   14 alloc::raw_vec::RawVecInner<A>::grow_amortized
+  1419: 0000000000041940   204 FUNC    GLOBAL DEFAULT   14 std::io::stdio::set_output_capture
+  1420: 000000000007dc68    16 OBJECT  GLOBAL HIDDEN    24 anon.32285c8026ec27d6360200d0d2647d5e.2.llvm.15762452276475826662
+  1421: 0000000000046b20    31 FUNC    GLOBAL DEFAULT   14 <std::panicking::rust_panic_without_hook::RewrapBox as core::panic::PanicPayload>::take_box
+  1422: 000000000003da70  6922 FUNC    GLOBAL DEFAULT   14 std::thread::available_parallelism
+  1423: 0000000000046b50    26 FUNC    GLOBAL DEFAULT   14 <std::panicking::rust_panic_without_hook::RewrapBox as core::fmt::Display>::fmt
+  1424: 0000000000014290    61 FUNC    GLOBAL DEFAULT   14 rayon_core::current_num_threads
+  1425: 0000000000060b60   974 FUNC    GLOBAL DEFAULT   14 adler::Adler32::write_slice
+  1426: 0000000000009ac0   215 FUNC    GLOBAL DEFAULT   14 std::sys::sync::rwlock::futex::RwLock::wake_writer_or_readers
+  1427: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_setspecific@GLIBC_2.34
+  1428: 000000000007d440     8 OBJECT  GLOBAL DEFAULT   22 std::sys::pal::unix::args::imp::ARGV_INIT_ARRAY
+  1429: 0000000000067064    76 OBJECT  GLOBAL HIDDEN    16 anon.76fd18b15d20a127422fb30068b33f22.0.llvm.10637573989617586971
+  1430: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Unwind_SetIP@GCC_3.0
+  1431: 0000000000067d65    52 OBJECT  GLOBAL HIDDEN    16 anon.784937f9565a66340bcf47357629e375.5.llvm.5529126180458976960
+  1432: 0000000000009e90    69 FUNC    GLOBAL DEFAULT   14 core::panicking::panic_nounwind_fmt
+  1433: 0000000000049f60    10 FUNC    GLOBAL DEFAULT   14 std::sys::pal::unix::abort_internal
+  1434: 000000000000a4a0    55 FUNC    GLOBAL DEFAULT   14 core::panicking::panic_const::panic_const_div_by_zero
+  1435: 000000000004aa40   212 FUNC    GLOBAL DEFAULT   14 <std::sys::os_str::bytes::Slice as core::fmt::Display>::fmt
+  1436: 0000000000064fb0  1211 FUNC    GLOBAL DEFAULT   14 <core::str::lossy::Debug as core::fmt::Debug>::fmt
+  1437: 0000000000066230   147 FUNC    GLOBAL DEFAULT   14 core::fmt::num::<impl core::fmt::UpperHex for i8>::fmt
+  1438: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND pthread_attr_setstacksize@GLIBC_2.34

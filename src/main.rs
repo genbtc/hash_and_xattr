@@ -40,8 +40,8 @@ fn process_files(files: Vec<PathBuf>) -> io::Result<()> {
                 println!("IMAHash(SHA512): {}", hash);
                 
                 // Set the extended attribute
-//                    let xattr_name = "system.ima"; //needs permissions 
-                let xattr_name = "user.ima"; //doesnt need permission
+                let xattr_name = "system.ima"; //needs permissions 
+//                let xattr_name = "user.ima"; //doesnt need permission
                 if let Err(e) = set_xattr(&file_path, xattr_name, &hash) {
                     eprintln!("Failed to set xattr for {:?}!!: {}", file_path, e);
                 } else {
