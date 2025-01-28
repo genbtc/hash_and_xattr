@@ -10,12 +10,17 @@ use std::ffi::CString;
 use std::os::unix::ffi::OsStrExt;
 use std::path::Path;
 
+//default _was_ sha256 https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L71
+const DEFAULT_HASH_ALGO "sha512"
+//Derived from https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L77-L78
 const MAX_DIGEST_SIZE: usize = 64; // Adjust based on the maximum hash size
 const MAX_SIGNATURE_SIZE: usize = 256; // Adjust based on the maximum signature size
+//Derived from enum evm_ima_xattr_type @  https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L92-L99
 const IMA_XATTR_DIGEST: u8 = 0x01;
 const EVM_IMA_XATTR_DIGSIG: u8 = 0x03;
 const IMA_XATTR_DIGEST_NG: u8 = 0x04;
 const DIGSIG_VERSION_2: u8 = 0x02;
+
 
 #[derive(Debug)]
 enum HashAlgorithm {
@@ -27,7 +32,6 @@ enum HashAlgorithm {
     Sha384,
     Sha512,
     Sha224,
-    Sm3_256,
 }
 
 impl HashAlgorithm {
@@ -41,7 +45,6 @@ impl HashAlgorithm {
             "sha384" => Some(HashAlgorithm::Sha384),
             "sha512" => Some(HashAlgorithm::Sha512),
             "sha224" => Some(HashAlgorithm::Sha224),
-            "sm3_256" => Some(HashAlgorithm::Sm3_256),
             _ => None,
         }
     }
@@ -56,7 +59,6 @@ impl HashAlgorithm {
             HashAlgorithm::Sha256 => Nid::SHA256,
             HashAlgorithm::Sha384 => Nid::SHA384,
             HashAlgorithm::Sha512 => Nid::SHA512,
-            HashAlgorithm::Sm3_256 => Nid::SM3,
         }
     }
 
@@ -70,17 +72,16 @@ impl HashAlgorithm {
             HashAlgorithm::Sha384 => 5,
             HashAlgorithm::Sha512 => 6,
             HashAlgorithm::Sha224 => 7,
-            HashAlgorithm::Sm3_256 => 8,
         }
     }
 }
 
 fn main() {
-    let file = "README.md"; // Replace with the actual file path
-    let hash_algo = "sha512"; // Replace with the desired hash algorithm
-    let key_path = "/etc/keys/signing_key.priv"; // Replace with the actual key file path
+    let targetfile = "README.md"; // Replace with the actual file path
+    let hash_algo = "sha512"; // Replace with the desired hash algorithm (TODO: or default DEFAULT_HASH_ALGO)
+    let key_path = "/home/genr8eofl/signing_key.priv"; // Replace with the actual key file path
 
-    match sign_ima(file, hash_algo, key_path) {
+    match sign_ima(targetfile, hash_algo, key_path) {
         Ok(_) => println!("Successfully signed IMA"),
         Err(e) => eprintln!("Error signing IMA: {:?}", e),
     }
@@ -99,11 +100,12 @@ fn sign_ima(file: &str, hash_algo: &str, key_path: &str) -> io::Result<()> {
     }
 
     let offset = if hash_algo.ima_xattr_type() > 1 { 2 } else { 1 };
-
+    
+    //Calc hash
     let len = calc_hash(file, &hash_algo, &mut hash[offset..])?;
     let len = len + offset;
 
-    // Print hash if needed
+    // Print hash
     println!("hash({:?}): {:?}", hash_algo, &hash[..len]);
 
     // Sign the hash
