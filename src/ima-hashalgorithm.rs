@@ -1,4 +1,4 @@
-//ima-hashalgorithm.rs - v0.1
+//ima-hashalgorithm.rs - v0.11
 //Derived from implementation of enum pkey_hash_algo at https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L167-L175
 
 #[derive(Debug)]
@@ -21,20 +21,6 @@ enum HashAlgorithm {
 }
 
 impl HashAlgorithm {
-    fn from_str(algo: &str) -> Option<Self> {
-        match algo.to_lowercase().as_str() {
-            "sha1" => Some(HashAlgorithm::Sha1),
-            "md4" => Some(HashAlgorithm::Md4),
-            "md5" => Some(HashAlgorithm::Md5),
-            "ripemd160" => Some(HashAlgorithm::Ripemd160),
-            "sha256" => Some(HashAlgorithm::Sha256),
-            "sha384" => Some(HashAlgorithm::Sha384),
-            "sha512" => Some(HashAlgorithm::Sha512),
-            "sha224" => Some(HashAlgorithm::Sha224),
-            _ => None,
-        }
-    }
-
     fn data(&self) -> HashAlgorithmData {
         match self {
             HashAlgorithm::Sha1 => HashAlgorithmData {
@@ -90,6 +76,20 @@ impl HashAlgorithm {
 
     fn ima_xattr_type(&self) -> u8 {
         self.data().ima_xattr_type
+    }
+
+    fn from_str(algo: &str) -> Option<Self> {
+        match algo.to_lowercase().as_str() {
+            "sha1" => Some(HashAlgorithm::Sha1),
+            "md4" => Some(HashAlgorithm::Md4),
+            "md5" => Some(HashAlgorithm::Md5),
+            "ripemd160" => Some(HashAlgorithm::Ripemd160),
+            "sha256" => Some(HashAlgorithm::Sha256),
+            "sha384" => Some(HashAlgorithm::Sha384),
+            "sha512" => Some(HashAlgorithm::Sha512),
+            "sha224" => Some(HashAlgorithm::Sha224),
+            _ => None,
+        }
     }
 }
 

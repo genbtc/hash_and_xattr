@@ -4,17 +4,17 @@ use openssl::pkey::PKey;
 use openssl::sign::Signer;
 use std::fs;
 use std::io::{self, Read};
-use std::os::unix::fs::MetadataExt;
+//use std::os::unix::fs::MetadataExt;
 use libc;
 use std::ffi::CString;
 use std::os::unix::ffi::OsStrExt;
 use std::path::Path;
 
 //default _was_ sha256 https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L71
-const DEFAULT_HASH_ALGO "sha512"
+const DEFAULT_HASH_ALGO: &'static str = "sha512";
 //Derived from https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L77-L78
 const MAX_DIGEST_SIZE: usize = 64; // Adjust based on the maximum hash size
-const MAX_SIGNATURE_SIZE: usize = 256; // Adjust based on the maximum signature size
+const MAX_SIGNATURE_SIZE: usize = 512; // Adjust based on the maximum signature size
 //Derived from enum evm_ima_xattr_type @  https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L92-L99
 const IMA_XATTR_DIGEST: u8 = 0x01;
 const EVM_IMA_XATTR_DIGSIG: u8 = 0x03;
@@ -90,7 +90,7 @@ fn main() {
 fn sign_ima(file: &str, hash_algo: &str, key_path: &str) -> io::Result<()> {
     let hash_algo = HashAlgorithm::from_str(hash_algo)
         .ok_or(io::Error::new(io::ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
-    let mut hash = vec![0u8; MAX_DIGEST_SIZE + 2]; // +2 byte xattr header
+    let mut hash = vec![0u8; MAX_DIGEST_SIZE + 2]; // +2 byte xattr header (0406)
 
     if hash_algo.ima_xattr_type() > 1 {
         hash[0] = IMA_XATTR_DIGEST_NG;
@@ -104,6 +104,9 @@ fn sign_ima(file: &str, hash_algo: &str, key_path: &str) -> io::Result<()> {
     //Calc hash
     let len = calc_hash(file, &hash_algo, &mut hash[offset..])?;
     let len = len + offset;
+    if len > MAX_DIGEST_SIZE + 2 {
+        println!("Error!: length {} is > MAX_DIGEST_SIZE {}", len, MAX_DIGEST_SIZE );
+    }
 
     // Print hash
     println!("hash({:?}): {:?}", hash_algo, &hash[..len]);
@@ -111,10 +114,18 @@ fn sign_ima(file: &str, hash_algo: &str, key_path: &str) -> io::Result<()> {
     // Sign the hash
     let signature = sign_hash(&hash_algo, &hash[offset..len], key_path)?;
 
-    // Set extended attribute
-    let mut xattr_value = vec![EVM_IMA_XATTR_DIGSIG];
+    // Prepare header of xattr
+    let mut xattr_value = vec![EVM_IMA_XATTR_DIGSIG, DIGSIG_VERSION_2, hash[1] ];
+    //TODO: INSERT REAL HEADER FORMAT HERE: like https://github.com/linux-integrity/ima-evm-utils/blob/next/src/libimaevm.c#L724
+    //      03 + 0206 + keyID + ??
+    // signature_v2_hdr @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L194
+    //keyid ab6f2050 (from /etc/keys/signing_key.priv)
     xattr_value.extend_from_slice(&signature);
 
+    // Print signature
+    println!("sig({:?}): {:?}", hash_algo, &signature[..MAX_SIGNATURE_SIZE]);
+
+    // Set extended attribute
     set_xattr(file, "user.imasign", &xattr_value)
 }
 
