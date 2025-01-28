@@ -163,7 +163,7 @@ fn sign_hash(hash_algo: &HashAlgorithm, hash: &[u8], key_path: &str) -> io::Resu
     signer.update(hash)?;
     let signature = signer.sign_to_vec()?;
 
-    extract_keyid_from_x509_pem();
+    extract_keyid_from_x509_pem(key_path);
 
     Ok(signature)
 }
