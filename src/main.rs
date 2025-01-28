@@ -111,12 +111,13 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     if len > MAX_DIGEST_SIZE + 2 {
         println!("Error!: length {} is > MAX_DIGEST_SIZE {}", len, MAX_DIGEST_SIZE );
     }
-
     // Print hash
     println!("hash({:?}): {}", hash_algo, format_hex(&hash[..len]));
 
     // Sign the hash
     let signature = sign_hash(&hash_algo, &hash[offset..len], key_path)?;
+
+    let keyid_result = extract_keyid_from_x509_pem(key_path);
 
     // Prepare header of xattr
     let mut xattr_value = vec![EVM_IMA_XATTR_DIGSIG, DIGSIG_VERSION_2, hash[1]];
@@ -125,7 +126,18 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     // signature_v2_hdr @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L194
     //keyid ab6f2050 (from /etc/keys/signing_key.priv)
     // Extend xattr_value with key_id vector
-//    xattr_value.extend(&key_id);
+    match keyid_result {
+        Ok(keyid_bytes) => {
+            println!("Key ID (from SKI): {:?}", format_hex(&keyid_bytes));
+            // Assuming xattr_value is defined somewhere in your code
+            xattr_value.extend_from_slice(&keyid_bytes);
+            // Now you can use xattr_value as needed
+        }
+        Err(e) => {
+            eprintln!("Error: {}", e);
+        }
+    }
+    //Append Signature
     xattr_value.extend_from_slice(&signature);
 
     // Print signature
@@ -162,8 +174,6 @@ fn sign_hash(hash_algo: &HashAlgorithm, hash: &[u8], key_path: &str) -> io::Resu
     let mut signer = Signer::new(md, &pkey)?;
     signer.update(hash)?;
     let signature = signer.sign_to_vec()?;
-
-    extract_keyid_from_x509_pem(key_path);
 
     Ok(signature)
 }

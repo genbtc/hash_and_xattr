@@ -1,6 +1,6 @@
 [package]
 name = "hash_and_xattr"
-version = "0.1.5"
+version = "0.2"
 edition = "2021"
 
 [dependencies]
