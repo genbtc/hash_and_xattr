@@ -2,16 +2,14 @@ use openssl::hash::{Hasher, MessageDigest};
 use openssl::nid::Nid;
 use openssl::pkey::PKey;
 use openssl::sign::Signer;
-use openssl::sha::sha256;
-use openssl::x509::{X509, X509Extension};
-use openssl::asn1::Asn1OctetString;
 use std::fs;
 use std::io::{self, Read};
-//use std::os::unix::fs::MetadataExt;
 use libc;
 use std::ffi::CString;
 use std::os::unix::ffi::OsStrExt;
 use std::path::Path;
+mod keyid;
+use crate::keyid::extract_keyid_from_x509_pem;
 
 //default _was_ sha256 https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L71
 const DEFAULT_HASH_ALGO: &'static str = "sha512";
@@ -79,10 +77,9 @@ impl HashAlgorithm {
 }
 
 fn main() {
-    let targetfile = "README.md"; // Replace with the actual file path
-    let hash = "sha512"; // Replace with the desired hash algorithm (TODO: or default DEFAULT_HASH_ALGO)
-    let hash_algo = HashAlgorithm::from_str(hash).expect("Invalid hash algorithm");
-    let key_path = "/home/genr8eofl/signing_key.priv"; // Replace with the actual key file path
+    let targetfile = "README.md"; // TODO: Replace with the actual target file path to hash
+    let hash_algo = HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("Invalid hash algorithm");    //SHA512
+    let key_path = "/home/genr8eofl/signing_key.priv"; // TODO: Replace with the actual key file path
 
     match sign_ima(targetfile, hash_algo, key_path) {
         Ok(_) => println!("Successfully signed IMA"),
@@ -165,6 +162,8 @@ fn sign_hash(hash_algo: &HashAlgorithm, hash: &[u8], key_path: &str) -> io::Resu
     let mut signer = Signer::new(md, &pkey)?;
     signer.update(hash)?;
     let signature = signer.sign_to_vec()?;
+
+    extract_keyid_from_x509_pem();
 
     Ok(signature)
 }
