@@ -77,7 +77,7 @@ impl HashAlgorithm {
 }
 
 fn main() {
-    let targetfile = "README.md"; // TODO: Replace with the actual target file path to hash
+    let targetfile = "testA"; // TODO: Replace with the actual target file path to hash
     let hash_algo = HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("Invalid hash algorithm");    //SHA512
     let key_path = "/home/genr8eofl/signing_key.priv"; // TODO: Replace with the actual key file path
 
@@ -103,10 +103,15 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     } else {
         hash[0] = IMA_XATTR_DIGEST;
     }
+
+
+    let md = MessageDigest::from_nid(hash_algo.nid())
+        .ok_or(io::Error::new(io::ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
+
     
     //Calc hash
     let offset = if hash_algo.ima_xattr_type() > 1 { 2 } else { 1 };
-    let len = calc_hash(file, &hash_algo, &mut hash[offset..])?;
+    let len = calc_hash(file, md, &mut hash[offset..])?;
     let len = len + offset;
     if len > MAX_DIGEST_SIZE + 2 {
         println!("Error!: length {} is > MAX_DIGEST_SIZE {}", len, MAX_DIGEST_SIZE );
@@ -115,12 +120,12 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     println!("hash({:?}): {}", hash_algo, format_hex(&hash[..len]));
 
     // Sign the hash
-    let signature = sign_hash(&hash_algo, &hash[offset..len], key_path)?;
+    let signature = sign_hash(md, &hash[offset..len], key_path)?;
 
     // Prepare header of xattr
     let mut xattr_value = vec![EVM_IMA_XATTR_DIGSIG, DIGSIG_VERSION_2, hash[1]];
     //TODO: INSERT REAL HEADER FORMAT HERE: like https://github.com/linux-integrity/ima-evm-utils/blob/next/src/libimaevm.c#L724
-    //      03 + 0206 + keyID + Size (0200?) + ??
+    //      03 + 0206 + keyID + MaxSize (0200?) + ??
     // signature_v2_hdr @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L194
     //keyid ab6f2050 (from /etc/keys/signing_key.priv)
     // call crate::keyid::extract_keyid_from_x509_pem;
@@ -148,13 +153,10 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     set_xattr(file, "user.imasign", &xattr_value)
 }
 
-fn calc_hash(file: &str, hash_algo: &HashAlgorithm, hash: &mut [u8]) -> io::Result<usize> {
+fn calc_hash(file: &str, md: MessageDigest, hash: &mut [u8]) -> io::Result<usize> {
     let mut file = fs::File::open(file)?;
     let mut buffer = Vec::new();
     file.read_to_end(&mut buffer)?;
-
-    let md = MessageDigest::from_nid(hash_algo.nid())
-        .ok_or(io::Error::new(io::ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
 
     let mut hasher = Hasher::new(md)?;
     hasher.update(&buffer)?;
@@ -165,12 +167,9 @@ fn calc_hash(file: &str, hash_algo: &HashAlgorithm, hash: &mut [u8]) -> io::Resu
     Ok(len)
 }
 
-fn sign_hash(hash_algo: &HashAlgorithm, hash: &[u8], key_path: &str) -> io::Result<Vec<u8>> {
+fn sign_hash(md: MessageDigest, hash: &[u8], key_path: &str) -> io::Result<Vec<u8>> {
     let private_key = fs::read(key_path)?;
     let pkey = PKey::private_key_from_pem(&private_key)?;
-
-    let md = MessageDigest::from_nid(hash_algo.nid())
-        .ok_or(io::Error::new(io::ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
 
     let mut signer = Signer::new(md, &pkey)?;
     signer.update(hash)?;
