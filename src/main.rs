@@ -1,5 +1,4 @@
 use openssl::hash::{Hasher, MessageDigest};
-use openssl::nid::Nid;
 use openssl::pkey::PKey;
 use openssl::sign::Signer;
 use std::fs;
@@ -10,6 +9,9 @@ use std::os::unix::ffi::OsStrExt;
 use std::path::Path;
 mod keyid;
 use crate::keyid::extract_keyid_from_x509_pem;
+#[allow(non_snake_case)]
+mod IMAhashAlgorithm;
+use crate::IMAhashAlgorithm::HashAlgorithm;
 
 //default _was_ sha256 https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L71
 const DEFAULT_HASH_ALGO: &'static str = "sha512";
@@ -22,59 +24,6 @@ const EVM_IMA_XATTR_DIGSIG: u8 = 0x03;
 const IMA_XATTR_DIGEST_NG: u8 = 0x04;
 const DIGSIG_VERSION_2: u8 = 0x02;
 
-#[derive(Debug)]
-enum HashAlgorithm {
-    Sha1,
-    Md4,
-    Md5,
-    Ripemd160,
-    Sha256,
-    Sha384,
-    Sha512,
-    Sha224,
-}
-
-impl HashAlgorithm {
-    fn from_str(algo: &str) -> Option<Self> {
-        match algo.to_lowercase().as_str() {
-            "sha1" => Some(HashAlgorithm::Sha1),
-            "md4" => Some(HashAlgorithm::Md4),
-            "md5" => Some(HashAlgorithm::Md5),
-            "ripemd160" => Some(HashAlgorithm::Ripemd160),
-            "sha256" => Some(HashAlgorithm::Sha256),
-            "sha384" => Some(HashAlgorithm::Sha384),
-            "sha512" => Some(HashAlgorithm::Sha512),
-            "sha224" => Some(HashAlgorithm::Sha224),
-            _ => None,
-        }
-    }
-
-    fn nid(&self) -> Nid {
-        match self {
-            HashAlgorithm::Sha1 => Nid::SHA1,
-            HashAlgorithm::Md4 => Nid::MD4,
-            HashAlgorithm::Md5 => Nid::MD5,
-            HashAlgorithm::Ripemd160 => Nid::RIPEMD160,
-            HashAlgorithm::Sha224 => Nid::SHA224,
-            HashAlgorithm::Sha256 => Nid::SHA256,
-            HashAlgorithm::Sha384 => Nid::SHA384,
-            HashAlgorithm::Sha512 => Nid::SHA512,
-        }
-    }
-
-    fn ima_xattr_type(&self) -> u8 {
-        match self {
-            HashAlgorithm::Sha1 => 0,
-            HashAlgorithm::Md4 => 1,
-            HashAlgorithm::Md5 => 2,
-            HashAlgorithm::Ripemd160 => 3,
-            HashAlgorithm::Sha256 => 4,
-            HashAlgorithm::Sha384 => 5,
-            HashAlgorithm::Sha512 => 6,
-            HashAlgorithm::Sha224 => 7,
-        }
-    }
-}
 
 fn main() {
     let targetfile = "testA"; // TODO: Replace with the actual target file path to hash
@@ -94,36 +43,32 @@ fn format_hex(bytes: &[u8]) -> String {
 
 fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<()> {
     // Create Buffer
-    let mut hash = vec![0u8; MAX_DIGEST_SIZE + 2]; // +2 byte xattr header (0406)
+    let header_len = MAX_DIGEST_SIZE + 2;
+    let mut header = vec![0u8; header_len]; // +2 byte xattr header (0406)
+
+    //Calc hash
+    //HashAlgo to MessageDigest
+    let md = MessageDigest::from_nid(hash_algo.nid())
+        .ok_or(io::Error::new(io::ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
+    let calc_hash = calc_hash(file, md)?;
+
+    // Print hash
+    println!("hash({:?}): {}", hash_algo, format_hex(&calc_hash));
+
+    // Sign the hash
+    let signature = sign_hash(md, &calc_hash, key_path)?;
 
     // Start IMA Header (0406)
     if hash_algo.ima_xattr_type() > 1 {
-        hash[0] = IMA_XATTR_DIGEST_NG;
-        hash[1] = hash_algo.ima_xattr_type();
+        header[0] = IMA_XATTR_DIGEST_NG;
+        header[1] = hash_algo.ima_xattr_type();
     } else {
-        hash[0] = IMA_XATTR_DIGEST;
+        header[0] = IMA_XATTR_DIGEST;
     }
-
-
-    let md = MessageDigest::from_nid(hash_algo.nid())
-        .ok_or(io::Error::new(io::ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
-
-    
-    //Calc hash
-    let offset = if hash_algo.ima_xattr_type() > 1 { 2 } else { 1 };
-    let len = calc_hash(file, md, &mut hash[offset..])?;
-    let len = len + offset;
-    if len > MAX_DIGEST_SIZE + 2 {
-        println!("Error!: length {} is > MAX_DIGEST_SIZE {}", len, MAX_DIGEST_SIZE );
-    }
-    // Print hash
-    println!("hash({:?}): {}", hash_algo, format_hex(&hash[..len]));
-
-    // Sign the hash
-    let signature = sign_hash(md, &hash[offset..len], key_path)?;
+    let _offset = if hash_algo.ima_xattr_type() > 1 { 2 } else { 1 };
 
     // Prepare header of xattr
-    let mut xattr_value = vec![EVM_IMA_XATTR_DIGSIG, DIGSIG_VERSION_2, hash[1]];
+    let mut xattr_value = vec![EVM_IMA_XATTR_DIGSIG, DIGSIG_VERSION_2, header[1]];
     //TODO: INSERT REAL HEADER FORMAT HERE: like https://github.com/linux-integrity/ima-evm-utils/blob/next/src/libimaevm.c#L724
     //      03 + 0206 + keyID + MaxSize (0200?) + ??
     // signature_v2_hdr @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L194
@@ -153,7 +98,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     set_xattr(file, "user.imasign", &xattr_value)
 }
 
-fn calc_hash(file: &str, md: MessageDigest, hash: &mut [u8]) -> io::Result<usize> {
+fn calc_hash(file: &str, md: MessageDigest) -> io::Result<Vec<u8>> {
     let mut file = fs::File::open(file)?;
     let mut buffer = Vec::new();
     file.read_to_end(&mut buffer)?;
@@ -161,15 +106,20 @@ fn calc_hash(file: &str, md: MessageDigest, hash: &mut [u8]) -> io::Result<usize
     let mut hasher = Hasher::new(md)?;
     hasher.update(&buffer)?;
     let hash_result = hasher.finish()?;
-    let len = hash_result.len();
-    hash[..len].copy_from_slice(&hash_result);
-
-    Ok(len)
+    // Convert DigestBytes to Vec<u8>
+    let hash_vec = hash_result.to_vec();
+    
+    Ok(hash_vec)
 }
 
 fn sign_hash(md: MessageDigest, hash: &[u8], key_path: &str) -> io::Result<Vec<u8>> {
     let private_key = fs::read(key_path)?;
     let pkey = PKey::private_key_from_pem(&private_key)?;
+
+    //Pkey: PKey { algorithm: "RSA" }
+    println!("(DEBUG) {:?}", pkey);
+    //PkeyAlgorithmRSA: Ok(Rsa), PkeyBits: 4096
+    println!("(DEBUG) EVP_PKEY_get1_RSA: {:?}, EVP_PKEY_bits: {:?}, EVP_PKEY_id: {:?}, EVP_PKEY_size: {:?}", &pkey.rsa().unwrap(), &pkey.bits(), &pkey.id(), &pkey.size());
 
     let mut signer = Signer::new(md, &pkey)?;
     signer.update(hash)?;

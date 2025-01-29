@@ -1,5 +1,6 @@
-//ima-hashalgorithm.rs - v0.11
+//IMAhashAlgorithm.rs - v0.12
 //Derived from implementation of enum pkey_hash_algo at https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L167-L175
+use openssl::nid::Nid;
 
 #[derive(Debug)]
 struct HashAlgorithmData {
@@ -9,7 +10,7 @@ struct HashAlgorithmData {
 }
 
 #[derive(Debug)]
-enum HashAlgorithm {
+pub enum HashAlgorithm {
     Sha1,
     Md4,
     Md5,
@@ -65,20 +66,20 @@ impl HashAlgorithm {
             },
         }
     }
-
-    fn name(&self) -> &'static str {
+    #[allow(dead_code)]
+    pub fn name(&self) -> &'static str {
         self.data().name
     }
 
-    fn nid(&self) -> Nid {
+    pub fn nid(&self) -> Nid {
         self.data().nid
     }
 
-    fn ima_xattr_type(&self) -> u8 {
+    pub fn ima_xattr_type(&self) -> u8 {
         self.data().ima_xattr_type
     }
 
-    fn from_str(algo: &str) -> Option<Self> {
+    pub fn from_str(algo: &str) -> Option<Self> {
         match algo.to_lowercase().as_str() {
             "sha1" => Some(HashAlgorithm::Sha1),
             "md4" => Some(HashAlgorithm::Md4),
