@@ -1,6 +1,6 @@
 [package]
 name = "hash_and_xattr"
-version = "0.2.3"
+version = "0.2.4"
 edition = "2021"
 
 [dependencies]
@@ -10,4 +10,4 @@ xattr = "0.2"      # interacting with extended attributes
 rayon = "1.7"      # parallel processing
 atty = "0.2"       # Add atty to check if stdin is connected
 openssl = "0.10"   # private/public crypto key signing
-libc = "0.2"       # setxattr
+

@@ -130,10 +130,9 @@ dependencies = [
 
 [[package]]
 name = "hash_and_xattr"
-version = "0.2.3"
+version = "0.2.4"
 dependencies = [
  "atty",
- "libc",
  "openssl",
  "rayon",
  "sha2",

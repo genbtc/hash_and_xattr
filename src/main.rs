@@ -3,9 +3,6 @@ use openssl::pkey::PKey;
 use openssl::sign::{Signer, RsaPssSaltlen};
 use std::fs;
 use std::io::{self};
-use libc;
-use std::ffi::CString;
-use std::os::unix::ffi::OsStrExt;
 use std::path::Path;
 
 mod keyid;
@@ -55,7 +52,6 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     println!("hash({:?}): {}", hash_algo, format_hex(&calc_hash));
 
     // Start IMA Header (0406)
-//    let mut ima_header = vec![0u8; (MAX_DIGEST_SIZE + 2).into()]; // +2 byte xattr header (0406)
     let mut ima_header: Vec<u8> = vec![];
     if hash_algo.ima_xattr_type() > 1 {
         ima_header.push(IMA_XATTR_DIGEST_NG);
@@ -67,7 +63,6 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
 
     // Prepare header of xattr
     let mut digsig_header = vec![EVM_IMA_XATTR_DIGSIG, DIGSIG_VERSION_2, ima_header[1]];
-//    digsig_header.extend_from_slice(&ima_header);
     //REAL HEADER FORMAT @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/libimaevm.c#L724
     //      03 + 0206 + keyID + MaxSize (0200?) + sig
     //       1 + 2 + 4 + 2 =  +9
@@ -85,7 +80,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
             eprintln!("Error: {}", e);
         }
     }
-    //Append max sig size (0x0200)
+    // Append max sig size (0x0200)
     digsig_header.extend_from_slice(&MAX_SIGNATURE_SIZE.to_be_bytes());
 
     // Print signature header final
@@ -99,10 +94,6 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     }
 
     //Append Signature
-//    digsig_header.extend_from_slice(&signature);
-    //Padding.extend_from_slice
-    //digsig_header.push(0u8);
-
     let mut signature: Vec<u8> = vec![]; // +9 byte xattr header
     signature.extend_from_slice(&digsig_header);
     signature.extend_from_slice(&hash_sign);
@@ -131,10 +122,10 @@ fn sign_hash(md: MessageDigest, hash: &Vec<u8>, key_path: &str) -> io::Result<Ve
     let pkey = PKey::private_key_from_pem(&private_key)?;
 
     //(DEBUG) PKey { algorithm: "RSA" }
-//    println!("(DEBUG) {:?}", pkey);
+    //println!("(DEBUG) {:?}", pkey);
     //(DEBUG) EVP_PKEY_get1_RSA: Rsa, EVP_PKEY_bits: 4096, EVP_PKEY_id: Id(6), EVP_PKEY_size: 512
-//    println!("(DEBUG) EVP_PKEY_get1_RSA: {:?}, EVP_PKEY_bits: {:?}, EVP_PKEY_id: {:?}, EVP_PKEY_size: {:?}"
-//                                 , &pkey.rsa().unwrap(), &pkey.bits(), &pkey.id(), &pkey.size());
+    //println!("(DEBUG) EVP_PKEY_get1_RSA: {:?}, EVP_PKEY_bits: {:?}, EVP_PKEY_id: {:?}, EVP_PKEY_size: {:?}"
+    //                             , &pkey.rsa().unwrap(), &pkey.bits(), &pkey.id(), &pkey.size());
 
     let mut signer = Signer::new(md, &pkey)?;
     // Set RSA-PSS padding by setting the salt length
@@ -148,21 +139,11 @@ fn sign_hash(md: MessageDigest, hash: &Vec<u8>, key_path: &str) -> io::Result<Ve
     Ok(signature)
 }
 
-fn set_xattr(file: &str, name: &str, value: &[u8]) -> io::Result<()> {
-    let file_cstr = CString::new(Path::new(file).as_os_str().as_bytes())?;
-    let name_cstr = CString::new(name)?;
+use xattr::set;
 
-    unsafe {
-        let ret = libc::setxattr(
-            file_cstr.as_ptr(),
-            name_cstr.as_ptr(),
-            value.as_ptr() as *const libc::c_void,
-            value.len(),
-            0,
-        );
-        if ret != 0 {
-            return Err(io::Error::last_os_error());
-        }
-    }
-    Ok(())
+fn set_xattr(file: &str, attr_name: &str, value: &[u8]) -> io::Result<()> {
+    let file_path = Path::new(file);
+    // Use the xattr crate's set function
+    set(file_path, attr_name, value).map_err(
+        |err| io::Error::new(io::ErrorKind::Other, err.to_string()))
 }
