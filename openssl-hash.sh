@@ -48,7 +48,8 @@ openssl pkeyutl -sign -inkey "$PRIVATE_KEY" -in "${hash_step1a}" -out "${sig_ste
 
 # Step 3: Print the signature in hex format
 echo "Signature in hex format:"
-xxd -p -c 64 "${sig_step2}"
+#xxd -p -c 64 "${sig_step2}"    # 12d507
+xxd -p -c 64 "${sig_step2_raw}" # 020b68
 
 # Step 4: Verify and recover the signature with the public key (doesnt)
 echo "VerifyRecovering the original hash using the RSA public key: $PUBLIC_KEY"
