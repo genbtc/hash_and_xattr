@@ -7,7 +7,7 @@ use std::io::ErrorKind;
 
 #[allow(dead_code)]
 fn format_hex(bytes: &[u8]) -> String {
-    bytes.iter().map(|b| format!("{:02X}", b)).collect::<Vec<String>>().join(":")
+    bytes.iter().map(|b| format!("{:02x}", b)).collect::<Vec<String>>().join(":")
 }
 
 pub fn extract_keyid_from_x509_pem(pem_path: &str) -> Result<Vec<u8>> {
@@ -18,12 +18,6 @@ pub fn extract_keyid_from_x509_pem(pem_path: &str) -> Result<Vec<u8>> {
 
     // Parse the certificate
     let cert = X509::from_pem(pem_contents.as_bytes()).expect("Failed to parse X509 certificate");
-
-    // Convert the certificate to text 
-//   let cert_text_bytes = cert.to_text().expect("Failed to convert certificate to text");
-//   let cert_text = String::from_utf8(cert_text_bytes).expect("Failed to convert bytes to string");
-    // Print it
-//    println!("{}", cert_text); //"Certificate:\n  Data:"
 
     // Extract the last 4 bytes of the Subject Key Identifier (SKI)
     if let Some(ski) = cert.subject_key_id() {
