@@ -10,7 +10,7 @@ for i in range(256):
     char = bytes([i])
 
     # Compute the SHA-512 hash of the character
-    hash_object = hashlib.sha512(char+\01a)
+    hash_object = hashlib.sha512(char)
     hash_hex = hash_object.hexdigest()
 
     # Check if the computed hash matches the target hash
