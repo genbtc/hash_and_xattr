@@ -73,7 +73,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     // signature_v2_hdr @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L194
     //keyid ab6f2050 (from /etc/keys/signing_key.priv)
     //call crate::keyid::extract_keyid_from_x509_pem;
-    let keyid_result = extract_keyid_from_x509_pem("/home/genr8eofl/signing_key.pem");
+    let keyid_result = extract_keyid_from_x509_pem("/home/genr8eofl/signing_key.crt");
     // Extend digsig_header with key_id vector
     match keyid_result {
         Ok(keyid_bytes) => {
