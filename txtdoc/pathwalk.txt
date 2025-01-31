@@ -1,0 +1,18 @@
+     Running `/home/genr8eofl/src/hash_and_xattr/target/debug/pathwalk`
+Dir: ./
+IMAHash(Name): "./main.rs"
+IMAHash(Name): "./pathwalk.rs"
+IMAHash(Name): "./IMAhashAlgorithm.rs"
+IMAHash(Name): "./keyid.rs"
+Failed to set xattr for "./keyid.rs" with system.ima: Operation not supported (os error 95)
+Fallback extended attribute set for "./keyid.rs" with user.ima
+IMAHash(SHA512): 168a14935007716dd48ffd9f487f37e822eaa0a6b1b8a0e2902a5c6e4110b234884a375da732599fd10dd04f17c4937c54f150c8df6de466c6536d8e33dd940e
+Failed to set xattr for "./IMAhashAlgorithm.rs" with system.ima: Operation not supported (os error 95)
+Fallback extended attribute set for "./IMAhashAlgorithm.rs" with user.ima
+IMAHash(SHA512): 4a8545d46104be8d4f94fb5ac84cf1d9b1236ccb51c9f115cd58aa5c2d8f0c0f5fce059d32df77fda71129e6ff3c96889764eab8f967fb57389275a233cbdcb5
+Failed to set xattr for "./pathwalk.rs" with system.ima: Operation not supported (os error 95)
+Fallback extended attribute set for "./pathwalk.rs" with user.ima
+IMAHash(SHA512): d5a3063db5e0e90b2c239cf375d97d2fb0dec9214827e44c1a2dbe8ea7f2dd26b3127e221976ee2d3a729701fb6ba567845a45005d1746d4fe6e42a8c7c10bf7
+Failed to set xattr for "./main.rs" with system.ima: Operation not supported (os error 95)
+Fallback extended attribute set for "./main.rs" with user.ima
+IMAHash(SHA512): e719af1b0d118b27d9145538663a4d47ae38284ca819d2e1d1bfefce41fdf09d20615ec6af9c97bbd9fe4340776a0e423cdc7d7a29a6f0e07fe401e1bd653ac0

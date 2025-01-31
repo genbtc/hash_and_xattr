@@ -32,7 +32,7 @@ pub fn extract_keyid_from_x509_pem(pem_path: &str) -> Result<Vec<u8>> {
 // This is an example of how to call the function
 #[allow(dead_code)]
 fn main() {
-    let pem_path = "/home/genr8eofl/signing_key.pem";
+    let pem_path = "/home/genr8eofl/signing_key.crt";
     match extract_keyid_from_x509_pem(pem_path) {
         Ok(keyid_bytes) => {
             println!("Key ID (from SKI): {}", format_hex(&keyid_bytes));

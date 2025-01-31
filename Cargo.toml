@@ -14,3 +14,6 @@ openssl = "0.10"   # private/public crypto key signing
 [[bin]]
 name = "pathwalk"
 path = "src/pathwalk.rs"
+[[bin]]
+name = "keyid"
+path = "src/keyid.rs"
