@@ -9,8 +9,8 @@ PUBLIC_KEY="/home/genr8eofl/derived_public_key.pem" #contents: -----BEGIN PUBLIC
 INPUT_FILE="testA"
 hash_step0="$INPUT_FILE.sha512.bin"
 #dgst_step0="$INPUT_FILE.dgst"
-sig_step2="$INPUT_FILE.signature.bin"       #48f34
-sig_step2_raw="$INPUT_FILE.signature.raw"   #3af28
+sig_step2="$INPUT_FILE.signature.bin"       #12d507
+sig_step2_raw="$INPUT_FILE.signature.raw"   #3af28d
 step4="$INPUT_FILE.recovered"               #A
 
 # Step 0: Generate SHA-512 hash of the file

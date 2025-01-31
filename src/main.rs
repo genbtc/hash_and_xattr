@@ -1,6 +1,6 @@
 use openssl::hash::{Hasher, MessageDigest};
 use openssl::pkey::PKey;
-use openssl::sign::{Signer, RsaPssSaltlen};
+use openssl::sign::Signer;
 use std::fs;
 use std::io::{self};
 use std::path::Path;
@@ -85,8 +85,9 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
         }
     }
 
-    // Sign hash
-    let hash_sign = sign_hash(md, &calc_hash, key_path)?;
+    // Sign file. read original file.
+    let ffile = fs::read(file)?;
+    let hash_sign = sign_hash(md, &ffile, key_path)?;
     println!("signature: {}", format_hex(&hash_sign));
     let slen = hash_sign.len();
     if slen < (MAX_SIGNATURE_SIZE).into() {
@@ -103,8 +104,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     signature.extend_from_slice(&ima_sign_header);
     signature.extend_from_slice(&hash_sign);
     // Print final xattr
-    println!("final xattr signature: {}", format_hex(&signature));
-    println!{"signature(len): {:?}", signature.len() - 1};
+    println!("final xattr signature ({:?}bytes): {}", signature.len() - 1, format_hex(&signature));
 
     // Set extended attribute
     set_xattr(file, "system.ima", &signature)?;
@@ -134,8 +134,6 @@ fn sign_hash(md: MessageDigest, hash: &[u8], key_path: &str) -> io::Result<Vec<u
     //                             , &pkey.rsa().unwrap(), &pkey.bits(), &pkey.id(), &pkey.size());
 
     let mut signer = Signer::new(md, &pkey)?;
-    // Set RSA-PSS padding by setting the salt length
-    let _ = signer.set_rsa_pss_saltlen(RsaPssSaltlen::custom(64)); //DIGEST_LENGTH
     // Sign the data
     signer.update(hash)?;
     println!{"signer(len): {:?}", signer.len().unwrap()};
