@@ -11,6 +11,10 @@ use crate::keyid::extract_keyid_from_x509_pem;
 mod IMAhashAlgorithm;
 use crate::IMAhashAlgorithm::HashAlgorithm;
 
+//#const PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the actual key file path
+//const PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: ^^
+const PRIVATE_KEY_PATH: &'static str ="/home/genr8eofl/signing_key.priv"; // TODO: Replace with the actual key file path
+const PUBLIC_CERT_PATH: &'static str ="/home/genr8eofl/signing_key.crt"; // TODO: ^^
 //Default _was_ sha256 https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L71
 const DEFAULT_HASH_ALGO: &'static str = "sha512";
 //Derived from https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L77-L78
@@ -25,17 +29,16 @@ const DIGSIG_VERSION_2: u8 = 0x02;
 fn main() {
     let targetfile = "testA"; // TODO: Replace with the actual target file path to hash
     let hash_algo = HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("Invalid hash algorithm");    //SHA512
-    let key_path = "/home/genr8eofl/signing_key.priv"; // TODO: Replace with the actual key file path
 
-    match sign_ima(targetfile, hash_algo, key_path) {
+    match sign_ima(targetfile, hash_algo, PRIVATE_KEY_PATH) {
         Ok(_) => println!("Successfully signed IMA"),
         Err(e) => eprintln!("Error signing IMA: {:?}", e),
     }
 }
 
-//format matches sha512sum (hex output), only uppercase
+//format matches sha512sum (hex output)
 fn format_hex(bytes: &[u8]) -> String {
-    bytes.iter().map(|b| format!("{:02X}", b)).collect::<Vec<String>>().join("")
+    bytes.iter().map(|b| format!("{:02x}", b)).collect::<Vec<String>>().join("")
 }
 
 fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<()> {
@@ -73,7 +76,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     // signature_v2_hdr @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L194
     //keyid ab6f2050 (from /etc/keys/signing_key.priv)
     //call crate::keyid::extract_keyid_from_x509_pem;
-    let keyid_result = extract_keyid_from_x509_pem("/home/genr8eofl/signing_key.crt");
+    let keyid_result = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH);
     // Extend digsig_header with key_id vector
     match keyid_result {
         Ok(keyid_bytes) => {
@@ -82,6 +85,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
         }
         Err(e) => {
             eprintln!("Error: {}", e);
+            return Err(e)
         }
     }
 
@@ -104,11 +108,21 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     signature.extend_from_slice(&ima_sign_header);
     signature.extend_from_slice(&hash_sign);
     // Print final xattr
-    println!("final xattr signature ({:?}bytes): {}", signature.len() - 1, format_hex(&signature));
+    println!("Signature ({:?}bytes): {}", signature.len() - 1, format_hex(&signature));
 
-    // Set extended attribute
-    set_xattr(file, "system.ima", &signature)?;
-    set_xattr(file, "user.system.ima", &signature)
+    // Set extended attribute, security.ima
+    let sys = set_xattr(file, "security.ima", &signature);
+    match sys {
+        Ok(c) => {
+            println!("Wrote security.ima {:?}byte signature", signature.len() - 1);
+            Ok(c)
+        }
+        Err(e) => {
+            eprintln!("Error writing security.ima: {}", e);
+            println!("Wrote user.ima {:?}byte signature instead", signature.len() - 1);
+            set_xattr(file, "user.ima", &signature)
+        }
+    }
 }
 
 fn calc_hash(file: &str, md: MessageDigest) -> io::Result<Vec<u8>> {
@@ -119,7 +133,7 @@ fn calc_hash(file: &str, md: MessageDigest) -> io::Result<Vec<u8>> {
     let hash_result = hasher.finish()?;
     // Convert DigestBytes to Vec<u8>
     let hash_vec = hash_result.to_vec();
-    
+
     Ok(hash_vec)
 }
 
@@ -127,26 +141,17 @@ fn sign_hash(md: MessageDigest, hash: &[u8], key_path: &str) -> io::Result<Vec<u
     let private_key = fs::read(key_path)?;
     let pkey = PKey::private_key_from_pem(&private_key)?;
 
-    //(DEBUG) PKey { algorithm: "RSA" }
-    //println!("(DEBUG) {:?}", pkey);
-    //(DEBUG) EVP_PKEY_get1_RSA: Rsa, EVP_PKEY_bits: 4096, EVP_PKEY_id: Id(6), EVP_PKEY_size: 512
-    //println!("(DEBUG) EVP_PKEY_get1_RSA: {:?}, EVP_PKEY_bits: {:?}, EVP_PKEY_id: {:?}, EVP_PKEY_size: {:?}"
-    //                             , &pkey.rsa().unwrap(), &pkey.bits(), &pkey.id(), &pkey.size());
-
     let mut signer = Signer::new(md, &pkey)?;
-    // Sign the data
+    // Sign the data - 64byte hash -> 512byte sig
     signer.update(hash)?;
-    println!{"signer(len): {:?}", signer.len().unwrap()};
     let signature = signer.sign_to_vec()?;
 
     Ok(signature)
 }
 
-use xattr::set;
-
 fn set_xattr(file: &str, attr_name: &str, value: &[u8]) -> io::Result<()> {
     let file_path = Path::new(file);
     // Use the xattr crate's set function
-    set(file_path, attr_name, value).map_err(
+    xattr::set(file_path, attr_name, value).map_err(
         |err| io::Error::new(io::ErrorKind::Other, err.to_string()))
 }
