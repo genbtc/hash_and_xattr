@@ -9,14 +9,14 @@ for i in range(256):
     # Convert the number to a byte (ASCII character)
     char = bytes([i])
 
-    # Append 0x1a (the SUB character)
-    char_with_sub = char + b'\x0a'
+    # Append 0x0a (line feed LF)
+    char_with_LF = char + b'\x0a'
 
-    # Compute the SHA-512 hash of the character plus 0x1a
-    hash_object = hashlib.sha512(char_with_sub)
+    # Compute the SHA-512 hash of the character plus 0x0a
+    hash_object = hashlib.sha512(char_with_LF)
     hash_hex = hash_object.hexdigest()
 
-    # Check if the computed hash matches the target hash
+    # Now Check if the computed hash matches the target hash
     if hash_hex == target_hash:
-        print(f"Found the character: {chr(i)} (ASCII: {i}) with appended 0x0a")
+        print(f"Found the character: {chr(i)} (ASCII: {i}) with appended LF 0x0a")
         break
