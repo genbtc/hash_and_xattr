@@ -18,6 +18,7 @@ walkdir = "*"    # Directory traversal
 #rayon = "1.7"      # parallel processing
 #walkdir = "2.3"    # Directory traversal
 
+#Other Targets
 #Usage: cargo run --bin keyid
 [[bin]]
 name = "pathwalk"

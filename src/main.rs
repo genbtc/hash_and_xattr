@@ -1,4 +1,4 @@
-use openssl::hash::{Hasher, MessageDigest};
+use openssl::hash::MessageDigest;
 use openssl::pkey::PKey;
 use openssl::sign::Signer;
 use std::fs;
@@ -9,6 +9,7 @@ mod keyid;
 use crate::keyid::extract_keyid_from_x509_pem;
 use hash_and_xattr::IMAhashAlgorithm::HashAlgorithm;
 use hash_and_xattr::format_hex::format_hex;
+use hash_and_xattr::hash_file::hash_file;
 
 //#const PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the actual key file path
 //const PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: ^^
@@ -37,12 +38,11 @@ fn main() {
 
 fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<()> {
     //Calc hash
-    let md = MessageDigest::from_nid(hash_algo.nid())      //HashAlgo to MessageDigest
-        .ok_or(io::Error::new(io::ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
-    let calc_hash = calc_hash(file, md)?;
+//    let calc_hash = hash_file(file, md)?;
+    let calc_hash = hash_file(file)?;
     let len = calc_hash.len();
     if len < MAX_DIGEST_SIZE.into() {
-        println!{"hash len is smaller than expected MAX_DIGEST_SIZE {}", MAX_DIGEST_SIZE};
+        println!{"Hash len is smaller than expected MAX_DIGEST_SIZE {}", MAX_DIGEST_SIZE};
     }
 
     // Print hash
@@ -84,6 +84,8 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     }
 
     // Sign file. read original file.
+    let md = MessageDigest::from_nid(hash_algo.nid())      //HashAlgo to MessageDigest
+            .ok_or(io::Error::new(io::ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
     let ffile = fs::read(file)?;
     let hash_sign = sign_hash(md, &ffile, key_path)?;
     println!("signature: {}", format_hex(&hash_sign));
@@ -117,18 +119,6 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
             set_xattr(file, "user.ima", &signature)
         }
     }
-}
-
-fn calc_hash(file: &str, md: MessageDigest) -> io::Result<Vec<u8>> {
-    let file = fs::read(file)?;
-
-    let mut hasher = Hasher::new(md)?;
-    hasher.update(&file)?;
-    let hash_result = hasher.finish()?;
-    // Convert DigestBytes to Vec<u8>
-    let hash_vec = hash_result.to_vec();
-
-    Ok(hash_vec)
 }
 
 fn sign_hash(md: MessageDigest, hash: &[u8], key_path: &str) -> io::Result<Vec<u8>> {

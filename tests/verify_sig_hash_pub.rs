@@ -8,7 +8,7 @@ use openssl::error::ErrorStack;
 
 //format matches sha512sum (hex output)
 fn format_hex(bytes: &[u8]) -> String {
-    bytes.iter().map(|b| format!("{:02x}", b)).collect::<Vec<String>>().join("")
+    bytes.iter().map(|b| format!("{:02x}", b)).collect::<String>()
 }
 
 fn verify_signature(message: &[u8], signature: &[u8]) -> Result<bool, ErrorStack> {
