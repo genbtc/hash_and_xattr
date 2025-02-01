@@ -1,11 +1,12 @@
 //hash_and_xattr v0.14 - 2025 (c) genr8eofl @ gmx
-//pathwalkr.rs v0.2.5 - attach to main project
+//pathwalkr.rs v0.2.6 - attach to main project
+//Update v0.2.7. Writes hash directly to system.ima
 use std::{env, fs::File, io::{Read,BufRead,stdin,BufReader}, path::{Path,PathBuf}};
 use std::io::{Error,ErrorKind,Result};
-use sha2::{Sha512, Digest};
+use openssl::sha::Sha512;
 use walkdir::WalkDir;
-use xattr;
 use rayon::prelude::*;
+use xattr;
 use atty;
 
 fn hash_file<P: AsRef<Path>>(path: P) -> Result<String> {
@@ -23,7 +24,7 @@ fn hash_file<P: AsRef<Path>>(path: P) -> Result<String> {
     }
     
     // Finalize the hash and convert it to hex
-    Ok(format!("{:x}", hasher.finalize()))
+    Ok(hasher.finish().to_vec().iter().map(|b| format!("{:02x}", b)).collect::<String>())
 }
 
 fn set_xattr<P: AsRef<Path>>(path: P, xattr_name: &str, hash: &str) -> Result<()> {
@@ -56,31 +57,19 @@ fn process_files(files: Vec<PathBuf>) -> Result<()> {
 }
 
 fn set_ima_xattr(file_path: &Path, hash: &str) -> Result<()> {
-    // Try to set the extended attribute system.ima
-    let xattr_name = "system.ima"; // Needs permissions
+    // Try to set the extended attribute - system.ima - (first)
+    let xattr_name = "system.ima"; // Needs elevated permissions
     if let Err(e) = set_xattr(file_path, xattr_name, hash) {
-        eprintln!(
-            "Failed to set xattr for {:?} with {}: {}",
-            file_path,
-            xattr_name,
-            e
-        );
-
-        // Attempt to set the xattr with user.ima if the first one fails
-        let fallback_xattr_name = "user.ima";
+        eprintln!("Failed to set xattr for {:?} with {}: {}",
+                  file_path, xattr_name, e);
+        // Attempt to set the xattr - user.ima - (if system.ima fails)
+        let fallback_xattr_name = "user.ima";   //Does not need permissions
         if let Err(fallback_error) = set_xattr(file_path, fallback_xattr_name, hash) {
-            eprintln!(
-                "Failed to set fallback xattr for {:?} with {}: {}",
-                file_path,
-                fallback_xattr_name,
-                fallback_error
-            );
+            eprintln!("Failed to set fallback xattr for {:?} with {}: {}",
+                      file_path, fallback_xattr_name, fallback_error);
         } else {
-            println!(
-                "Fallback extended attribute set for {:?} with {}",
-                file_path,
-                fallback_xattr_name
-            );
+            println!("Fallback extended attribute set for {:?} with {}",
+                      file_path, fallback_xattr_name);
         }
     } else {
         println!("Extended attribute set for {:?} with {}", file_path, xattr_name);
@@ -89,7 +78,7 @@ fn set_ima_xattr(file_path: &Path, hash: &str) -> Result<()> {
     Ok(())
 }
 
-//Option 1
+//Option 1 - Dir
 fn get_files_from_directory(dir: &str) -> Result<Vec<PathBuf>> {
     Ok(
     WalkDir::new(dir)
@@ -100,7 +89,7 @@ fn get_files_from_directory(dir: &str) -> Result<Vec<PathBuf>> {
         .collect()
     )
 }
-//Option 2
+//Option 2 - Stdin
 fn get_files_from_stdin() -> Result<Vec<PathBuf>> {
     let stdin = stdin();
     let handle = stdin.lock();
@@ -111,7 +100,7 @@ fn get_files_from_stdin() -> Result<Vec<PathBuf>> {
         .collect()
     )
 }
-//Option 3
+//Option 3 - File
 fn get_files_from_file(file_path: &str) -> Result<Vec<PathBuf>> {
     let file = File::open(file_path)?;
     let reader = BufReader::new(file);
