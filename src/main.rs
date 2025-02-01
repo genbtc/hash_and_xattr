@@ -11,9 +11,9 @@ use hash_and_xattr::format_hex::format_hex;
 use hash_and_xattr::hash_file::hash_file;
 use hash_and_xattr::set_ima_xattr;
 
-//#const PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the actual key file path
+//#const PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the system key file path
 //const PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: ^^
-const PRIVATE_KEY_PATH: &'static str ="/home/genr8eofl/signing_key.priv"; // TODO: Replace with the actual key file path
+const PRIVATE_KEY_PATH: &'static str ="/home/genr8eofl/signing_key.priv"; // TODO: Replace with the default key file path
 const PUBLIC_CERT_PATH: &'static str ="/home/genr8eofl/signing_key.crt"; // TODO: ^^
 //Default _was_ sha256 https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L71
 const DEFAULT_HASH_ALGO: &'static str = "sha512";
@@ -27,32 +27,34 @@ const IMA_XATTR_DIGEST_NG: u8 = 0x04;
 const DIGSIG_VERSION_2: u8 = 0x02;
 
 fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<()> {
+    let hash_type = hash_algo.ima_xattr_type();
     //Calc hash
-//    let calc_hash = hash_file(file, md)?;
-    let calc_hash = hash_file(file)?; //hardcoded Sha512
-    let len = calc_hash.len();
-    if len < MAX_DIGEST_SIZE.into() {
+    //let calc_hash = hash_file(file, md)?;
+    let calc_hash = hash_file(file)?; //hardcoded Sha512. //TODO: hash_type
+    if calc_hash.len() < MAX_DIGEST_SIZE.into() {
         println!{"Hash len is smaller than expected MAX_DIGEST_SIZE {}", MAX_DIGEST_SIZE};
     }
-
     // Print hash
-    println!("hash({:?}): {}", hash_algo, format_hex(&calc_hash));
+    println!("Hash({:?}): {}", hash_algo, format_hex(&calc_hash));
 
-    // Start IMA Header (0406)
+    // Start IMA Header
     let mut ima_hash_header: Vec<u8> = vec![];
-    if hash_algo.ima_xattr_type() > 1 {
+    //hash_v2 (0406) vs hash_v1 (01)
+    if hash_type > 1 {
         ima_hash_header.push(IMA_XATTR_DIGEST_NG);
-        ima_hash_header.push(hash_algo.ima_xattr_type());
+        ima_hash_header.push(hash_type);
     } else {
         ima_hash_header.push(IMA_XATTR_DIGEST);
     }
-    let _offset = if hash_algo.ima_xattr_type() > 1 { 2 } else { 1 };
+    let _offset = if hash_type > 1 { 2 } else { 1 };
 
-    // Prepare header of xattr
+    // Prepare IMA packet with IMA header and Calc_Hash
     let mut ima_hash_packet = ima_hash_header.clone();
     ima_hash_packet.extend_from_slice(&calc_hash);
 
-    let mut ima_sign_header: Vec<u8> = vec![DIGSIG_VERSION_2, hash_algo.ima_xattr_type()];
+    // Prepare IMA Signed Header
+
+    let mut ima_sign_header: Vec<u8> = vec![DIGSIG_VERSION_2, hash_type];
     //REAL HEADER FORMAT @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/libimaevm.c#L724
     //      03 + 0206 + keyID + MaxSize (0200?) + sig
     //       1 + 2 + 4 + 2 =  +9
@@ -66,11 +68,10 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     let md = MessageDigest::from_nid(hash_algo.nid())      //HashAlgo to MessageDigest
             .ok_or(io::Error::new(io::ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
     let ffile = fs::read(file)?;
-    let hash_sign = sign_hash(md, &ffile, key_path)?;
-    println!("signature: {}", format_hex(&hash_sign));
-    let slen = hash_sign.len();
-    if slen < (MAX_SIGNATURE_SIZE).into() {
-        println!{"signature len is smaller than expected MAX_SIGNATURE_SIZE {}", MAX_SIGNATURE_SIZE};
+    let ima_sig = sign_bytes(md, &ffile, key_path)?;
+    println!("signature: {}", format_hex(&ima_sig));
+    if ima_sig.len() != (MAX_SIGNATURE_SIZE).into() {
+        eprintln!{"signature len differs from expected MAX_SIGNATURE_SIZE {}", MAX_SIGNATURE_SIZE};
     }
 
     // Append max sig size (0x0200)
@@ -79,9 +80,10 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     println!("ima_sign_header: {}", format_hex(&ima_sign_header));
 
     //Append Signature
-    let mut signature: Vec<u8> = vec![EVM_IMA_XATTR_DIGSIG]; // +9 byte xattr header
-    signature.extend_from_slice(&ima_sign_header);
-    signature.extend_from_slice(&hash_sign);
+    let mut signature: Vec<u8> = vec![EVM_IMA_XATTR_DIGSIG];
+    signature.extend_from_slice(&ima_sign_header); //  +8 byte IMA header
+    signature.extend_from_slice(&ima_sig);         //+512 byte signature
+    //Total = 521 bytes
 
     // Set extended attribute, security.ima, fallback to user.ima
     // Try to set the extended attribute and return any error
@@ -89,21 +91,17 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
         Err(e) // Collect xattr error
     } else {
         // Print final xattr
-        println!("Signature ({:?}bytes): {}", signature.len() - 1, format_hex(&signature));
+        println!("Written ({:?}bytes): {}", signature.len(), format_hex(&signature));
         Ok(()) // No error
     }
 }
 
-fn sign_hash(md: MessageDigest, hash: &[u8], key_path: &str) -> io::Result<Vec<u8>> {
+fn sign_bytes(md: MessageDigest, data: &[u8], key_path: &str) -> io::Result<Vec<u8>> {
     let private_key = fs::read(key_path)?;
     let pkey = PKey::private_key_from_pem(&private_key)?;
-
     let mut signer = Signer::new(md, &pkey)?;
-    // Sign the data - 64byte hash -> 512byte sig
-    signer.update(hash)?;
-    let signature = signer.sign_to_vec()?;
-
-    Ok(signature)
+    signer.update(data)?;
+    Ok(signer.sign_to_vec()?)
 }
 
 fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &str) {
