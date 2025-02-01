@@ -23,6 +23,7 @@ fn hash_file_internal<P: AsRef<Path>>(path: P) -> Result<Vec<u8>> {
 }
 
 // Function to return the hash as a String
+#[allow(dead_code)]
 pub fn hash_file_str<P: AsRef<Path>>(path: P) -> Result<String> {
     let hash = hash_file_internal(path)?; // Use the shared logic
     Ok(hash.iter().map(|b| format!("{:02x}", b)).collect::<String>())

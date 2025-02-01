@@ -4,6 +4,7 @@ use std::io::{Result,Error,ErrorKind};
 use xattr;
 
 // Public function 1: Takes `&Path` and `&str`
+#[allow(dead_code)]
 pub fn set_ima_xattr_path_str(file_path: &Path, hash: &str) -> Result<()> {
     let hash_bytes = hash.as_bytes(); // Convert `&str` to `&[u8]`
     set_ima_xattr_internal(file_path, hash_bytes)
@@ -52,9 +53,9 @@ fn set_xattr_path_str<P: AsRef<Path>>(file_path: P, xattr_name: &str, hash: &str
 }
 
 // function 2: Takes `&str` and `&Vec<u8>`
-fn set_xattr_str_vec(file_name: &str, xattr_name: &str, hash: &[u8]) -> Result<()> {
+fn set_xattr_str_vec(file_name: &str, xattr_name: &str, data: &[u8]) -> Result<()> {
     let file_path = Path::new(file_name); // Convert `&str` to `Path`
-    set_xattr_internal(file_path, xattr_name, hash)
+    set_xattr_internal(file_path, xattr_name, data)
 }
 
 // Main Internal function that contains the shared logic for setting xattr

@@ -10,18 +10,19 @@ use atty;
 //Local mods
 mod hash_file;
 mod set_ima_xattr;
+mod format_hex;
 
 fn ima_process_files(files: Vec<PathBuf>) -> Result<()> {
     // Collect all errors in a vector to handle them after parallel processing
     let errors: Vec<_> = files.into_par_iter().filter_map(|file_path| {
         println!("IMAHash(Name): {:?}", file_path);
-        match crate::hash_file::hash_file(&file_path) {
+        match hash_file::hash_file(&file_path) {
             Ok(hash) => {
                 // Try to set the extended attribute and return any error
-                if let Err(e) = crate::set_ima_xattr::set_ima_xattr(&file_path, &hash) {
+                if let Err(e) = set_ima_xattr::set_ima_xattr_str_vec(&file_path.to_str()?, &hash) {
                     Some(e) // Collect xattr error
                 } else {
-                    println!("IMAHash(SHA512): {}", hash);
+                    println!("IMAHash(SHA512): {}", format_hex::format_hex(&hash));
                     None // No error
                 }
             }
