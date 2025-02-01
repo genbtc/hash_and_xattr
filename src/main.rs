@@ -37,7 +37,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     // Print hash
     println!("Hash({:?}): {}", hash_algo, format_hex(&calc_hash));
 
-    // Start IMA Header
+    // Start IMA_Hash Header
     let mut ima_hash_header: Vec<u8> = vec![];
     //hash_v2 (0406) vs hash_v1 (01)
     if hash_type > 1 {
@@ -48,12 +48,11 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     }
     let _offset = if hash_type > 1 { 2 } else { 1 };
 
-    // Prepare IMA packet with IMA header and Calc_Hash
+    // Finalize IMA Hash packet with IMA_Hash header and Calc_Hash
     let mut ima_hash_packet = ima_hash_header.clone();
     ima_hash_packet.extend_from_slice(&calc_hash);
 
-    // Prepare IMA Signed Header
-
+    // Prepare IMA_Signed Header
     let mut ima_sign_header: Vec<u8> = vec![DIGSIG_VERSION_2, hash_type];
     //REAL HEADER FORMAT @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/libimaevm.c#L724
     //      03 + 0206 + keyID + MaxSize (0200?) + sig
@@ -64,7 +63,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     let keyid_result = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
     ima_sign_header.extend_from_slice(&keyid_result);
 
-    // Sign file. read original file.
+    // IMA Sign the original file (openssl)
     let md = MessageDigest::from_nid(hash_algo.nid())      //HashAlgo to MessageDigest
             .ok_or(io::Error::new(io::ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
     let ffile = fs::read(file)?;
@@ -76,7 +75,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
 
     // Append max sig size (0x0200)
     ima_sign_header.extend_from_slice(&MAX_SIGNATURE_SIZE.to_be_bytes());
-    // Print ima_sign_header
+    // Print ima_sign_header (Debug)
     println!("ima_sign_header: {}", format_hex(&ima_sign_header));
 
     //Append Signature
