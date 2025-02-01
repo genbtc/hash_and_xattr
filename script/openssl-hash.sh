@@ -1,5 +1,5 @@
 #!/bin/bash
-# openssl-hash-sign.sh v0.33 by genBTC 2025
+# openssl-hash-sign.sh v0.34 by genBTC 2025
 
 # Variables for private key / public key
 PRIVATE_KEY="/home/genr8eofl/signing_key.priv"      #contents: -----BEGIN PRIVATE KEY-----
@@ -7,7 +7,7 @@ PUBLIC_KEY="/home/genr8eofl/derived_public_key.pem" #contents: -----BEGIN PUBLIC
 
 # Variables for files (and tmp)
 INPUT_FILE="testA"                    #A + LineFeed
-hash_step0="$INPUT_FILE.sha512.bin"   #7a296f... hash bytes
+hash_step0="$INPUT_FILE.sha512.bin"   #7a296f... hash bytes (has bin.sig same as .sig and .sig2
 dgst_step0="$INPUT_FILE.digest"       #"SHA2-512(testA)= 7a296f hash digest
 step1="$INPUT_FILE.sig1"              #020b68 sig (recovers                 80 33 05 )
 step1d="$INPUT_FILE.message1"         #3051300d060960864801650304020305000440803305d4248ff306420053d133d217339f8dafcd96b70e1e6e8f56115f12e130edd2cea1e073fda86f00995511d50698737e7eb895096533a8b0231c15d88907
@@ -119,7 +119,6 @@ if [ -s $msgf ]; then
 fi
 #Matches 7a296f
 echo "-----------Valid-----------" #12d507
-
 
 #48f348
 # step 4: RSA sign the Message with your private key
