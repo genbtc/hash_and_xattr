@@ -26,20 +26,10 @@ const EVM_IMA_XATTR_DIGSIG: u8 = 0x03;
 const IMA_XATTR_DIGEST_NG: u8 = 0x04;
 const DIGSIG_VERSION_2: u8 = 0x02;
 
-fn main() {
-    let targetfile = "testA"; // TODO: Replace with the actual target file path to hash
-    let hash_algo = HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("Invalid hash algorithm");    //SHA512
-
-    match sign_ima(targetfile, hash_algo, PRIVATE_KEY_PATH) {
-        Ok(_) => println!("Successfully signed IMA"),
-        Err(e) => eprintln!("Error signing IMA: {:?}", e),
-    }
-}
-
 fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<()> {
     //Calc hash
 //    let calc_hash = hash_file(file, md)?;
-    let calc_hash = hash_file(file)?;
+    let calc_hash = hash_file(file)?; //hardcoded Sha512
     let len = calc_hash.len();
     if len < MAX_DIGEST_SIZE.into() {
         println!{"Hash len is smaller than expected MAX_DIGEST_SIZE {}", MAX_DIGEST_SIZE};
@@ -114,4 +104,22 @@ fn sign_hash(md: MessageDigest, hash: &[u8], key_path: &str) -> io::Result<Vec<u
     let signature = signer.sign_to_vec()?;
 
     Ok(signature)
+}
+
+fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &str) {
+    match sign_ima(targetfile, hash_algo, private_key_path) {
+        Ok(_) => println!("Successfully signed IMA"),
+        Err(e) => eprintln!("Error signing IMA: {:?}", e),
+    }
+}
+
+#[test]
+//TODO: Generate test keys.
+fn test_a() {
+    run_sign_ima("testA", HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("Invalid hash algorithm"), PRIVATE_KEY_PATH);
+}
+
+//TODO: Remove my key.
+fn main() {
+    run_sign_ima("testA", HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("Invalid hash algorithm"), PRIVATE_KEY_PATH);
 }
