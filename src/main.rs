@@ -70,18 +70,9 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     // signature_v2_hdr @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L194
     //keyid ab6f2050 (from /etc/keys/signing_key.priv)
     //call crate::keyid::extract_keyid_from_x509_pem;
-    let keyid_result = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH);
-    // Extend digsig_header with key_id vector
-    match keyid_result {
-        Ok(keyid_bytes) => {
-            println!("Key ID (X509v3 S.K.I.): {:?}", format_hex(&keyid_bytes));
-            ima_sign_header.extend_from_slice(&keyid_bytes);
-        }
-        Err(e) => {
-            eprintln!("Error: {}", e);
-            return Err(e)
-        }
-    }
+    let keyid_result = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
+    ima_sign_header.extend_from_slice(&keyid_result);
+
 
     // Sign file. read original file.
     let md = MessageDigest::from_nid(hash_algo.nid())      //HashAlgo to MessageDigest
