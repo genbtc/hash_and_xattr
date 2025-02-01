@@ -4,12 +4,11 @@ use openssl::sign::Signer;
 use std::fs;
 use std::io::{self};
 use std::path::Path;
-
+//Local mods (lib.rs)
 mod keyid;
 use crate::keyid::extract_keyid_from_x509_pem;
-#[allow(non_snake_case)]
-mod IMAhashAlgorithm;
-use crate::IMAhashAlgorithm::HashAlgorithm;
+use hash_and_xattr::IMAhashAlgorithm::HashAlgorithm;
+use hash_and_xattr::format_hex::format_hex;
 
 //#const PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the actual key file path
 //const PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: ^^
@@ -34,11 +33,6 @@ fn main() {
         Ok(_) => println!("Successfully signed IMA"),
         Err(e) => eprintln!("Error signing IMA: {:?}", e),
     }
-}
-
-//format matches sha512sum (hex output)
-fn format_hex(bytes: &[u8]) -> String {
-    bytes.iter().map(|b| format!("{:02x}", b)).collect::<Vec<String>>().join("")
 }
 
 fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<()> {

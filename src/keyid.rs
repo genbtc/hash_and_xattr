@@ -4,11 +4,8 @@ use std::io::Read;
 use std::io::Result;
 use std::io::Error;
 use std::io::ErrorKind;
-
-#[allow(dead_code)]
-fn format_hex(bytes: &[u8]) -> String {
-    bytes.iter().map(|b| format!("{:02x}", b)).collect::<Vec<String>>().join(":")
-}
+//Local mod works with --bin keyid, and main.rs
+use hash_and_xattr::format_hex;
 
 pub fn extract_keyid_from_x509_pem(pem_path: &str) -> Result<Vec<u8>> {
     // Load the PEM file
@@ -35,7 +32,7 @@ fn main() {
     let pem_path = "/home/genr8eofl/signing_key.crt";
     match extract_keyid_from_x509_pem(pem_path) {
         Ok(keyid_bytes) => {
-            println!("Key ID (from SKI): {}", format_hex(&keyid_bytes));
+            println!("Key ID (from SKI): {}", format_hex::format_hex(&keyid_bytes));
         }
         Err(e) => {
             eprintln!("Error: {}", e);

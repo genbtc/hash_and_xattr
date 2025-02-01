@@ -11,7 +11,7 @@ use atty;
 mod hash_file;
 mod set_ima_xattr;
 
-fn process_files(files: Vec<PathBuf>) -> Result<()> {
+fn ima_process_files(files: Vec<PathBuf>) -> Result<()> {
     // Collect all errors in a vector to handle them after parallel processing
     let errors: Vec<_> = files.into_par_iter().filter_map(|file_path| {
         println!("IMAHash(Name): {:?}", file_path);
@@ -31,7 +31,7 @@ fn process_files(files: Vec<PathBuf>) -> Result<()> {
     if errors.is_empty() {
         Ok(()) // All files processed without errors
     } else {
-        Err(Error::new(ErrorKind::Other, "Some files failed to process"))
+        Err(Error::new(ErrorKind::Other, "Some files failed to process!\n"))
     }
 }
 
@@ -96,6 +96,6 @@ fn main() -> Result<()> {
         get_files_from_stdin()?
     };
 
-    // Process the files (hash and set xattr)
-    process_files(files)
+    // IMA Process the files (hash and set xattr)
+    ima_process_files(files)
 }
