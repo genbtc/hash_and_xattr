@@ -3,13 +3,13 @@ use openssl::pkey::PKey;
 use openssl::sign::Signer;
 use std::fs;
 use std::io::{self};
-use std::path::Path;
 //Local mods (lib.rs)
 mod keyid;
 use crate::keyid::extract_keyid_from_x509_pem;
 use hash_and_xattr::IMAhashAlgorithm::HashAlgorithm;
 use hash_and_xattr::format_hex::format_hex;
 use hash_and_xattr::hash_file::hash_file;
+use hash_and_xattr::set_ima_xattr;
 
 //#const PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the actual key file path
 //const PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: ^^
@@ -59,8 +59,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     let _offset = if hash_algo.ima_xattr_type() > 1 { 2 } else { 1 };
 
     // Prepare header of xattr
-    let mut ima_hash_packet = vec![];
-    ima_hash_packet.extend_from_slice(&ima_hash_header);
+    let mut ima_hash_packet = ima_hash_header.clone();
     ima_hash_packet.extend_from_slice(&calc_hash);
 
     let mut ima_sign_header: Vec<u8> = vec![DIGSIG_VERSION_2, hash_algo.ima_xattr_type()];
@@ -72,7 +71,6 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     //call crate::keyid::extract_keyid_from_x509_pem;
     let keyid_result = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
     ima_sign_header.extend_from_slice(&keyid_result);
-
 
     // Sign file. read original file.
     let md = MessageDigest::from_nid(hash_algo.nid())      //HashAlgo to MessageDigest
@@ -94,21 +92,15 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     let mut signature: Vec<u8> = vec![EVM_IMA_XATTR_DIGSIG]; // +9 byte xattr header
     signature.extend_from_slice(&ima_sign_header);
     signature.extend_from_slice(&hash_sign);
-    // Print final xattr
-    println!("Signature ({:?}bytes): {}", signature.len() - 1, format_hex(&signature));
 
-    // Set extended attribute, security.ima
-    let sys = set_xattr(file, "security.ima", &signature);
-    match sys {
-        Ok(c) => {
-            println!("Wrote security.ima {:?}byte signature", signature.len() - 1);
-            Ok(c)
-        }
-        Err(e) => {
-            eprintln!("Error writing security.ima: {}", e);
-            println!("Wrote user.ima {:?}byte signature instead", signature.len() - 1);
-            set_xattr(file, "user.ima", &signature)
-        }
+    // Set extended attribute, security.ima, fallback to user.ima
+    // Try to set the extended attribute and return any error
+    if let Err(e) = set_ima_xattr::set_ima_xattr_str_vec(&file, &signature) {
+        Err(e) // Collect xattr error
+    } else {
+        // Print final xattr
+        println!("Signature ({:?}bytes): {}", signature.len() - 1, format_hex(&signature));
+        Ok(()) // No error
     }
 }
 
@@ -122,11 +114,4 @@ fn sign_hash(md: MessageDigest, hash: &[u8], key_path: &str) -> io::Result<Vec<u
     let signature = signer.sign_to_vec()?;
 
     Ok(signature)
-}
-
-fn set_xattr(file: &str, attr_name: &str, value: &[u8]) -> io::Result<()> {
-    let file_path = Path::new(file);
-    // Use the xattr crate's set function
-    xattr::set(file_path, attr_name, value).map_err(
-        |err| io::Error::new(io::ErrorKind::Other, err.to_string()))
 }
