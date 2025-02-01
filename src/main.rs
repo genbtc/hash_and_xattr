@@ -2,17 +2,21 @@ use openssl::hash::MessageDigest;
 use openssl::pkey::PKey;
 use openssl::sign::Signer;
 use std::fs;
-use std::io::{self};
+use std::io::{self,Error,ErrorKind};
+use std::path::PathBuf;
 //Local mods (lib.rs)
 mod keyid;
 use crate::keyid::extract_keyid_from_x509_pem;
 use hash_and_xattr::IMAhashAlgorithm::HashAlgorithm;
 use hash_and_xattr::format_hex::format_hex;
-use hash_and_xattr::hash_file::hash_file;
+use hash_and_xattr::hash_file;
 use hash_and_xattr::set_ima_xattr;
+use hash_and_xattr::pathwalk;
 
-//#const PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the system key file path
-//const PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: ^^
+//const TEST_PRIVATE_KEY_PATH: &'static str ="./testkeys/signing_key.priv"; // TODO: Replace with the testkeys file path
+//const TEST_PUBLIC_CERT_PATH: &'static str ="./testkeys/signing_key.pem"; // TODO: ^^
+//const SYS_PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the system key file path
+//const SYS_PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: ^^
 const PRIVATE_KEY_PATH: &'static str ="/home/genr8eofl/signing_key.priv"; // TODO: Replace with the default key file path
 const PUBLIC_CERT_PATH: &'static str ="/home/genr8eofl/signing_key.crt"; // TODO: ^^
 //Default _was_ sha256 https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L71
@@ -30,7 +34,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     let hash_type = hash_algo.ima_xattr_type();
     //Calc hash
     //let calc_hash = hash_file(file, md)?;
-    let calc_hash = hash_file(file)?; //hardcoded Sha512. //TODO: hash_type
+    let calc_hash = hash_file::hash_file(file)?; //hardcoded Sha512. //TODO: hash_type
     if calc_hash.len() < MAX_DIGEST_SIZE.into() {
         println!{"Hash len is smaller than expected MAX_DIGEST_SIZE {}", MAX_DIGEST_SIZE};
     }
@@ -65,7 +69,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
 
     // IMA Sign the original file (openssl)
     let md = MessageDigest::from_nid(hash_algo.nid())      //HashAlgo to MessageDigest
-            .ok_or(io::Error::new(io::ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
+            .ok_or(Error::new(ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
     let ffile = fs::read(file)?;
     let ima_sig = sign_bytes(md, &ffile, key_path)?;
     println!("signature: {}", format_hex(&ima_sig));
@@ -117,6 +121,27 @@ fn test_a() {
 }
 
 //TODO: Remove my key.
-fn main() {
-    run_sign_ima("testA", HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("Invalid hash algorithm"), PRIVATE_KEY_PATH);
+fn main() -> Result<(), Error> {
+    // Call pathwalk and handle the result
+    let files: Result<Vec<PathBuf>, Error> = pathwalk::pathwalk();
+    // Match on the result
+    match files {
+        Ok(files) => {
+            // Iterate over each file and call functionB
+            for file in files {
+                let filename = file.to_str().expect("unexpected Error, in filename to str");
+                println!("Filename: {:?}", filename);
+                run_sign_ima(
+                    filename,
+                    HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"),
+                    PRIVATE_KEY_PATH);
+            }
+            Ok(()) // Return Ok(()) when everything is processed successfully
+        },
+        Err(e) => {
+            // Handle error in case pathwalk fails
+            eprintln!("Total Error during pathwalk: {}", e);
+            Err(e) // Return the error to propagate it
+        }
+    }
 }

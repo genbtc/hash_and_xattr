@@ -8,13 +8,13 @@ use walkdir::WalkDir;
 use rayon::prelude::*;
 use atty;
 //Local mods
-mod hash_file;
-mod set_ima_xattr;
-mod format_hex;
+use crate::format_hex;
+use crate::hash_file;
+use crate::set_ima_xattr;                                                                                                                                                                                                                                              
 
-fn ima_process_files(files: Vec<PathBuf>) -> Result<()> {
+pub fn ima_process_files(files: Vec<PathBuf>) -> Result<Vec<PathBuf>> {
     // Collect all errors in a vector to handle them after parallel processing
-    let errors: Vec<_> = files.into_par_iter().filter_map(|file_path| {
+    let errors: Vec<_> = files.clone().into_par_iter().filter_map(|file_path| {
         println!("IMAHash(Name): {:?}", file_path);
         match hash_file::hash_file(&file_path) {
             Ok(hash) => {
@@ -30,7 +30,7 @@ fn ima_process_files(files: Vec<PathBuf>) -> Result<()> {
         }
     }).collect();
     if errors.is_empty() {
-        Ok(()) // All files processed without errors
+        Ok(files) // All files processed without errors
     } else {
         Err(Error::new(ErrorKind::Other, "Some files failed to process!\n"))
     }
@@ -51,8 +51,7 @@ fn get_files_from_directory(dir: &str) -> Result<Vec<PathBuf>> {
 fn get_files_from_stdin() -> Result<Vec<PathBuf>> {
     let stdin = stdin();
     let handle = stdin.lock();
-    Ok(
-    handle.lines()
+    Ok(handle.lines()
         .filter_map(|line| line.ok())
         .map(|line| PathBuf::from(line))
         .collect()
@@ -63,14 +62,14 @@ fn get_files_from_file(file_path: &str) -> Result<Vec<PathBuf>> {
     let file = File::open(file_path)?;
     let reader = BufReader::new(file);
     // Read each line, strip any surrounding whitespace, and convert it to PathBuf
-    let files: Vec<PathBuf> = reader.lines()
+    Ok(reader.lines()
         .filter_map(|line| line.ok())            // Filter out any lines that can't be read
         .map(|line| PathBuf::from(line.trim()))  // Trim whitespace and convert to PathBuf
-        .collect();
-    Ok(files)
+        .collect()
+    )
 }
 
-fn main() -> Result<()> {
+pub fn pathwalk() -> Result<Vec<PathBuf>> {
     // Get the command-line arguments
     let args: Vec<String> = env::args().collect();
 
@@ -86,17 +85,22 @@ fn main() -> Result<()> {
         // If a third argument is passed, treat it as a file path
         let file_path = &args[2];
         println!("Read filenames from file: {}", file_path);
-        get_files_from_file(file_path)?
+        get_files_from_file(file_path)
     } else if atty::is(atty::Stream::Stdin) {
         // If stdin is empty, use directory argument if provided
         println!("Dir: {}", dir);
-        get_files_from_directory(dir)?
+        get_files_from_directory(dir)
     } else {
         // Read from stdin (piped input)
         println!("(from stdin):");
-        get_files_from_stdin()?
+        get_files_from_stdin()
     };
-
+    files
     // IMA Process the files (hash and set xattr)
-    ima_process_files(files)
+    //ima_process_files(files)
+}
+
+#[allow(dead_code)]
+fn main() -> Result<Vec<PathBuf>> {
+    ima_process_files(pathwalk()?)
 }

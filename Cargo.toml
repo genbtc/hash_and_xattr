@@ -1,6 +1,6 @@
 [package]
 name = "hash_and_xattr"
-version = "0.2.8"
+version = "0.2.9"
 edition = "2021"
 default-run = "hash_and_xattr"  #which --bin subtarget to run (main)
 
@@ -20,9 +20,6 @@ walkdir = "*"    # Directory traversal
 
 #Other Targets
 #Usage: cargo run --bin keyid
-[[bin]]
-name = "pathwalk"
-path = "src/pathwalk.rs"
 [[bin]]
 name = "keyid"
 path = "src/keyid.rs"
