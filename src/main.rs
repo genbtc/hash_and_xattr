@@ -16,7 +16,8 @@ use hash_and_xattr::pathwalk;
 
 #[cfg(test)]
 const TEST_PRIVATE_KEY_PATH: &'static str ="./test_private_key.pem";
-const _TEST_PUBLIC_CERT_PATH: &'static str ="./test_public_key.pem";
+#[cfg(test)]
+const TEST_PUBLIC_CERT_PATH: &'static str ="./test_public_key.pem";
 
 //const SYS_PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the system key file path
 //const SYS_PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: Switch keys if privs allow?
@@ -53,7 +54,7 @@ fn calc_hash(file: &str, hash_algo: &HashAlgorithm) -> io::Result<Vec<u8>> {
 //^Turns out none of this is needed for this sign function itself
 //^but we need hashing later for the previous algo and also verifying. (TODO)
 
-fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: Vec<u8>) -> io::Result<()> {
+fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8>) -> io::Result<()> {
     let hash_type = hash_algo.ima_xattr_type();
     //let calc_hash = calc_hash(file, &hash_algo); //TODO: use hash
     // Prepare IMA_Signed Header
@@ -73,7 +74,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: Vec<u8>
             //println!("Skip existing Xattr {}: {:?}", xattr_name, xattr);
             println!("Skip existing Xattr: {}", xattr_name);
             _skip_exists = true;
-            return Err(Error::new(ErrorKind::AlreadyExists, "Xattr Already Existing, Skipped!"));
+            return Err(Error::new(ErrorKind::AlreadyExists, "xattr Already Exists, Skipped!"));
         },
         Ok(None) => println!("xattr {} not found", xattr_name),
         Err(err) => eprintln!("Error reading xattrs: {}", err),
@@ -119,10 +120,8 @@ fn sign_bytes(md: MessageDigest, data: &[u8], key_path: &str) -> io::Result<Vec<
     Ok(signer.sign_to_vec()?)
 }
 
-fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &str) -> io::Result<()> {
-    let keyid = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
-
-    match sign_ima(targetfile, hash_algo, private_key_path, keyid) {
+fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &str, keyid: &Vec<u8>) -> io::Result<()> {
+    match sign_ima(targetfile, hash_algo, private_key_path, &keyid) {
         Ok(_) => { println!("Successfully signed IMA"); return Ok(()); }
         Err(e) => { eprintln!("Error signing IMA: {:?}", e); return Err(e); }
     }
@@ -142,7 +141,9 @@ fn test_a() -> io::Result<()> {
     
     // IMA Sign the file, expect a Valid 3af28 Signature out.
     //TODO: Verify
-    run_sign_ima("testA.txt", HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH);
+    // Extract keyID from pub certificate. (once per program)
+    let keyid = extract_keyid_from_x509_pem(TEST_PUBLIC_CERT_PATH)?;
+    run_sign_ima("testA.txt", HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH, keyid);
     //TODO: AutoGenerate Test Key in harness, depend on key existing first.
     Ok(())
 }
@@ -152,6 +153,9 @@ fn test_a() -> io::Result<()> {
 fn main() -> Result<(), Error> {
     // Call pathwalk to get the files , handle the result
     let files: Result<Vec<PathBuf>, Error> = pathwalk::pathwalk();
+    // Extract keyID from pub certificate. (once per program)
+    let keyid = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
+
     // Match on the result
     match files {
         Ok(files) => {
@@ -162,7 +166,7 @@ fn main() -> Result<(), Error> {
                 let _ = run_sign_ima(
                     filename,
                     HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"),
-                    PRIVATE_KEY_PATH);
+                    PRIVATE_KEY_PATH, &keyid);
             }
             Ok(()) // Return Ok(()) when everything is processed successfully
         },
