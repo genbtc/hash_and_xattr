@@ -70,7 +70,12 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     let keyid_result = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
     ima_sign_header.extend_from_slice(&keyid_result);
 
-//    find_xattr::llistxattr(file, "user.ima")
+    let xattr_name = "user.ima"; // The xattr name you're searching for
+    match find_xattr::llistxattr(file, xattr_name) {
+        Ok(Some(xattr)) => println!("Found xattr: {}", xattr),
+        Ok(None) => println!("xattr not found"),
+        Err(err) => eprintln!("Error reading xattrs: {}", err),
+    }
 
     // IMA Sign the original file (openssl)
     let md = MessageDigest::from_nid(hash_algo.nid())      //HashAlgo to MessageDigest
