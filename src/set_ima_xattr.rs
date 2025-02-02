@@ -1,16 +1,19 @@
-//mod set_ima_xattr.rs
 use std::path::Path;
 use std::io::{Result,Error,ErrorKind};
 use xattr;
 
+#[allow(dead_code)]
+// Public function 0: Takes `&Path` and `&[u8]`
+pub fn set_ima_xattr_path_vec(file_path: &Path, data: &[u8]) -> Result<()> {
+    set_ima_xattr_internal(file_path, data)
+}
 // Public function 1: Takes `&Path` and `&str`
 #[allow(dead_code)]
 pub fn set_ima_xattr_path_str(file_path: &Path, hash: &str) -> Result<()> {
     let hash_bytes = hash.as_bytes(); // Convert `&str` to `&[u8]`
     set_ima_xattr_internal(file_path, hash_bytes)
 }
-
-// Public function 2: Takes `&str` and `&Vec<u8>`
+// Public function 2: Takes `&str` and `&Vec<u8>` or `&[u8]`
 pub fn set_ima_xattr_str_vec(file_name: &str, data: &[u8]) -> Result<()> {
     let file_path = Path::new(file_name); // Convert `&str` to `Path`
     set_ima_xattr_internal(file_path, data)
@@ -45,21 +48,14 @@ fn set_ima_xattr_internal(file_path: &Path, data: &[u8]) -> Result<()> {
     Ok(())
 }
 
-// function 1: Takes `&Path` and `&str`
-#[allow(dead_code)]
-fn set_xattr_path_str<P: AsRef<Path>>(file_path: P, xattr_name: &str, hash: &str) -> Result<()> {
-    let hash_bytes = hash.as_bytes(); // Convert `&str` to `&[u8]`
-    set_xattr_internal(file_path, xattr_name, hash_bytes)
-}
-
-// function 2: Takes `&str` and `&Vec<u8>`
+// Main function: Takes `&str` and `&Vec<u8>` or `&[u8]`
 fn set_xattr_str_vec(file_name: &str, xattr_name: &str, data: &[u8]) -> Result<()> {
     let file_path = Path::new(file_name); // Convert `&str` to `Path`
     set_xattr_internal(file_path, xattr_name, data)
 }
 
 // Main Internal function that contains the shared logic for setting xattr
-fn set_xattr_internal<P: AsRef<Path>>(file_path: P, xattr_name: &str, hash: &[u8]) -> Result<()> {
-    // Set the extended attribute using the hash bytes
-    xattr::set(file_path, xattr_name, hash)  // Using the `xattr` crate to set the xattr
+fn set_xattr_internal<P: AsRef<Path>>(file_path: P, xattr_name: &str, data: &[u8]) -> Result<()> {
+    // Set the extended attribute using the data bytes
+    xattr::set(file_path, xattr_name, data)  // Using the `xattr` crate to set the xattr
 }

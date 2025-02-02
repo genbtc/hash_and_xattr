@@ -56,37 +56,39 @@ fn calc_hash(file: &str, hash_algo: &HashAlgorithm) -> io::Result<Vec<u8>> {
 
 fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8>) -> io::Result<()> {
     let hash_type = hash_algo.ima_xattr_type();
-    //let calc_hash = calc_hash(file, &hash_algo); //TODO: use hash
-    // Prepare IMA_Signed Header
-    let mut ima_sign_header: Vec<u8> = vec![DIGSIG_VERSION_2, hash_type];   //0206
+    //let calc_hash = calc_hash(file, &hash_algo); //TODO: use hash later
+
+    // Prepare IMA_Signed Header(v2)
     //REAL HEADER FORMAT @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/libimaevm.c#L724
-    //      03 + 0206 + keyID + MaxSize (0200?) + sig
-    //       1 + 2 + 4 + 2 =  +9
+    // this 03 = EVM_IMA_XATTR_DIGSIG, pre-pended afterwards. //TODO: why?
+    //      ^^ + 0206 + keyID(u32) + MaxSize=Hex(0200) + signature = 520b
+    //       1 +  2   +     4      +     2      =   +9 + 512 = 521bytes
     // signature_v2_hdr @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L194
     //keyid ab6f2050 (from /etc/keys/signing_key.priv)
     //call crate::keyid::extract_keyid_from_x509_pem;
+    //let keyid = extract_keyid_from_x509_pem(TEST_PUBLIC_CERT_PATH)?;
+    let mut ima_sign_header: Vec<u8> = vec![DIGSIG_VERSION_2, hash_type];   //0206
     ima_sign_header.extend_from_slice(&keyid);
 
+    // Search if xattr existing already and bail out to save time.
     let xattr_name = "user.ima"; // The xattr name you're searching for
-    let mut _skip_exists = false;
     match find_xattr::llistxattr(file, xattr_name) {
         Ok(Some(_xattr)) => { 
-            //println!("Skip existing Xattr {}: {:?}", xattr_name, xattr);
-            println!("Skip existing Xattr: {}", xattr_name);
-            _skip_exists = true;
+            //println!("Skip existing Xattr {}: {:?}", xattr_name, xattr); //(full data)
+            //println!("Skip existing Xattr: {}", xattr_name);  //TODO: DEBUG
             return Err(Error::new(ErrorKind::AlreadyExists, "xattr Already Exists, Skipped!"));
         },
         Ok(None) => println!("xattr {} not found", xattr_name),
         Err(err) => eprintln!("Error reading xattrs: {}", err),
     }
 
-    // IMA Sign the original file (openssl)
-    let md = MessageDigest::from_nid(hash_algo.nid())      //HashAlgo to MessageDigest
+    // IMA Sign the original file (openssl SHA512 + openssl RSA)
+    let md = MessageDigest::from_nid(hash_algo.nid()) //HashAlgo to MessageDigest
             .ok_or(Error::new(ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
     let freadfile = fs::read(file)?;
     let ima_sig = sign_bytes(md, &freadfile, key_path)?;
     println!("signature: {}", format_hex(&ima_sig));
-    if ima_sig.len() != (MAX_SIGNATURE_SIZE).into() {
+    if ima_sig.len() != MAX_SIGNATURE_SIZE.into() {
         eprintln!{"signature len differs from expected MAX_SIGNATURE_SIZE {}", MAX_SIGNATURE_SIZE};
     }
 
@@ -99,7 +101,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
     let mut signature: Vec<u8> = vec![EVM_IMA_XATTR_DIGSIG];    //0x03
     signature.extend_from_slice(&ima_sign_header); //  +8 byte IMA header
     signature.extend_from_slice(&ima_sig);         //+512 byte signature
-    //Total = 521 bytes
+    //Total = 521 bytes = OK
 
     // Set extended attribute, security.ima, fallback to user.ima
     // Try to set the extended attribute and return any error
@@ -123,7 +125,7 @@ fn sign_bytes(md: MessageDigest, data: &[u8], key_path: &str) -> io::Result<Vec<
 fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &str, keyid: &Vec<u8>) -> io::Result<()> {
     match sign_ima(targetfile, hash_algo, private_key_path, &keyid) {
         Ok(_) => { println!("Successfully signed IMA"); return Ok(()); }
-        Err(e) => { eprintln!("Error signing IMA: {:?}", e); return Err(e); }
+        Err(e) => { eprintln!("Error signing IMA: {:?} - {:?}", e.kind(), e.to_string()); return Err(e); }
     }
 }
 
@@ -162,7 +164,7 @@ fn main() -> Result<(), Error> {
             // Iterate over each file and call functionB
             for file in files {
                 let filename = file.to_str().expect("unexpected Error, in filename to str");
-                println!("Filename: {:?}", filename);
+                println!(/*"Filename: */"{:?}", filename);
                 let _ = run_sign_ima(
                     filename,
                     HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"),

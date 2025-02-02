@@ -1,17 +1,11 @@
 //hash_and_xattr v0.14 - 2025 (c) genr8eofl @ gmx
 //pathwalkr.rs v0.2.6 - attach to main project
 //Update v0.2.7. Writes hash directly to security.ima
-//Latest version: v0.2.9 - Feb 1, 2025
+//Latest version: v0.3.0 - Feb 1, 2025
 use std::{env, fs::File, io::{BufRead,stdin,BufReader}, path::PathBuf};
-//use std::io::{Error,ErrorKind,Result};
 use std::io::Result;
 use walkdir::WalkDir;
-//use rayon::prelude::*;
 use atty;
-//Local mods
-//use crate::format_hex;
-//use crate::hash_file;
-//use crate::set_ima_xattr;                                                                                                                                                                                                                                              
 
 //Option 1 - Dir
 fn get_files_from_directory(dir: &str) -> Result<Vec<PathBuf>> {
@@ -76,34 +70,3 @@ pub fn pathwalk() -> Result<Vec<PathBuf>> {
     // Simple SHA-512 Hash the files (hash set to xattr)
     //hash_files(files)
 }
-
-/*
-#[allow(dead_code)]
-fn main() -> Result<Vec<PathBuf>> {
-    hash_files(pathwalk()?)
-}
-
-pub fn hash_files(files: Vec<PathBuf>) -> Result<Vec<PathBuf>> {
-    // Collect all errors in a vector to handle them after parallel processing
-    let errors: Vec<_> = files.clone().into_par_iter().filter_map(|file_path| {
-        println!("IMAHash(Name): {:?}", file_path);
-        match hash_file::hash_file(&file_path) {
-            Ok(hash) => {
-                // Try to set the extended attribute and return any error
-                if let Err(e) = set_ima_xattr::set_ima_xattr_str_vec(&file_path.to_str()?, &hash) {
-                    Some(e) // Collect xattr error
-                } else { //TODO: If verbose
-                    println!("IMAHash(SHA512): {}", format_hex::format_hex(&hash));
-                    None // No error
-                }
-            }
-            Err(e) => Some(e), // Return hash error
-        }
-    }).collect();
-    if errors.is_empty() {
-        Ok(files) // All files processed without errors
-    } else {
-        Err(Error::new(ErrorKind::Other, "Some files failed to process!\n"))
-    }
-}
-*/

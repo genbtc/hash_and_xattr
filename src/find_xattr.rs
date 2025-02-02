@@ -6,6 +6,7 @@ fn log_error(message: &str, path: &str) {
     eprintln!("{}: {}", message, path);
 }
 
+//Check Does the xattr exist?
 pub fn llistxattr(path: &str, xattr_name: &str) -> Result<Option<String>, io::Error> {
     // Get the list of xattrs associated with the file at the specified path
     let xattrs = list(path)?;
@@ -18,8 +19,8 @@ pub fn llistxattr(path: &str, xattr_name: &str) -> Result<Option<String>, io::Er
                 Ok(value) => {
                     // Try to convert the xattr value to a String
                    if let Some(v) = &value {
-                        let hexstr = format_hex::format_hex(v).to_string();
-                        //println!("Value(hex): {}", hexstr); //TODO: Debug
+                        let hexstr = format_hex::format_hex(v);
+                        //println!(IMAHash(SHA512): {}", hexstr); //TODO: Debug
                         return Ok(Some(hexstr));
                     }
                 }
