@@ -1,6 +1,19 @@
-//IMAhashAlgorithm.rs - v0.12
+//IMAhashAlgorithm.rs - v0.2
 //Derived from implementation of enum pkey_hash_algo at https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L167-L175
 use openssl::nid::Nid;
+//public constants
+//Default used to be sha256 @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L71
+pub const DEFAULT_HASH_ALGO: &'static str = "sha512";
+//Derived from https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L77-L78
+pub const MAX_DIGEST_SIZE: u8 = 64; // Adjust based on the maximum hash size (SHA-512)
+pub const MAX_SIGNATURE_SIZE: u16 = 512; // Adjust based on the maximum signature size (RSA-4096)
+//Derived from enum evm_ima_xattr_type @  https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L92-L99
+//enum evm_ima_xattr_type {
+pub const IMA_XATTR_DIGEST: u8 = 0x01;
+pub const EVM_IMA_XATTR_DIGSIG: u8 = 0x03;
+pub const IMA_XATTR_DIGEST_NG: u8 = 0x04;
+// };
+pub const DIGSIG_VERSION_2: u8 = 0x02; // (from enum digsig_version @ #L144)
 
 #[derive(Debug)]
 struct HashAlgorithmData {

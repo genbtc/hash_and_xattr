@@ -7,9 +7,9 @@ use std::path::PathBuf;
 //Local mods (lib.rs)
 mod keyid;
 use crate::keyid::extract_keyid_from_x509_pem;
-use hash_and_xattr::IMAhashAlgorithm::HashAlgorithm;
+use hash_and_xattr::IMAhashAlgorithm::*;
 use hash_and_xattr::format_hex::format_hex;
-use hash_and_xattr::hash_file;
+//use hash_and_xattr::hash_file;
 use hash_and_xattr::set_ima_xattr;
 use hash_and_xattr::find_xattr;
 use hash_and_xattr::pathwalk;
@@ -19,22 +19,13 @@ const TEST_PRIVATE_KEY_PATH: &'static str ="./test_private_key.pem";
 const _TEST_PUBLIC_CERT_PATH: &'static str ="./test_public_key.pem";
 
 //const SYS_PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the system key file path
-//const SYS_PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: ^^
+//const SYS_PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: Switch keys if privs allow?
 const PRIVATE_KEY_PATH: &'static str ="/home/genr8eofl/signing_key.priv"; // TODO: Replace with the default key file path
 const PUBLIC_CERT_PATH: &'static str ="/home/genr8eofl/signing_key.crt"; // TODO: ^^
-//Default _was_ sha256 https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L71
-const DEFAULT_HASH_ALGO: &'static str = "sha512";
-//Derived from https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L77-L78
-const MAX_DIGEST_SIZE: u8 = 64; // Adjust based on the maximum hash size
-const MAX_SIGNATURE_SIZE: u16 = 512; // Adjust based on the maximum signature size
-//Derived from enum evm_ima_xattr_type @  https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L92-L99
-const IMA_XATTR_DIGEST: u8 = 0x01;
-const EVM_IMA_XATTR_DIGSIG: u8 = 0x03;
-const IMA_XATTR_DIGEST_NG: u8 = 0x04;
-const DIGSIG_VERSION_2: u8 = 0x02;
 
 fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<()> {
     let hash_type = hash_algo.ima_xattr_type();
+/*
     //Calc hash
     //let calc_hash = hash_file(file, md)?;
     let calc_hash = hash_file::hash_file(file)?; //hardcoded Sha512. //TODO: hash_type
@@ -58,6 +49,9 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     // Finalize IMA Hash packet with IMA_Hash header and Calc_Hash
     let mut ima_hash_packet = ima_hash_header.clone();
     ima_hash_packet.extend_from_slice(&calc_hash);
+*/
+//Turns out none of this is needed for this sign function itself
+// but we need hashing later for the previous algo and also verifying. (TODO)
 
     // Prepare IMA_Signed Header
     let mut ima_sign_header: Vec<u8> = vec![DIGSIG_VERSION_2, hash_type];
@@ -71,9 +65,15 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     ima_sign_header.extend_from_slice(&keyid_result);
 
     let xattr_name = "user.ima"; // The xattr name you're searching for
+    let mut _skip_exists = false;
     match find_xattr::llistxattr(file, xattr_name) {
-        Ok(Some(xattr)) => println!("Found xattr: {}", xattr),
-        Ok(None) => println!("xattr not found"),
+        Ok(Some(_xattr)) => { 
+            //println!("Skip existing Xattr {}: {:?}", xattr_name, xattr);
+            println!("Skip existing Xattr: {}", xattr_name);
+            _skip_exists = true;
+            return Err(Error::new(ErrorKind::AlreadyExists, "Xattr Already Existing, Skipped!"));
+        },
+        Ok(None) => println!("xattr {} not found", xattr_name),
         Err(err) => eprintln!("Error reading xattrs: {}", err),
     }
 
@@ -89,11 +89,11 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
 
     // Append max sig size (0x0200)
     ima_sign_header.extend_from_slice(&MAX_SIGNATURE_SIZE.to_be_bytes());
-    // Print ima_sign_header (Debug)
-    println!("ima_sign_header: {}", format_hex(&ima_sign_header));
+    // Print ima_sign_header (TODO: Debug)
+    //println!("ima_sign_header: {}", format_hex(&ima_sign_header));
 
     //Append Signature
-    let mut signature: Vec<u8> = vec![EVM_IMA_XATTR_DIGSIG];
+    let mut signature: Vec<u8> = vec![EVM_IMA_XATTR_DIGSIG];    //0x03
     signature.extend_from_slice(&ima_sign_header); //  +8 byte IMA header
     signature.extend_from_slice(&ima_sig);         //+512 byte signature
     //Total = 521 bytes
@@ -125,7 +125,6 @@ fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &s
 }
 
 #[test]
-//TODO: Generate test keys.
 fn test_a() -> io::Result<()> {
     // Create a new empty file for writing
     let mut file = File::create("testA.txt")?;
@@ -140,13 +139,14 @@ fn test_a() -> io::Result<()> {
     // IMA Sign the file, expect a Valid 3af28 Signature out.
     //TODO: Verify
     run_sign_ima("testA.txt", HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH);
+    //TODO: AutoGenerate Test Key in harness, depend on key existing first.
     Ok(())
 }
 
 //TODO: Remove my key.
 #[cfg(not(test))]
 fn main() -> Result<(), Error> {
-    // Call pathwalk and handle the result
+    // Call pathwalk to get the files , handle the result
     let files: Result<Vec<PathBuf>, Error> = pathwalk::pathwalk();
     // Match on the result
     match files {

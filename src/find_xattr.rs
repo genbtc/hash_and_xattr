@@ -1,5 +1,6 @@
 use xattr::{get,list};
 use std::io::{self};
+use crate::format_hex;
 
 fn log_error(message: &str, path: &str) {
     eprintln!("{}: {}", message, path);
@@ -16,10 +17,10 @@ pub fn llistxattr(path: &str, xattr_name: &str) -> Result<Option<String>, io::Er
             match get(path, xattr_name) {
                 Ok(value) => {
                     // Try to convert the xattr value to a String
-                    if let Ok(value_str) = String::from_utf8(value.expect("unexpected string conversion error")) {
-                        return Ok(Some(value_str)); // Return the value as a String if it's valid UTF-8
-                    } else {
-                        return Ok(None); // Return None if the value is not valid UTF-8
+                   if let Some(v) = &value {
+                        let hexstr = format_hex::format_hex(v).to_string();
+                        //println!("Value(hex): {}", hexstr); //TODO: Debug
+                        return Ok(Some(hexstr));
                     }
                 }
                 Err(_) => return Ok(None), // Return None if the xattr value cannot be fetched
