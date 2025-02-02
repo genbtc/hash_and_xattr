@@ -1,0 +1,30 @@
+     Running `/home/genr8eofl/src/hash_and_xattr/target/debug/hash_and_xattr`
+Dir: ./
+Key ID (X509v3 S.K.I.): ab6f2050
+Filename: "./lib.rs"
+Skip existing Xattr: user.ima
+Error signing IMA: Custom { kind: AlreadyExists, error: "xattr Already Exists, Skipped!" }
+Filename: "./main.rs"
+Skip existing Xattr: user.ima
+Error signing IMA: Custom { kind: AlreadyExists, error: "xattr Already Exists, Skipped!" }
+Filename: "./hash_file.rs"
+Skip existing Xattr: user.ima
+Error signing IMA: Custom { kind: AlreadyExists, error: "xattr Already Exists, Skipped!" }
+Filename: "./find_xattr.rs"
+Skip existing Xattr: user.ima
+Error signing IMA: Custom { kind: AlreadyExists, error: "xattr Already Exists, Skipped!" }
+Filename: "./set_ima_xattr.rs"
+Skip existing Xattr: user.ima
+Error signing IMA: Custom { kind: AlreadyExists, error: "xattr Already Exists, Skipped!" }
+Filename: "./format_hex.rs"
+Skip existing Xattr: user.ima
+Error signing IMA: Custom { kind: AlreadyExists, error: "xattr Already Exists, Skipped!" }
+Filename: "./IMAhashAlgorithm.rs"
+Skip existing Xattr: user.ima
+Error signing IMA: Custom { kind: AlreadyExists, error: "xattr Already Exists, Skipped!" }
+Filename: "./pathwalk.rs"
+Skip existing Xattr: user.ima
+Error signing IMA: Custom { kind: AlreadyExists, error: "xattr Already Exists, Skipped!" }
+Filename: "./keyid.rs"
+Skip existing Xattr: user.ima
+Error signing IMA: Custom { kind: AlreadyExists, error: "xattr Already Exists, Skipped!" }

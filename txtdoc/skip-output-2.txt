@@ -1,0 +1,21 @@
+     Running `/home/genr8eofl/src/hash_and_xattr/target/debug/hash_and_xattr ../src`
+Dir: ../src
+Key ID (X509v3 S.K.I.): ab6f2050
+"../src/lib.rs"
+Error signing IMA: AlreadyExists - "xattr Already Exists, Skipped!"
+"../src/main.rs"
+Error signing IMA: AlreadyExists - "xattr Already Exists, Skipped!"
+"../src/hash_file.rs"
+Error signing IMA: AlreadyExists - "xattr Already Exists, Skipped!"
+"../src/find_xattr.rs"
+Error signing IMA: AlreadyExists - "xattr Already Exists, Skipped!"
+"../src/set_ima_xattr.rs"
+Error signing IMA: AlreadyExists - "xattr Already Exists, Skipped!"
+"../src/format_hex.rs"
+Error signing IMA: AlreadyExists - "xattr Already Exists, Skipped!"
+"../src/IMAhashAlgorithm.rs"
+Error signing IMA: AlreadyExists - "xattr Already Exists, Skipped!"
+"../src/pathwalk.rs"
+Error signing IMA: AlreadyExists - "xattr Already Exists, Skipped!"
+"../src/keyid.rs"
+Error signing IMA: AlreadyExists - "xattr Already Exists, Skipped!"
