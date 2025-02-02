@@ -9,7 +9,7 @@ mod keyid;
 use crate::keyid::extract_keyid_from_x509_pem;
 use hash_and_xattr::IMAhashAlgorithm::*;
 use hash_and_xattr::format_hex::format_hex;
-//use hash_and_xattr::hash_file;
+use hash_and_xattr::hash_file;
 use hash_and_xattr::set_ima_xattr;
 use hash_and_xattr::find_xattr;
 use hash_and_xattr::pathwalk;
@@ -23,11 +23,10 @@ const _TEST_PUBLIC_CERT_PATH: &'static str ="./test_public_key.pem";
 const PRIVATE_KEY_PATH: &'static str ="/home/genr8eofl/signing_key.priv"; // TODO: Replace with the default key file path
 const PUBLIC_CERT_PATH: &'static str ="/home/genr8eofl/signing_key.crt"; // TODO: ^^
 
-fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<()> {
+#[allow(dead_code)]
+fn calc_hash(file: &str, hash_algo: &HashAlgorithm) -> io::Result<Vec<u8>> {
     let hash_type = hash_algo.ima_xattr_type();
-/*
     //Calc hash
-    //let calc_hash = hash_file(file, md)?;
     let calc_hash = hash_file::hash_file(file)?; //hardcoded Sha512. //TODO: hash_type
     if calc_hash.len() < MAX_DIGEST_SIZE.into() {
         println!{"Hash len is smaller than expected MAX_DIGEST_SIZE {}", MAX_DIGEST_SIZE};
@@ -49,20 +48,23 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     // Finalize IMA Hash packet with IMA_Hash header and Calc_Hash
     let mut ima_hash_packet = ima_hash_header.clone();
     ima_hash_packet.extend_from_slice(&calc_hash);
-*/
-//Turns out none of this is needed for this sign function itself
-// but we need hashing later for the previous algo and also verifying. (TODO)
+    Ok(calc_hash)
+}
+//^Turns out none of this is needed for this sign function itself
+//^but we need hashing later for the previous algo and also verifying. (TODO)
 
+fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: Vec<u8>) -> io::Result<()> {
+    let hash_type = hash_algo.ima_xattr_type();
+    //let calc_hash = calc_hash(file, &hash_algo); //TODO: use hash
     // Prepare IMA_Signed Header
-    let mut ima_sign_header: Vec<u8> = vec![DIGSIG_VERSION_2, hash_type];
+    let mut ima_sign_header: Vec<u8> = vec![DIGSIG_VERSION_2, hash_type];   //0206
     //REAL HEADER FORMAT @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/libimaevm.c#L724
     //      03 + 0206 + keyID + MaxSize (0200?) + sig
     //       1 + 2 + 4 + 2 =  +9
     // signature_v2_hdr @ https://github.com/linux-integrity/ima-evm-utils/blob/next/src/imaevm.h#L194
     //keyid ab6f2050 (from /etc/keys/signing_key.priv)
     //call crate::keyid::extract_keyid_from_x509_pem;
-    let keyid_result = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
-    ima_sign_header.extend_from_slice(&keyid_result);
+    ima_sign_header.extend_from_slice(&keyid);
 
     let xattr_name = "user.ima"; // The xattr name you're searching for
     let mut _skip_exists = false;
@@ -80,8 +82,8 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     // IMA Sign the original file (openssl)
     let md = MessageDigest::from_nid(hash_algo.nid())      //HashAlgo to MessageDigest
             .ok_or(Error::new(ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
-    let ffile = fs::read(file)?;
-    let ima_sig = sign_bytes(md, &ffile, key_path)?;
+    let freadfile = fs::read(file)?;
+    let ima_sig = sign_bytes(md, &freadfile, key_path)?;
     println!("signature: {}", format_hex(&ima_sig));
     if ima_sig.len() != (MAX_SIGNATURE_SIZE).into() {
         eprintln!{"signature len differs from expected MAX_SIGNATURE_SIZE {}", MAX_SIGNATURE_SIZE};
@@ -117,10 +119,12 @@ fn sign_bytes(md: MessageDigest, data: &[u8], key_path: &str) -> io::Result<Vec<
     Ok(signer.sign_to_vec()?)
 }
 
-fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &str) {
-    match sign_ima(targetfile, hash_algo, private_key_path) {
-        Ok(_) => println!("Successfully signed IMA"),
-        Err(e) => eprintln!("Error signing IMA: {:?}", e),
+fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &str) -> io::Result<()> {
+    let keyid = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
+
+    match sign_ima(targetfile, hash_algo, private_key_path, keyid) {
+        Ok(_) => { println!("Successfully signed IMA"); return Ok(()); }
+        Err(e) => { eprintln!("Error signing IMA: {:?}", e); return Err(e); }
     }
 }
 
@@ -155,7 +159,7 @@ fn main() -> Result<(), Error> {
             for file in files {
                 let filename = file.to_str().expect("unexpected Error, in filename to str");
                 println!("Filename: {:?}", filename);
-                run_sign_ima(
+                let _ = run_sign_ima(
                     filename,
                     HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"),
                     PRIVATE_KEY_PATH);
