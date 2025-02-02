@@ -22,13 +22,13 @@ fn set_ima_xattr_internal(file_path: &Path, data: &[u8]) -> Result<()> {
         Error::new(ErrorKind::InvalidInput, "Invalid file path")
     })?;
 
-    let xattr_name = "system.ima"; // Needs elevated permissions
+    let xattr_name = "security.ima"; // Needs elevated permissions
 
-    // Try to set the extended attribute - system.ima - (first)
+    // Try to set the extended attribute - security.ima - (first)
     if let Err(e) = set_xattr_str_vec(file_name, xattr_name, data) {
         eprintln!("Failed to set xattr for {:?} with {}: {}",
                   file_path, xattr_name, e);
-        // If setting "system.ima" fails, try to set the fallback "user.ima"
+        // If setting "security.ima" fails, try to set the fallback "user.ima"
         let fallback_xattr_name = "user.ima";   //Does not need permissions
         if let Err(fallback_error) = set_xattr_str_vec(file_name, fallback_xattr_name, data) {
             eprintln!("Failed to set fallback xattr for {:?} with {}: {}",
@@ -40,7 +40,7 @@ fn set_ima_xattr_internal(file_path: &Path, data: &[u8]) -> Result<()> {
                   file_path, fallback_xattr_name);
         return Ok(());
     }
-    // If setting "system.ima" succeeds, print success and return early
+    // If setting "security.ima" succeeds, print success and return early
     println!("Extended attribute set for {:?} with {}", file_path, xattr_name);
     Ok(())
 }

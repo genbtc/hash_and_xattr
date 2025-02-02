@@ -10,6 +10,8 @@ pub mod hash_file;
 pub mod set_ima_xattr;
 // This exposes pathwalk to the rest of the project
 pub mod pathwalk;
+// This exposes find_xattr to the rest of the project
+pub mod find_xattr;
 //hash_file
 //#Usage:
 //use hash_and_xattr::IMAhashAlgorithm::HashAlgorithm;                                                                                                                                                                                                                            
@@ -17,3 +19,4 @@ pub mod pathwalk;
 //use hash_and_xattr::hash_file::hash_file;
 //use hash_and_xattr::set_ima_xattr::set_ima_xattr;
 //use hash_and_xattr::pathwalk::pathwalk;
+//use hash_and_xattr::find_xattr::find_xattr;

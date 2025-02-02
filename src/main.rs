@@ -1,7 +1,7 @@
 use openssl::hash::MessageDigest;
 use openssl::pkey::PKey;
 use openssl::sign::Signer;
-use std::fs;
+use std::fs::{self};
 use std::io::{self,Error,ErrorKind};
 use std::path::PathBuf;
 //Local mods (lib.rs)
@@ -11,10 +11,13 @@ use hash_and_xattr::IMAhashAlgorithm::HashAlgorithm;
 use hash_and_xattr::format_hex::format_hex;
 use hash_and_xattr::hash_file;
 use hash_and_xattr::set_ima_xattr;
+use hash_and_xattr::find_xattr;
 use hash_and_xattr::pathwalk;
 
-//const TEST_PRIVATE_KEY_PATH: &'static str ="./testkeys/signing_key.priv"; // TODO: Replace with the testkeys file path
-//const TEST_PUBLIC_CERT_PATH: &'static str ="./testkeys/signing_key.pem"; // TODO: ^^
+#[cfg(test)]
+const TEST_PRIVATE_KEY_PATH: &'static str ="./test_private_key.pem";
+const _TEST_PUBLIC_CERT_PATH: &'static str ="./test_public_key.pem";
+
 //const SYS_PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the system key file path
 //const SYS_PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: ^^
 const PRIVATE_KEY_PATH: &'static str ="/home/genr8eofl/signing_key.priv"; // TODO: Replace with the default key file path
@@ -67,6 +70,8 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str) -> io::Result<
     let keyid_result = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
     ima_sign_header.extend_from_slice(&keyid_result);
 
+//    find_xattr::llistxattr(file, "user.ima")
+
     // IMA Sign the original file (openssl)
     let md = MessageDigest::from_nid(hash_algo.nid())      //HashAlgo to MessageDigest
             .ok_or(Error::new(ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
@@ -116,11 +121,25 @@ fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &s
 
 #[test]
 //TODO: Generate test keys.
-fn test_a() {
-    run_sign_ima("testA", HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("Invalid hash algorithm"), PRIVATE_KEY_PATH);
+fn test_a() -> io::Result<()> {
+    // Create a new empty file for writing
+    let mut file = File::create("testA.txt")?;
+    
+    // Write the ASCII character "A" to the file
+    file.write_all(&['A' as u8])?;
+    // Followed by a Line Feed (0x0a)
+    file.write_all(b"\n")?;
+    // Explicitly flush the file to ensure all data is written to disk
+    file.flush()?;
+    
+    // IMA Sign the file, expect a Valid 3af28 Signature out.
+    //TODO: Verify
+    run_sign_ima("testA.txt", HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH);
+    Ok(())
 }
 
 //TODO: Remove my key.
+#[cfg(not(test))]
 fn main() -> Result<(), Error> {
     // Call pathwalk and handle the result
     let files: Result<Vec<PathBuf>, Error> = pathwalk::pathwalk();
