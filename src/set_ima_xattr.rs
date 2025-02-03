@@ -20,31 +20,32 @@ pub fn set_ima_xattr_str_vec(file_name: &str, data: &[u8]) -> Result<()> {
 }
 
 // Internal function that contains the shared logic for setting xattr
+//TODO: Refactor to take (security., user.) 
 fn set_ima_xattr_internal(file_path: &Path, data: &[u8]) -> Result<()> {
     let file_name = file_path.to_str().ok_or_else(|| {
-        Error::new(ErrorKind::InvalidInput, "Invalid file path")
+        Error::new(ErrorKind::InvalidInput, "Invalid file path!")
     })?;
 
     let xattr_name = "security.ima"; // Needs elevated permissions
 
-    // Try to set the extended attribute - security.ima - (first)
+    // Try to set the extended attribute - security. - (first)
     if let Err(e) = set_xattr_str_vec(file_name, xattr_name, data) {
-        eprintln!("Failed to set xattr for {:?} with {}: {}",
-                  file_path, xattr_name, e);
-        // If setting "security.ima" fails, try to set the fallback "user.ima"
+        eprintln!("Failed to write {} secure xattr wet for {:?}: {}",
+                  xattr_name, file_path, e);
+        // If setting "security." fails, try to set the fallback "user."
         let fallback_xattr_name = "user.ima";   //Does not need permissions
         if let Err(fallback_error) = set_xattr_str_vec(file_name, fallback_xattr_name, data) {
-            eprintln!("Failed to set fallback xattr for {:?} with {}: {}",
-                      file_path, fallback_xattr_name, fallback_error);
+            eprintln!("Failed to write {} fallback user xattr set for {:?}: {}",
+                      fallback_xattr_name, file_path, fallback_error);
             return Err(fallback_error);  // Return the error directly
         }
         // If fallback succeeds, print success and return early
-        println!("Fallback extended attribute set for {:?} with {}",
-                  file_path, fallback_xattr_name);
+        println!("Wrote {} fallback user extended attribute set for {:?}",
+                  fallback_xattr_name, file_path);
         return Ok(());
     }
-    // If setting "security.ima" succeeds, print success and return early
-    println!("Extended attribute set for {:?} with {}", file_path, xattr_name);
+    // If setting "security." succeeds, print success and return early
+    println!("Wrote {} secure extended attribute set for: {:?}", xattr_name, file_path);
     Ok(())
 }
 

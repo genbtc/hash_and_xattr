@@ -1,0 +1,18 @@
+genr8eofl@genr8too ~/src/hash_and_xattr/src $ cargo test --test check_xattr_priveleges -- --nocapture
+   Compiling hash_and_xattr v0.3.1 (/home/genr8eofl/src/hash_and_xattr)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running tests/check_xattr_priveleges.rs (/home/genr8eofl/src/hash_and_xattr/target/debug/deps/check_xattr_priveleges-17a9b38601204b0c)
+
+running 1 test
+Testing xattr privileges on: "/tmp/xattr_test_file"
+✘ Failed to set user namespace attribute: Operation not supported (os error 95)
+✘ Failed to set security namespace attribute: Operation not permitted (os error 1)
+✘ Failed to set trusted namespace attribute: Operation not permitted (os error 1)
+
+Privilege Summary:
+User namespace:     ❌ No
+Security namespace: ❌ No
+Trusted namespace:  ❌ No
+test main ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

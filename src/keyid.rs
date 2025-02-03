@@ -1,11 +1,8 @@
 use openssl::x509::X509;
 use std::fs::File;
-use std::io::Read;
-use std::io::Result;
-use std::io::Error;
-use std::io::ErrorKind;
+use std::io::{Read,Result,Error,ErrorKind};
 //Local mod works with --bin keyid, and main.rs
-use hash_and_xattr::format_hex;
+use crate::format_hex;
 
 pub fn extract_keyid_from_x509_pem(pem_path: &str) -> Result<Vec<u8>> {
     // Load the PEM file
@@ -28,8 +25,10 @@ pub fn extract_keyid_from_x509_pem(pem_path: &str) -> Result<Vec<u8>> {
 }
 
 // This is an example of how to call the function
-#[allow(dead_code)]
+//#[allow(dead_code)]
+/*
 fn main() {
     let pem_path = "/home/genr8eofl/signing_key.crt";
     let _ = extract_keyid_from_x509_pem(pem_path);
 }
+*/

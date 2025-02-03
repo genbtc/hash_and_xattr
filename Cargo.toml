@@ -1,6 +1,6 @@
 [package]
 name = "hash_and_xattr"
-version = "0.3.0"
+version = "0.3.1"
 edition = "2021"
 default-run = "hash_and_xattr"  #which --bin subtarget to run (main)
 
@@ -11,18 +11,12 @@ hex = "*"        # for hex decode/encode
 atty = "*"       # Add atty to check if stdin is connected (pathwalk)
 rayon = "*"      # parallel processing
 walkdir = "*"    # Directory traversal
-#xattr = "0.2"      # interacting with extended attributes
-#openssl = "0.10"   # private/public crypto key signing
-#hex = "0.4"        # for hex decode/encode
-#atty = "0.2"       # Add atty to check if stdin is connected (pathwalk)
-#rayon = "1.7"      # parallel processing
-#walkdir = "2.3"    # Directory traversal
 
 #Other Targets
 #Usage: cargo run --bin keyid
-[[bin]]
-name = "keyid"
-path = "src/keyid.rs"
+#[[bin]]
+#name = "keyid"
+#path = "src/keyid.rs"
 
 #Usage: cargo test --test verify_sig_hash_pub -- --nocapture
 #[[test]]

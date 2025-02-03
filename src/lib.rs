@@ -12,6 +12,8 @@ pub mod set_ima_xattr;
 pub mod pathwalk;
 // This exposes find_xattr to the rest of the project
 pub mod find_xattr;
+// This exposes keyid to the rest of the project
+pub mod keyid;
 //hash_file
 //#Usage:
 //use hash_and_xattr::IMAhashAlgorithm::HashAlgorithm;                                                                                                                                                                                                                            

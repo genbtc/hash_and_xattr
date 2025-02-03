@@ -1,17 +1,19 @@
+#[allow(unused_imports)]
 use openssl::hash::MessageDigest;
 use openssl::pkey::PKey;
 use openssl::sign::Signer;
 use std::fs::{self};
 use std::io::{self,Error,ErrorKind};
+#[cfg(not(test))]
 use std::path::PathBuf;
 //Local mods (lib.rs)
-mod keyid;
-use crate::keyid::extract_keyid_from_x509_pem;
 use hash_and_xattr::IMAhashAlgorithm::*;
 use hash_and_xattr::format_hex::format_hex;
+use hash_and_xattr::keyid::extract_keyid_from_x509_pem;
 use hash_and_xattr::hash_file;
 use hash_and_xattr::set_ima_xattr;
 use hash_and_xattr::find_xattr;
+#[cfg(not(test))]
 use hash_and_xattr::pathwalk;
 
 #[cfg(test)]
@@ -21,7 +23,9 @@ const TEST_PUBLIC_CERT_PATH: &'static str ="./test_public_key.pem";
 
 //const SYS_PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the system key file path
 //const SYS_PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: Switch keys if privs allow?
+#[cfg(not(test))]
 const PRIVATE_KEY_PATH: &'static str ="/home/genr8eofl/signing_key.priv"; // TODO: Replace with the default key file path
+#[cfg(not(test))]
 const PUBLIC_CERT_PATH: &'static str ="/home/genr8eofl/signing_key.crt"; // TODO: ^^
 
 #[allow(dead_code)]
@@ -70,18 +74,26 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
     let mut ima_sign_header: Vec<u8> = vec![DIGSIG_VERSION_2, hash_type];   //0206
     ima_sign_header.extend_from_slice(&keyid);
 
-    // Search if xattr existing already and bail out to save time.
+    // user.ima - Search if xattr existing already and bail out to save time.
     let xattr_name = "user.ima"; // The xattr name you're searching for
     match find_xattr::llistxattr(file, xattr_name) {
         Ok(Some(_xattr)) => { 
             //println!("Skip existing Xattr {}: {:?}", xattr_name, xattr); //(full data)
             //println!("Skip existing Xattr: {}", xattr_name);  //TODO: DEBUG
-            return Err(Error::new(ErrorKind::AlreadyExists, "xattr Already Exists, Skipped!"));
+            return Err(Error::new(ErrorKind::AlreadyExists, "user.ima xattr Already Exists, Skipped!"));
         },
-        Ok(None) => println!("xattr {} not found", xattr_name), //FIXME: Excessive printout
+        Ok(None) => {}, //println!("xattr {} not found", xattr_name), //FIXME: Excessive printout
         Err(err) => eprintln!("Error reading xattrs: {}", err),
     }
-    //TODO: Check system.ima next, Verify existing ?
+    // system.ima - Search existing // TODO: Verify ?
+    let xattr_name = "system.ima";
+    match find_xattr::llistxattr(file, xattr_name) {
+        Ok(Some(_xattr)) => { 
+            return Err(Error::new(ErrorKind::AlreadyExists, "system.ima xattr Already Exists, Skipped!"));
+        },
+        Ok(None) => {},
+        Err(err) => eprintln!("Error reading xattrs: {}", err),
+    }
 
     // IMA Sign the original file (openssl SHA512 + openssl RSA)
     let md = MessageDigest::from_nid(hash_algo.nid()) //HashAlgo to MessageDigest
@@ -133,6 +145,11 @@ fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &s
 #[test]
 //Verify_sig_hash_pub
 fn test_a() -> io::Result<()> {
+    use std::io::Write;
+    use std::fs::File;
+    //AutoGenerate RSA Public/Private Test Key in harness (depends on key existing)
+    //generate_rsa_keys(); (Crate can't be found during test mode over here)
+
     // Create a new empty file for writing
     let test_filename = "testA.txt";
     let mut file = File::create(test_filename)?;
@@ -148,10 +165,8 @@ fn test_a() -> io::Result<()> {
     let keyid = extract_keyid_from_x509_pem(TEST_PUBLIC_CERT_PATH)?;
     // IMA Sign the file, expect a Valid 3af28 Signature out.
     //TODO: Verify
-    run_sign_ima(test_filename, HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH, keyid);
-    //TODO: AutoGenerate Test Key in harness, depend on key existing first.
-    generate_rsa_keypair();
-    Ok(())
+    run_sign_ima(test_filename, HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH, &keyid)
+    //Ok(())
 }
 
 //TODO: Remove my key.
