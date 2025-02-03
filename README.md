@@ -27,9 +27,9 @@ verify_sig_hash_pub.rs	-	Verify known sig based on known key known text
 ```
 [dependencies]
 xattr = "*"      # interacting with extended attributes
-openssl = "*"  # private/public crypto key signing
+openssl = "*"    # private/public crypto key signing
 hex = "*"        # for hex decode/encode
-atty = "*"        # Add atty to check if stdin is connected (pathwalk)
+atty = "*"       # Add atty to check if stdin is connected (pathwalk)
 rayon = "*"      # parallel processing iter
 walkdir = "*"    # Directory traversal
 ```
