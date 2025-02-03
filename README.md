@@ -2,18 +2,19 @@
 # IMA Signs files, compatible with IMA.
 Open a directory, scan for a list of files, hash them with SHA512, write a private key signed signature 
 to the linux filesystem xattrs, as security.ima - or as fallback - user.ima.
+Also supports taking list of files by -f files.txt, or piped to stdin.
 
 ## New Rust Program - Feb 2025
 
 ## Project Dir Structure:
 src/
 ```
-main.rs     -	main() IMA sign files (like imafix2)
-find_xattr.rs	-	llistxattr wrapper to list/get xattrs
+main.rs		-	main() IMA sign files (like imafix2)
+lib.rs		-   Lib.Rs Crate Module declarations (these files)
 pathwalk.rs	-	Directory Traversal, STDIN support, input -f Filelist.txt of files
+find_xattr.rs	-	llistxattr wrapper to list/get xattrs
 set_ima_xattr.rs - 	logic to set IMA xattr security.ima/user.ima
 IMAhashAlgorithm.rs - equivalent of imaevm.h from ima-evm-utils, struct defs
-lib.rs      -   Lib.Rs Crate Module declarations (these files)
 keyid.rs	-	Extract Subject Key ID from X509 Cert (for IMA header)
 hash_file.rs	-	SHA-512 hash function
 format_hex.rs	-	Utility function to convert u8 bytes to ascii hex string
