@@ -1,0 +1,11 @@
+genr8eofl@genr8too ~/src/hash_and_xattr $ cargo test --test generate_rsa_keypair -- --nocapture 
+   Compiling hash_and_xattr v0.3.0 (/home/genr8eofl/src/hash_and_xattr)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.38s
+     Running tests/generate_rsa_keypair.rs (target/debug/deps/generate_rsa_keypair-84ac76b06884592b)
+
+running 1 test
+RSA keypair generated and saved as PEM files: test_public_key.pem, test_private_key.pem
+test generate_rsa_keys ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.71s
+

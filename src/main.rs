@@ -78,9 +78,10 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
             //println!("Skip existing Xattr: {}", xattr_name);  //TODO: DEBUG
             return Err(Error::new(ErrorKind::AlreadyExists, "xattr Already Exists, Skipped!"));
         },
-        Ok(None) => println!("xattr {} not found", xattr_name),
+        Ok(None) => println!("xattr {} not found", xattr_name), //FIXME: Excessive printout
         Err(err) => eprintln!("Error reading xattrs: {}", err),
     }
+    //TODO: Check system.ima next, Verify existing ?
 
     // IMA Sign the original file (openssl SHA512 + openssl RSA)
     let md = MessageDigest::from_nid(hash_algo.nid()) //HashAlgo to MessageDigest
@@ -130,9 +131,11 @@ fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &s
 }
 
 #[test]
+//Verify_sig_hash_pub
 fn test_a() -> io::Result<()> {
     // Create a new empty file for writing
-    let mut file = File::create("testA.txt")?;
+    let test_filename = "testA.txt";
+    let mut file = File::create(test_filename)?;
     
     // Write the ASCII character "A" to the file
     file.write_all(&['A' as u8])?;
@@ -141,12 +144,13 @@ fn test_a() -> io::Result<()> {
     // Explicitly flush the file to ensure all data is written to disk
     file.flush()?;
     
-    // IMA Sign the file, expect a Valid 3af28 Signature out.
-    //TODO: Verify
     // Extract keyID from pub certificate. (once per program)
     let keyid = extract_keyid_from_x509_pem(TEST_PUBLIC_CERT_PATH)?;
-    run_sign_ima("testA.txt", HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH, keyid);
+    // IMA Sign the file, expect a Valid 3af28 Signature out.
+    //TODO: Verify
+    run_sign_ima(test_filename, HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH, keyid);
     //TODO: AutoGenerate Test Key in harness, depend on key existing first.
+    generate_rsa_keypair();
     Ok(())
 }
 

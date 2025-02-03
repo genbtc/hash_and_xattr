@@ -15,6 +15,9 @@ src/
 > keyid.rs		-	Extract Subject Key ID from X509 Cert (for IMA header)
 > hash_file.rs	-	SHA-512 hash function
 > format_hex.rs	-	Utility function to convert u8 bytes to ascii hex string
+## Tests:
+> generate_rsa_keypair.rs	-	Generate random public/private RSA keypair
+> verify_sig_hash_pub.rs	-	Verify known sig based on known key known text
 
 ## Dependencies:
 > [dependencies]

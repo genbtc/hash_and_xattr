@@ -28,3 +28,8 @@ path = "src/keyid.rs"
 #[[test]]
 #name = "verify_sig_hash_pub"
 #path = "tests/verify_sig_hash_pub.rs"
+
+#Usage: cargo test --test generate_rsa_keypair -- --nocapture
+#[[test]]
+#name = "generate_rsa_keypair"
+#path = "tests/generate_rsa_keypair.rs"
