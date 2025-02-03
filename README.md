@@ -14,7 +14,7 @@ pathwalk.rs	-	Directory Traversal, STDIN support, input -f Filelist.txt of files
 set_ima_xattr.rs - 	logic to set IMA xattr security.ima/user.ima
 IMAhashAlgorithm.rs - equivalent of imaevm.h from ima-evm-utils, struct defs
 lib.rs      -   Lib.Rs Crate Module declarations (these files)
-keyid.rs		-	Extract Subject Key ID from X509 Cert (for IMA header)
+keyid.rs	-	Extract Subject Key ID from X509 Cert (for IMA header)
 hash_file.rs	-	SHA-512 hash function
 format_hex.rs	-	Utility function to convert u8 bytes to ascii hex string
 ```
@@ -24,7 +24,7 @@ generate_rsa_keypair.rs	-	Generate random public/private RSA keypair
 verify_sig_hash_pub.rs	-	Verify known sig based on known key known text
 ```
 ## Rust Dependencies (Cargo.toml):
-'''
+```
 [dependencies]
 xattr = "*"      # interacting with extended attributes
 openssl = "*"  # private/public crypto key signing
