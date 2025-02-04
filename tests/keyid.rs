@@ -1,6 +1,5 @@
 use openssl::rsa::Rsa;
 use openssl::sha::Sha1;
-use std::convert::TryInto;
 use std::fs::File;
 use std::io::Read;
 use hash_and_xattr::format_hex;

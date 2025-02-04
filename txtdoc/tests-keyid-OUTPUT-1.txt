@@ -1,0 +1,13 @@
+genr8eofl@genr8too ~/src/hash_and_xattr $ cargo test --test keyid -- --nocapture
+   Compiling hash_and_xattr v0.3.1 (/home/genr8eofl/src/hash_and_xattr)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.34s
+     Running tests/keyid.rs (target/debug/deps/keyid-6fa93fe13e779163)
+
+running 1 test
+DER Public Key (PKCS#1) len(526): 3082020a0282020100ace5c6504cc4dc3f04cd394179f67ae9d45f50b1348c41a8044f7eb9ea7c5b6d67cddf442b00fe7702c1cf993a6999db4329f7bb12bfbb3066313e13b78451de306fd58e50fc49c8c6238a6fe5729801f964291d660bb4a1c494b5a955066571fb2031d19c91aed9c053c7938990e29e81d1bc781a92cd4311abe419db84bedd8891a5f7f0aa53330e0f64d9763c2b6cdd2bccea20fd53989de91398b5e9ae8d3f03ebd01b83ac51dae3705df4d95af606edf107dc321e3bd52a22ba0f8b9afebe4dfc6d23f5a20fc19fa8f25b0e1469c588afaed6fe257f462630b5edda917efa45e84a6c4122d67bcc51647330d71def0a49f39673cee62dcc6e86ba6749d86e63fb356895a6fa4b54d92a1f96189b98d4c712b690e9759112ef08633d82972e9fdddb4ac324b24809bc49e71a7a4a9b3af8b22d277cb41b4ddfc4a703bee81b58d6146b15c33c7afad342202bc2d34a93dcc89b659572d606a738c89cb5b916f771aef58a92d89f238421009ee04ef43d12e239e69c8e3ab238247960462e7319c7632d506bd2c202faeea27f5d2d00521508a06ce8e4d274f027c026a454393ee541def4ad7b4880283b608605cc6b2e1ea4f9ae4d91fdcf5da0c41001b98ebadc89ef18b33f29e0349b757a577817da6a0236a7b553ce99455ff9f11f472b1fe56e21130cc8088d9ce1d2ebc6ad6d90155d9575433ab5c1f59e7ad3e7390203010001
+SHA-1 Hash: 91a3deb90a616dbd2f1adece5db4c3ca9b535a72
+Found! Key ID (X509v3 S.K.I.): 9b535a72
+test main ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
