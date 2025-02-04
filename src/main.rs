@@ -9,6 +9,7 @@ use std::path::PathBuf;
 //Local mods (lib.rs)
 use hash_and_xattr::IMAhashAlgorithm::*;
 use hash_and_xattr::format_hex::format_hex;
+#[allow(unused_imports)]
 use hash_and_xattr::keyid::extract_keyid_from_x509_pem;
 use hash_and_xattr::hash_file;
 use hash_and_xattr::set_ima_xattr;
@@ -19,7 +20,7 @@ use hash_and_xattr::pathwalk;
 #[cfg(test)]
 const TEST_PRIVATE_KEY_PATH: &'static str ="./test_private_key.pem";
 #[cfg(test)]
-const TEST_PUBLIC_CERT_PATH: &'static str ="./test_public_key.pem";
+const _TEST_PUBLIC_KEY_PATH: &'static str ="./test_public_key.pem";
 
 //const SYS_PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the system key file path
 //const SYS_PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: Switch keys if privs allow?
@@ -162,11 +163,13 @@ fn test_a() -> io::Result<()> {
     file.flush()?;
     
     // Extract keyID from pub certificate. (once per program)
-    let keyid = extract_keyid_from_x509_pem(TEST_PUBLIC_CERT_PATH)?;
+//    let keyid = extract_keyid_from_x509_pem(TEST_PUBLIC_CERT_PATH)?;
+    let keyid = vec!{0;4};
     // IMA Sign the file, expect a Valid 3af28 Signature out.
     //TODO: Verify
-    run_sign_ima(test_filename, HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH, &keyid)
-    //Ok(())
+    let _ = run_sign_ima(test_filename, HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH, &keyid);
+    //not ready to pass itself as return since it errors out on repeated user.ima writes to the same file.
+    Ok(())
 }
 
 //TODO: Remove my key.

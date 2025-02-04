@@ -5,11 +5,7 @@ use openssl::pkey::PKey;
 use openssl::sign::Verifier;
 use openssl::hash::MessageDigest;
 use openssl::error::ErrorStack;
-
-//format matches sha512sum (hex output)
-fn format_hex(bytes: &[u8]) -> String {
-    bytes.iter().map(|b| format!("{:02x}", b)).collect::<String>()
-}
+use crate::format_hex;
 
 fn verify_signature(message: &[u8], signature: &[u8]) -> Result<bool, ErrorStack> {
     println!("signature: {}", format_hex(&signature));
@@ -36,7 +32,7 @@ fn verify_sig_hash_pub() {
     let sig_vec = hex::decode(sig_hex).expect("Invalid hex signature");
 
     // Verify the MESSAGE
-    println!("message: {}", format_hex(message));
+    println!("message: {}", format_hex::format_hex(message));
     match verify_signature(message, &sig_vec) {
         Ok(true) => println!("OK, Message Signature valid!"),
         Ok(false) => println!("Message Signature is INVALID!!!"),
@@ -50,7 +46,7 @@ fn verify_sig_hash_pub() {
     let signature_vec = hex::decode(signature_hex).expect("Invalid hex signature");
 
     // Verify the Signature
-    println!("message: {}", format_hex(&message_vec));     
+    println!("message: {}", format_hex::format_hex(&message_vec));     
     match verify_signature(&message_vec, &signature_vec) {
         Ok(true) => println!("OK, Hash Signature valid!"),
         Ok(false) => println!("Hash Signature is INVALID!!!"),

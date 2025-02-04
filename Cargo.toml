@@ -11,7 +11,8 @@ hex = "*"        # for hex decode/encode
 atty = "*"       # Add atty to check if stdin is connected (pathwalk)
 rayon = "*"      # parallel processing
 walkdir = "*"    # Directory traversal
-
+yasna = "0.5"
+num-bigint = "*"
 #Other Targets
 #Usage: cargo run --bin keyid
 #[[bin]]
