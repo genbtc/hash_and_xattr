@@ -1,14 +1,12 @@
-#[cfg(test)]
-mod tests {
 use openssl::rsa::Rsa;
 use openssl::pkey::PKey;
 use openssl::sign::Verifier;
 use openssl::hash::MessageDigest;
 use openssl::error::ErrorStack;
-use crate::format_hex;
+use hash_and_xattr::format_hex;
 
 fn verify_signature(message: &[u8], signature: &[u8]) -> Result<bool, ErrorStack> {
-    println!("signature: {}", format_hex(&signature));
+    println!("signature: {}", format_hex::format_hex(&signature));
 
     // Load the public key (PEM format) - from existing key derived from derive_pubkey_from_privkey
     let rsa = Rsa::public_key_from_pem(include_bytes!("/home/genr8eofl/derived_public_key.pem"))?; //compile time
@@ -53,5 +51,4 @@ fn verify_sig_hash_pub() {
         Err(e) => eprintln!("Error verifying hash signature: {}", e),
     }
 //    let signature_hex = "12d50734a95ee4d961d572d237bcd0fecf2099f8baa507f6586ab12e618442a6017dec56807ab8f8966f5178ff237160cbce37a11af37e31b4f297ed1f6073f12b3dd358c51882e29f1f30d7efc32bc7e2cac86ba6b48e8137481493b25b3d6d7deedd4fdc0a83731167a4e1398b3149e0be131775aed49d21daa944db38bdf45b742ef88c32f4c3296ada9db42080fad0d5696795d901df20764a49ae667bddd374074f5411a39128d8a4837a459cf491585751beb1cdacbd1ec1c5e9871f7801428e284fbe6e070ef9050a17ed277c13624338453dc3e9c1975dccaadd3bb837fa0e093478a6c0a0cd8591da10a2af25750a6a7a0f246a533ce91ace76298d2e43097d048d2227a3f0ebf985f2ccc1b6af30921703841fd946b1315721b7cb2079baa9a4782867674ec0c86c48fc1346bd4e7e1094b30c51f2224a94a35a3fbe9ca08cff94b017d3a85845203bc17743d4a67e390d466ac65f54af0507d07075332f3aa278f9d8e75f9233d18baf7c43b5cb52bfe0059eb61fd87ec52d9794f7b9784facbd0eec0eb9eca82a1d9fb35e7bb93e0e7de218b942344d75271fd0e5f3ba3defe812580777223f2fe65b443272c8e29fd75e4b6d877e059e9a8ba45228dbfedda79b12cd6a409602197d4da881bbeb446863336639ee3d4d61f5d39cb14763313970dc9dbfb51c908cedf8588a4d9eecf4ebe62f420838e4b68881";
-}
 }

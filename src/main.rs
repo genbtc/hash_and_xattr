@@ -10,17 +10,19 @@ use std::path::PathBuf;
 use hash_and_xattr::IMAhashAlgorithm::*;
 use hash_and_xattr::format_hex::format_hex;
 #[allow(unused_imports)]
-use hash_and_xattr::keyid::extract_keyid_from_x509_pem;
+use hash_and_xattr::keyid;
 use hash_and_xattr::hash_file;
 use hash_and_xattr::set_ima_xattr;
 use hash_and_xattr::find_xattr;
 #[cfg(not(test))]
 use hash_and_xattr::pathwalk;
+#[allow(unused_imports)]
+use hash_and_xattr::keyutils;
 
 #[cfg(test)]
-const TEST_PRIVATE_KEY_PATH: &'static str ="./test_private_key.pem";
+const TEST_PRIVATE_KEY_PATH: &'static str ="test_private_key.pem";
 #[cfg(test)]
-const _TEST_PUBLIC_KEY_PATH: &'static str ="./test_public_key.pem";
+const _TEST_PUBLIC_KEY_PATH: &'static str ="test_public_key.pem";
 
 //const SYS_PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the system key file path
 //const SYS_PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: Switch keys if privs allow?
@@ -75,6 +77,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
     let mut ima_sign_header: Vec<u8> = vec![DIGSIG_VERSION_2, hash_type];   //0206
     ima_sign_header.extend_from_slice(&keyid);
 
+/* //XATTR-USER (less PERMISSIONS)
     // user.ima - Search if xattr existing already and bail out to save time.
     let xattr_name = "user.ima"; // The xattr name you're searching for
     match find_xattr::llistxattr(file, xattr_name) {
@@ -86,11 +89,12 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
         Ok(None) => {}, //println!("xattr {} not found", xattr_name), //FIXME: Excessive printout
         Err(err) => eprintln!("Error reading xattrs: {}", err),
     }
-    // system.ima - Search existing // TODO: Verify ?
-    let xattr_name = "system.ima";
+*/
+    // security.ima - Search existing // TODO: Verify ?
+    let xattr_name = "security.ima";
     match find_xattr::llistxattr(file, xattr_name) {
         Ok(Some(_xattr)) => { 
-            return Err(Error::new(ErrorKind::AlreadyExists, "system.ima xattr Already Exists, Skipped!"));
+            return Err(Error::new(ErrorKind::AlreadyExists, "security.ima xattr Already Exists, Skipped!"));
         },
         Ok(None) => {},
         Err(err) => eprintln!("Error reading xattrs: {}", err),
@@ -131,6 +135,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
 fn sign_bytes(md: MessageDigest, data: &[u8], key_path: &str) -> io::Result<Vec<u8>> {
     let private_key = fs::read(key_path)?;
     let pkey = PKey::private_key_from_pem(&private_key)?;
+    //let key_id = keyutils::calc_keyid_v2(&pkey.rsa()?);
     let mut signer = Signer::new(md, &pkey)?;
     signer.update(data)?;
     Ok(signer.sign_to_vec()?)
@@ -164,7 +169,9 @@ fn test_a() -> io::Result<()> {
     
     // Extract keyID from pub certificate. (once per program)
 //    let keyid = extract_keyid_from_x509_pem(TEST_PUBLIC_CERT_PATH)?;
-    let keyid = vec!{0;4};
+//    let key_id = keyutils::calc_keyid_v2(&pkey.rsa()?);
+//    let keyid = vec!{0;4}; //TODO: define it
+    let keyid: Vec<u8> = vec![0xAB, 0x6F, 0x20, 0x50];
     // IMA Sign the file, expect a Valid 3af28 Signature out.
     //TODO: Verify
     let _ = run_sign_ima(test_filename, HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH, &keyid);
@@ -178,12 +185,13 @@ fn main() -> Result<(), Error> {
     // Call pathwalk to get the files , handle the result
     let files: Result<Vec<PathBuf>, Error> = pathwalk::pathwalk();
     // Extract keyID from pub certificate. (once per program)
-    let keyid = extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
+    let keyid = keyid::extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
+    //let key_id = keyutils::calc_keyid_v2(&pkey.rsa()?);
 
     // Match on the result
     match files {
         Ok(files) => {
-            // Iterate over each file and call functionB
+            // Iterate over each file and call function
             for file in files {
                 let filename = file.to_str().expect("unexpected Error, in filename to str");
                 println!(/*"Filename: */"{:?}", filename);

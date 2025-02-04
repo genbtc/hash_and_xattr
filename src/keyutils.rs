@@ -1,13 +1,16 @@
+#[allow(unused_imports)]
 use openssl::pkey::{PKey,Public,Private};
-use openssl::sha::{sha1,Sha1};
-use std::fs::{File};                                                                                               
+use openssl::rsa::Rsa;
+use openssl::sha::sha1;
+use std::fs::File;
 use std::io::Read;
-use hash_and_xattr::format_hex;
+use std::path::Path;
+use crate::format_hex;
 
 #[allow(dead_code)]
-pub fn calc_keyid_v2(pkey: &PKey<openssl::pkey::Public>) -> Result<u32, Box<dyn std::error::Error>> {
-    // Convert the PKey to DER format (PKCS#1 required)
-    let der_bytes = pkey.public_key_to_der_pkcs1()?;
+pub fn calc_keyid_v2(rsa: &Rsa<openssl::pkey::Private>) -> Result<u32, Box<dyn std::error::Error>> {
+    // Convert the RSA Pkey to DER format (PKCS#1 required)
+    let der_bytes = rsa.public_key_to_der_pkcs1()?;
     // Compute the SHA1 hash of the DER-encoded public key
     let hash = sha1(&der_bytes);
     // Extract the first 4 bytes of the hash

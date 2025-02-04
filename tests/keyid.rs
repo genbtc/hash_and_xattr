@@ -4,14 +4,14 @@ use std::fs::File;
 use std::io::Read;
 use hash_and_xattr::format_hex;
 use yasna;
-
+//YASNA implementation:
 #[test]
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-//YASNA implementation:
     // Read the RSA private key from PEM file
     let mut file = File::open("test_private_key.pem").expect("Failed to open PEM file");
     let mut pem_data = Vec::new();
     file.read_to_end(&mut pem_data).expect("Failed to read PEM file");
+
     // RSA Pkey load init
     let rsa = Rsa::private_key_from_pem(&pem_data).expect("Failed to parse RSA private key");
 
@@ -30,7 +30,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     hasher.update(&key_der);
     let hash = hasher.finish();
     println!("Full SHA-1 Hash: {}", format_hex::format_hex(&hash));
-    println!("Key ID (X509v3 S.K.I.)?: {}", format_hex::format_hex(&hash[16..]));
+    println!("Key ID (X509v3 S.K.I.): {}", format_hex::format_hex(&hash[16..]));
 
     Ok(())
 }

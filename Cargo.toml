@@ -1,8 +1,8 @@
 [package]
 name = "hash_and_xattr"
-version = "0.3.1"
+version = "0.3.2"
 edition = "2021"
-default-run = "hash_and_xattr"  #which --bin subtarget to run (main)
+default-run = "hash_and_xattr"  #if many --bin subtargets, run (main.rs)
 
 [dependencies]
 xattr = "*"      # interacting with extended attributes
@@ -13,18 +13,10 @@ rayon = "*"      # parallel processing
 walkdir = "*"    # Directory traversal
 yasna = "0.5"    # for ASN.1 Encoding
 
-#Other Targets
-#Usage: cargo run --bin keyid
-#[[bin]]
-#name = "keyid"
-#path = "src/keyid.rs"
-
-#Usage: cargo test --test verify_sig_hash_pub -- --nocapture
-#[[test]]
-#name = "verify_sig_hash_pub"
-#path = "tests/verify_sig_hash_pub.rs"
-
-#Usage: cargo test --test generate_rsa_keypair -- --nocapture
-#[[test]]
-#name = "generate_rsa_keypair"
-#path = "tests/generate_rsa_keypair.rs"
+#Available Test Targets
+#    check_xattr_privileges
+#    generate_rsa_keypair
+#    keyid
+#    keyid-simple
+#    keyid-skip24header
+#    verify_sig_hash_pub

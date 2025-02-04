@@ -15,14 +15,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     
     // Get the DER-encoded public key in PKCS#1 format.
     // This returns only the modulus and exponent (without any OID structure).
-    //let key_der = rsa.public_key_to_der()?;
+//    let key_der = rsa.public_key_to_der()?;   //has 24 byte OID header
     let key_der = rsa.public_key_to_der_pkcs1()?;
     println!("DER Public Key (PKCS#1) len({}): {}", key_der.len(), hex::encode(&key_der));
 
     // Compute the SHA-1 hash of the DER bytes.
     let mut hasher = Sha1::new();
     hasher.update(&key_der);
-//    hasher.update(&key_der[24..]);
+//    hasher.update(&key_der[24..]);    //old way
     let hash = hasher.finish();
     println!("SHA-1 Hash: {}", hex::encode(&hash));
 

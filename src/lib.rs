@@ -1,4 +1,4 @@
-// Lib.rs -v0.2
+// Lib.rs -v0.3
 // This exposes format_hex to the rest of the project
 pub mod format_hex;
 // This exposes IMAhashAlgorithm to the rest of the project
@@ -14,6 +14,8 @@ pub mod pathwalk;
 pub mod find_xattr;
 // This exposes keyid to the rest of the project
 pub mod keyid;
+// This exposes keyutils to the rest of the project
+pub mod keyutils;
 //hash_file
 //#Usage:
 //use hash_and_xattr::IMAhashAlgorithm::HashAlgorithm;                                                                                                                                                                                                                            
@@ -22,3 +24,5 @@ pub mod keyid;
 //use hash_and_xattr::set_ima_xattr::set_ima_xattr;
 //use hash_and_xattr::pathwalk::pathwalk;
 //use hash_and_xattr::find_xattr::find_xattr;
+//use hash_and_xattr::keyid::keyid;
+//use hash_and_xattr::keyutils::keyutils;
