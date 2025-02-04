@@ -1,12 +1,13 @@
 use openssl::pkey::{PKey,Public,Private};
 use openssl::sha::{sha1,Sha1};
-use std::fs::{File};                                                                                                                                  
+use std::fs::{File};                                                                                               
 use std::io::Read;
+use hash_and_xattr::format_hex;
 
 #[allow(dead_code)]
-fn calc_keyid_v2(pkey: &PKey<openssl::pkey::Public>) -> Result<u32, Box<dyn std::error::Error>> {
-    // Convert the PKey to DER format
-    let der_bytes = pkey.public_key_to_der()?;
+pub fn calc_keyid_v2(pkey: &PKey<openssl::pkey::Public>) -> Result<u32, Box<dyn std::error::Error>> {
+    // Convert the PKey to DER format (PKCS#1 required)
+    let der_bytes = pkey.public_key_to_der_pkcs1()?;
     // Compute the SHA1 hash of the DER-encoded public key
     let hash = sha1(&der_bytes);
     // Extract the first 4 bytes of the hash
@@ -19,7 +20,7 @@ fn calc_keyid_v2(pkey: &PKey<openssl::pkey::Public>) -> Result<u32, Box<dyn std:
 }
 
 #[allow(dead_code)]
-fn load_private_key<P: AsRef<Path>>(path: P) -> Result<PKey<openssl::pkey::Private>, Box<dyn std::error::Error>> {
+pub fn load_private_key<P: AsRef<Path>>(path: P) -> Result<PKey<openssl::pkey::Private>, Box<dyn std::error::Error>> {
     // Open the PEM file
     let mut file = File::open(path)?;
     // Read the contents into a vector of bytes
@@ -30,7 +31,7 @@ fn load_private_key<P: AsRef<Path>>(path: P) -> Result<PKey<openssl::pkey::Priva
 }
 
 #[allow(dead_code)]
-fn load_public_key<P: AsRef<Path>>(path: P) -> Result<PKey<openssl::pkey::Public>, Box<dyn std::error::Error>> {
+pub fn load_public_key<P: AsRef<Path>>(path: P) -> Result<PKey<openssl::pkey::Public>, Box<dyn std::error::Error>> {
     // Open the PEM file
     let mut file = File::open(path)?;
     // Read the contents into a vector of bytes
