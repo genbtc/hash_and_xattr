@@ -1,3 +1,5 @@
+// hash_and_xattr v0.3.3 - by genr8eofl @2025 - LICENSE: AGPL3
+// Signs files with an IMA signature and verifies them
 #[allow(unused_imports)]
 use openssl::hash::MessageDigest;
 use openssl::pkey::PKey;
@@ -99,13 +101,18 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
         Ok(Some(xattr)) => { //TODO: Don't always skip, or add force ?
             let freadfile = fs::read(file)?;
             match verify_signature(md, &freadfile, &xattr, PRIVATE_KEY_PATH) {
-                Ok(success) => { if success { println!("Success, Hash Matches! Write Skipped!"); return Ok(()); } else { println!("Verification Mismatch @ {}", file); }},
-                Err(err) => eprintln!("Error verifying sig {}", err),
+                Ok(success) => {
+                  if success { 
+                    /*println!("Success, Hash Matches! Write Skipped!");*/ return Ok(());
+                  } else { 
+                    println!("Verification Mismatch! @ {}", file);
+                }},
+                Err(err) => eprintln!("Error in Signature Verification! {}", err),
             }
             //return Err(Error::new(ErrorKind::AlreadyExists, "security.ima xattr Already Exists, Skipped!"));
         },
         Ok(None) => {},
-        Err(err) => eprintln!("Error reading xattrs: {}", err),
+        Err(err) => eprintln!("Error reading xattrs!: {}", err),
     }
 
     // IMA Sign the original file (openssl SHA512 + openssl RSA)
@@ -113,7 +120,8 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
     let ima_sig = sign_bytes(md, &freadfile, key_path)?;
     //println!("signature: {}", format_hex(&ima_sig));  //TODO: DebugPrint
     if ima_sig.len() != MAX_SIGNATURE_SIZE.into() {
-        eprintln!{"signature len differs from expected MAX_SIGNATURE_SIZE {}", MAX_SIGNATURE_SIZE};
+        eprintln!{"signature length {} differs from expected MAX_SIGNATURE_SIZE {}",
+                   ima_sig.len(), MAX_SIGNATURE_SIZE};
     }
 
     // Append max sig size (0x0200)
@@ -146,27 +154,26 @@ fn sign_bytes(md: MessageDigest, data: &[u8], key_path: &str) -> io::Result<Vec<
     signer.update(data)?;
     Ok(signer.sign_to_vec()?)
 }
-
+//TODO:load_private/public_key @ keyutils.rs
 fn verify_signature(md: MessageDigest, filedata: &[u8], xattr: &str, private_key_path: &str) -> io::Result<bool> {
     // Read private key from PEM file
-    let private_key = fs::read(private_key_path)?;
-    let rsa = PKey::private_key_from_pem(&private_key)
-        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to load RSA key"))?;
-    let pkey = PKey::from_rsa(rsa.rsa()?)
-        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to create PKey"))?;
+    let private_key = fs::read(private_key_path)
+        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to read Private key"))?;
+    let pkey = PKey::private_key_from_pem(&private_key)
+        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to init PKey<Private> key"))?;
 
     // Read signature from extended attribute
     let signature = hex::decode(xattr)
-        .map_err(|_| Error::new(ErrorKind::Other, "Signature hex decode error"))?;
+        .map_err(|_| Error::new(ErrorKind::InvalidData, "Hex decode error in signature"))?;
 //    println!("Vsignature: {:?}", signature);//DebugPrint
 
     // Hash the file data
     let mut verifier = Verifier::new(md, &pkey)
-        .map_err(|_| Error::new(ErrorKind::Other, "Failed to create verifier"))?;
+        .map_err(|_| Error::new(ErrorKind::Other, "Failed to init verifier"))?;
     verifier.update(filedata)
         .map_err(|_| Error::new(ErrorKind::Other, "Failed to hash data"))?;
 
-    // Verify signature
+    // Verify signature (skip +9 IMA header) //TODO: properly
     verifier.verify(&signature[9..])
         .map_err(|_| Error::new(ErrorKind::InvalidData, "Signature verification failed"))
 }

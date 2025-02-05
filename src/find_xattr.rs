@@ -1,4 +1,4 @@
-use xattr::{get,list};
+use xattr;
 use std::io::{self};
 use crate::format_hex;
 
@@ -9,13 +9,13 @@ fn log_error(message: &str, path: &str) {
 //Check Does the xattr exist?
 pub fn llistxattr(path: &str, xattr_name: &str) -> Result<Option<String>, io::Error> {
     // Get the list of xattrs associated with the file at the specified path
-    let xattrs = list(path)?;
+    let xattrs = xattr::list(path)?;
 
     // Search for the specified xattr directly in the list
     for xattr in xattrs {
         if xattr == xattr_name {
             // Fetch the value of the xattr
-            match get(path, xattr_name) {
+            match xattr::get(path, xattr_name) {
                 Ok(value) => {
                     // Try to convert the xattr value to a String
                    if let Some(v) = &value {
