@@ -1,7 +1,6 @@
-//hash_and_xattr v0.14 - 2025 (c) genr8eofl @ gmx
-//pathwalkr.rs v0.2.6 - attach to main project
-//Update v0.2.7. Writes hash directly to security.ima
-//Latest version: v0.3.0 - Feb 1, 2025
+//hash_and_xattr - pathwalkr.rs v0.2.6 - Feb 1, 2025
+//v0.2.7. Writes hash directly to security.ima
+//v0.3.3  Filters directories out
 use std::{env, fs::File, io::{BufRead,stdin,BufReader}, path::PathBuf};
 use std::io::Result;
 use walkdir::WalkDir;
@@ -15,6 +14,7 @@ fn get_files_from_directory(dir: &str) -> Result<Vec<PathBuf>> {
         .filter_map(|entry| entry.ok())
         .filter(|entry| entry.file_type().is_file())
         .map(|entry| entry.path().to_path_buf())
+        .filter(|path| !path.is_dir()) // Exclude directories
         .collect()
     )
 }
@@ -25,6 +25,7 @@ fn get_files_from_stdin() -> Result<Vec<PathBuf>> {
     Ok(handle.lines()
         .filter_map(|line| line.ok())
         .map(|line| PathBuf::from(line))
+        .filter(|path| !path.is_dir()) // Exclude directories
         .collect()
     )
 }
@@ -36,6 +37,7 @@ fn get_files_from_file(file_path: &str) -> Result<Vec<PathBuf>> {
     Ok(reader.lines()
         .filter_map(|line| line.ok())            // Filter out any lines that can't be read
         .map(|line| PathBuf::from(line.trim()))  // Trim whitespace and convert to PathBuf
+        .filter(|path| !path.is_dir()) // Exclude directories
         .collect()
     )
 }
@@ -59,7 +61,7 @@ pub fn pathwalk() -> Result<Vec<PathBuf>> {
         get_files_from_file(file_path)
     } else if atty::is(atty::Stream::Stdin) {
         // If stdin is empty, use directory argument if provided
-        println!("Dir: {}", dir);
+        println!("Dir: {}", dir);   //NOTE: Non-recursive.
         get_files_from_directory(dir)
     } else {
         // Read from stdin (piped input)

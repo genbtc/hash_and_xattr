@@ -7,8 +7,7 @@ use std::io::Read;
 use std::path::Path;
 use crate::format_hex;
 
-#[allow(dead_code)]
-pub fn calc_keyid_v2(rsa: &Rsa<openssl::pkey::Private>) -> Result<u32, Box<dyn std::error::Error>> {
+pub fn calc_keyid_v2(rsa: &Rsa<openssl::pkey::Private>) -> Result<[u8;4], Box<dyn std::error::Error>> {
     // Convert the RSA Pkey to DER format (PKCS#1 required)
     let der_bytes = rsa.public_key_to_der_pkcs1()?;
     // Compute the SHA1 hash of the DER-encoded public key
@@ -17,12 +16,11 @@ pub fn calc_keyid_v2(rsa: &Rsa<openssl::pkey::Private>) -> Result<u32, Box<dyn s
     let keyid_bytes: [u8; 4] = hash[hash.len()-4..].try_into()?;
     println!("Key ID (X509v3 S.K.I.): {}", format_hex::format_hex(&keyid_bytes));
     // Convert the bytes to a 32-bit unsigned integer
-    let keyid = u32::from_be_bytes(keyid_bytes);
+    let _keyid = u32::from_be_bytes(keyid_bytes);
 
-    Ok(keyid)
+    Ok(keyid_bytes)
 }
 
-#[allow(dead_code)]
 pub fn load_private_key<P: AsRef<Path>>(path: P) -> Result<PKey<openssl::pkey::Private>, Box<dyn std::error::Error>> {
     // Open the PEM file
     let mut file = File::open(path)?;

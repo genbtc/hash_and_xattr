@@ -1,13 +1,21 @@
 use xattr;
 use std::io::{self};
+use std::path::Path;
 use crate::format_hex;
 
 fn log_error(message: &str, path: &str) {
     eprintln!("{}: {}", message, path);
 }
 
+fn is_directory(path: &str) -> bool {
+    Path::new(path).is_dir()
+}
+
 //Check Does the xattr exist?
 pub fn llistxattr(path: &str, xattr_name: &str) -> Result<Option<String>, io::Error> {
+    if is_directory(path) {
+        return Ok(None);    //skip directories now
+    }
     // Get the list of xattrs associated with the file at the specified path
     let xattrs = xattr::list(path)?;
 

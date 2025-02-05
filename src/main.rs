@@ -2,12 +2,13 @@
 // Signs files with an IMA signature and verifies them
 #[allow(unused_imports)]
 use openssl::hash::MessageDigest;
-use openssl::pkey::PKey;
+//use openssl::pkey::PKey;
 use openssl::sign::{Signer,Verifier};
 use std::fs::{self};
 use std::io::{self,Error,ErrorKind};
 #[cfg(not(test))]
 use std::path::PathBuf;
+use std::path::Path;
 //Local mods (lib.rs)
 use hash_and_xattr::IMAhashAlgorithm::*;
 use hash_and_xattr::format_hex::format_hex;
@@ -100,12 +101,12 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
     match find_xattr::llistxattr(file, xattr_name) {
         Ok(Some(xattr)) => { //TODO: Don't always skip, or add force ?
             let freadfile = fs::read(file)?;
-            match verify_signature(md, &freadfile, &xattr, PRIVATE_KEY_PATH) {
+            match verify_signature(md, &freadfile, &xattr, key_path) {
                 Ok(success) => {
                   if success { 
                     /*println!("Success, Hash Matches! Write Skipped!");*/ return Ok(());
                   } else { 
-                    println!("Verification Mismatch! @ {}", file);
+                    println!("SIGNFAIL: Verification Mismatch! @ {}", file);
                 }},
                 Err(err) => eprintln!("Error in Signature Verification! {}", err),
             }
@@ -147,20 +148,24 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
 }
 
 fn sign_bytes(md: MessageDigest, data: &[u8], key_path: &str) -> io::Result<Vec<u8>> {
-    let private_key = fs::read(key_path)?;
-    let pkey = PKey::private_key_from_pem(&private_key)?;
+//    let private_key = fs::read(key_path)?;
+//    let pkey = PKey::private_key_from_pem(&private_key)?;
+    let pkey = keyutils::load_private_key(Path::new(key_path)).expect("unexpected Error, Cannot load private key");
+
     //let key_id = keyutils::calc_keyid_v2(&pkey.rsa()?);
     let mut signer = Signer::new(md, &pkey)?;
     signer.update(data)?;
-    Ok(signer.sign_to_vec()?)
+//    Ok(signer.sign_to_vec()?)   //ErrorStack
+    Ok(signer.sign_to_vec().expect("unexpected Error, Signer output of signature failed"))
 }
-//TODO:load_private/public_key @ keyutils.rs
+//TODO:DONE:load_private/public_key @ keyutils.rs
 fn verify_signature(md: MessageDigest, filedata: &[u8], xattr: &str, private_key_path: &str) -> io::Result<bool> {
     // Read private key from PEM file
-    let private_key = fs::read(private_key_path)
-        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to read Private key"))?;
-    let pkey = PKey::private_key_from_pem(&private_key)
-        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to init PKey<Private> key"))?;
+//    let private_key = fs::read(private_key_path)
+//        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to read Private key"))?;
+//    let pkey = PKey::private_key_from_pem(&private_key)
+//        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to init PKey<Private> key"))?;
+    let pkey = keyutils::load_private_key(Path::new(private_key_path)).expect("unexpected Error, Cannot load private key");
 
     // Read signature from extended attribute
     let signature = hex::decode(xattr)
@@ -173,14 +178,14 @@ fn verify_signature(md: MessageDigest, filedata: &[u8], xattr: &str, private_key
     verifier.update(filedata)
         .map_err(|_| Error::new(ErrorKind::Other, "Failed to hash data"))?;
 
-    // Verify signature (skip +9 IMA header) //TODO: properly
+    // Verify signature (skip +9 IMA header) //TODO: properly, check KeyID, hashAlgo, length
     verifier.verify(&signature[9..])
         .map_err(|_| Error::new(ErrorKind::InvalidData, "Signature verification failed"))
 }
 
 fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &str, keyid: &Vec<u8>) -> io::Result<()> {
     match sign_ima(targetfile, hash_algo, private_key_path, &keyid) {
-        Ok(_) => { println!("imafix2: Successfully signed IMA"); return Ok(()); }
+        Ok(_) => { println!("SIGNATURE: {}",targetfile); return Ok(()); }
         Err(e) => { eprintln!("imafix2: Error signing IMA: {:?} - {:?}", e.kind(), e.to_string()); return Err(e); }
     }
 }
@@ -190,6 +195,7 @@ fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &s
 fn test_a() -> io::Result<()> {
     use std::io::Write;
     use std::fs::File;
+    use std::path::Path;
     //AutoGenerate RSA Public/Private Test Key in harness (depends on key existing)
     //generate_rsa_keys(); (Crate can't be found during test mode over here)
 
@@ -204,11 +210,13 @@ fn test_a() -> io::Result<()> {
     // Explicitly flush the file to ensure all data is written to disk
     file.flush()?;
     
-    // Extract keyID from pub certificate. (once per program)
+    // Extract keyID from private key (once per program) - Option 1
+    let pkey = keyutils::load_private_key(Path::new(TEST_PRIVATE_KEY_PATH)).expect("unexpected Error, Cannot load test private key");
+    let keyid = keyutils::calc_keyid_v2(&pkey.rsa()?).expect("unexpected Error, Cannot Calculate KeyID from privkey").to_vec();
+    // Extract keyID from PUBLIC Cert (once per program) - Option 2
 //    let keyid = extract_keyid_from_x509_pem(TEST_PUBLIC_CERT_PATH)?;
-//    let key_id = keyutils::calc_keyid_v2(&pkey.rsa()?);
-//    let keyid = vec!{0;4}; //TODO: define it
-    let keyid: Vec<u8> = vec![0xAB, 0x6F, 0x20, 0x50];
+//    let keyid = vec!{0;4}; //blank define it - Option 3
+//    let keyid: Vec<u8> = vec![0xAB, 0x6F, 0x20, 0x50]; //hardcoded - Option 4
     // IMA Sign the file, expect a Valid 3af28 Signature out.
     //TODO: Verify
     let _ = run_sign_ima(test_filename, HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH, &keyid);
@@ -221,9 +229,10 @@ fn test_a() -> io::Result<()> {
 fn main() -> Result<(), Error> {
     // Call pathwalk to get the files , handle the result
     let files: Result<Vec<PathBuf>, Error> = pathwalk::pathwalk();
-    // Extract keyID from pub certificate. (once per program)
+    // Extract keyID from pub certificate. (once per program) - Method 2
     let keyid = keyid::extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
-    //let key_id = keyutils::calc_keyid_v2(&pkey.rsa()?);
+    //let pkey = keyutils::load_private_key(Path::new(PRIVATE_KEY_PATH)).expect("unexpected Error, Cannot load private key");
+    //let key_id = keyutils::calc_keyid_v2(&pkey.rsa()?); - Method 1
 
     // Match on the result
     match files {
