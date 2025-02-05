@@ -1,7 +1,7 @@
 #[allow(unused_imports)]
 use openssl::hash::MessageDigest;
 use openssl::pkey::PKey;
-use openssl::sign::Signer;
+use openssl::sign::{Signer,Verifier};
 use std::fs::{self};
 use std::io::{self,Error,ErrorKind};
 #[cfg(not(test))]
@@ -83,7 +83,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
     match find_xattr::llistxattr(file, xattr_name) {
         Ok(Some(_xattr)) => { 
             //println!("Skip existing Xattr {}: {:?}", xattr_name, xattr); //(full data)
-            //println!("Skip existing Xattr: {}", xattr_name);  //TODO: DEBUG
+            //println!("Skip existing Xattr: {}", xattr_name);  //TODO: DebugPrint
             return Err(Error::new(ErrorKind::AlreadyExists, "user.ima xattr Already Exists, Skipped!"));
         },
         Ok(None) => {}, //println!("xattr {} not found", xattr_name), //FIXME: Excessive printout
@@ -91,21 +91,27 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
     }
 */
     // security.ima - Search existing // TODO: Verify ?
+    let md = MessageDigest::from_nid(hash_algo.nid()) //HashAlgo to MessageDigest
+            .ok_or(Error::new(ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
+
     let xattr_name = "security.ima";
     match find_xattr::llistxattr(file, xattr_name) {
-        Ok(Some(_xattr)) => { 
-            return Err(Error::new(ErrorKind::AlreadyExists, "security.ima xattr Already Exists, Skipped!"));
+        Ok(Some(xattr)) => { //TODO: Don't always skip, or add force ?
+            let freadfile = fs::read(file)?;
+            match verify_signature(md, &freadfile, &xattr, PRIVATE_KEY_PATH) {
+                Ok(success) => { if success { println!("Success, Hash Matches! Write Skipped!"); return Ok(()); } else { println!("Verification Mismatch @ {}", file); }},
+                Err(err) => eprintln!("Error verifying sig {}", err),
+            }
+            //return Err(Error::new(ErrorKind::AlreadyExists, "security.ima xattr Already Exists, Skipped!"));
         },
         Ok(None) => {},
         Err(err) => eprintln!("Error reading xattrs: {}", err),
     }
 
     // IMA Sign the original file (openssl SHA512 + openssl RSA)
-    let md = MessageDigest::from_nid(hash_algo.nid()) //HashAlgo to MessageDigest
-            .ok_or(Error::new(ErrorKind::InvalidInput, "Invalid hash algorithm"))?;
     let freadfile = fs::read(file)?;
     let ima_sig = sign_bytes(md, &freadfile, key_path)?;
-    println!("signature: {}", format_hex(&ima_sig));
+    //println!("signature: {}", format_hex(&ima_sig));  //TODO: DebugPrint
     if ima_sig.len() != MAX_SIGNATURE_SIZE.into() {
         eprintln!{"signature len differs from expected MAX_SIGNATURE_SIZE {}", MAX_SIGNATURE_SIZE};
     }
@@ -127,7 +133,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
         Err(e) // Collect xattr error
     } else {
         // Print final xattr
-        println!("Written ({:?}bytes): {}", signature.len(), format_hex(&signature));
+        println!("Wrote sig ({:?}bytes): {}", signature.len(), format_hex(&signature));
         Ok(()) // No error
     }
 }
@@ -141,10 +147,34 @@ fn sign_bytes(md: MessageDigest, data: &[u8], key_path: &str) -> io::Result<Vec<
     Ok(signer.sign_to_vec()?)
 }
 
+fn verify_signature(md: MessageDigest, filedata: &[u8], xattr: &str, private_key_path: &str) -> io::Result<bool> {
+    // Read private key from PEM file
+    let private_key = fs::read(private_key_path)?;
+    let rsa = PKey::private_key_from_pem(&private_key)
+        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to load RSA key"))?;
+    let pkey = PKey::from_rsa(rsa.rsa()?)
+        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to create PKey"))?;
+
+    // Read signature from extended attribute
+    let signature = hex::decode(xattr)
+        .map_err(|_| Error::new(ErrorKind::Other, "Signature hex decode error"))?;
+//    println!("Vsignature: {:?}", signature);//DebugPrint
+
+    // Hash the file data
+    let mut verifier = Verifier::new(md, &pkey)
+        .map_err(|_| Error::new(ErrorKind::Other, "Failed to create verifier"))?;
+    verifier.update(filedata)
+        .map_err(|_| Error::new(ErrorKind::Other, "Failed to hash data"))?;
+
+    // Verify signature
+    verifier.verify(&signature[9..])
+        .map_err(|_| Error::new(ErrorKind::InvalidData, "Signature verification failed"))
+}
+
 fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &str, keyid: &Vec<u8>) -> io::Result<()> {
     match sign_ima(targetfile, hash_algo, private_key_path, &keyid) {
-        Ok(_) => { println!("Successfully signed IMA"); return Ok(()); }
-        Err(e) => { eprintln!("Error signing IMA: {:?} - {:?}", e.kind(), e.to_string()); return Err(e); }
+        Ok(_) => { println!("imafix2: Successfully signed IMA"); return Ok(()); }
+        Err(e) => { eprintln!("imafix2: Error signing IMA: {:?} - {:?}", e.kind(), e.to_string()); return Err(e); }
     }
 }
 
@@ -204,7 +234,7 @@ fn main() -> Result<(), Error> {
         },
         Err(e) => {
             // Handle error in case pathwalk fails
-            eprintln!("Total Error during pathwalk: {}", e);
+            eprintln!("BUG! imafix2(): Total Error during pathwalk: {}", e);
             Err(e) // Return the error to propagate it
         }
     }
