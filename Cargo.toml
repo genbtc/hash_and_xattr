@@ -9,8 +9,8 @@ xattr = "*"      # interacting with extended attributes
 openssl = "*"    # private/public crypto key signing
 hex = "*"        # for hex decode/encode
 atty = "*"       # Add atty to check if stdin is connected (pathwalk)
-rayon = "*"      # parallel processing
 walkdir = "*"    # Directory traversal
+rayon = "1.5"    # parallel processing
 yasna = "0.5"    # for ASN.1 Encoding
 
 #Available Test Targets

@@ -30,7 +30,7 @@ fn set_ima_xattr_internal(file_path: &Path, data: &[u8]) -> Result<()> {
 
     // Try to set the extended attribute - security. - (first)
     if let Err(e) = set_xattr_str_vec(file_name, xattr_name, data) {
-        eprintln!("Failed to write {} secure xattr wet for {:?}: {}",
+        eprintln!("Failed to write {} secure xattr set for {:?}: {}",
                   xattr_name, file_path, e);
         // If setting "security." fails, try to set the fallback "user."
         let fallback_xattr_name = "user.ima";   //Does not need permissions

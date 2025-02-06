@@ -185,7 +185,7 @@ fn verify_signature(md: MessageDigest, filedata: &[u8], xattr: &str, private_key
 
 fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &str, keyid: &Vec<u8>) -> io::Result<()> {
     match sign_ima(targetfile, hash_algo, private_key_path, &keyid) {
-        Ok(_) => { println!("SIGNATURE: {}",targetfile); return Ok(()); }
+        Ok(_) => { println!("SIGNATURE(OK): \"{}\"",targetfile); return Ok(()); }
         Err(e) => { eprintln!("imafix2: Error signing IMA: {:?} - {:?}", e.kind(), e.to_string()); return Err(e); }
     }
 }
@@ -227,6 +227,7 @@ fn test_a() -> io::Result<()> {
 //TODO: Remove my key.
 #[cfg(not(test))]
 fn main() -> Result<(), Error> {
+    use rayon::prelude::*;  //parallel processing
     // Call pathwalk to get the files , handle the result
     let files: Result<Vec<PathBuf>, Error> = pathwalk::pathwalk();
     // Extract keyID from pub certificate. (once per program) - Method 2
@@ -238,14 +239,16 @@ fn main() -> Result<(), Error> {
     match files {
         Ok(files) => {
             // Iterate over each file and call function
-            for file in files {
+            //PARALLEL PROCESSING WITH RAYON
+            files.par_iter().for_each(|file| {
+            //for file in files {
                 let filename = file.to_str().expect("unexpected Error, in filename to str");
                 println!(/*"Filename: */"{:?}", filename);
                 let _ = run_sign_ima(
                     filename,
                     HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"),
                     PRIVATE_KEY_PATH, &keyid);
-            }
+            });
             Ok(()) // Return Ok(()) when everything is processed successfully
         },
         Err(e) => {
