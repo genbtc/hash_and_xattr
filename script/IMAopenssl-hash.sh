@@ -22,8 +22,8 @@ xxd -p -c 64 "${hash_step0}"
 
 # Step 2: RSA sign the hash with your private key
 echo "Signing the hash with RSA private key: $PRIVATE_KEY"
-openssl pkeyutl -sign -digest sha512 -inkey "$PRIVATE_KEY" -rawin -in "${INPUT_FILE}" -out "${sig_step2_raw}"
-openssl pkeyutl -sign                -inkey "$PRIVATE_KEY"        -in "${hash_step0}" -out "${sig_step2}"
+openssl pkeyutl -sign -digest sha512 -inkey "$PRIVATE_KEY" -rawin -in "${INPUT_FILE}" -out "${sig_step2_raw}" #3af28d
+openssl pkeyutl -sign                -inkey "$PRIVATE_KEY"        -in "${hash_step0}" -out "${sig_step2}"     #12d507
 
 # Step 3: Print the signature (in hex format)
 echo "Signature (hex):"
