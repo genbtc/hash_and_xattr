@@ -1,3 +1,5 @@
 target/
 testA*
 tests/[0-9]*.txt
+*.pem
+xattr_test_file
