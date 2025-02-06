@@ -1,8 +1,11 @@
 # hash and xattr, v0.3.5
 # IMA Signs files, compatible with IMA.
 Open a directory, scan for a list of files, hash them with SHA512, 
+
 Load a private key to sign the signature and save it alongside the file,
+
 to the linux filesystem xattrs, as security.ima - or as fallback - user.ima.
+
 Also supports taking list of files by -f files.txt, or piped to stdin, or dir ./
 
 ## New IMA Rust Program - Feb 2025
@@ -22,11 +25,16 @@ hash_file.rs	-	SHA-512 hash wrapper function
 format_hex.rs	-	tiny Utility function to convert u8 bytes to ascii hex string
 ```
 ## Tests (dev):
+tests/
 ```
 generate_rsa_keypair.rs	-	Generate random public/private RSA keypair
 verify_sig_hash_pub.rs	-	Verify known sig based on known key known text
+check_xattr_privileges.rs - check permissions user or security,trusted
+keyid.rs                -   Extract KeyID
+keyid-simple.rs         -   Calculate KeyID
 ```
-## Rust Dependencies (Cargo.toml):
+## Rust Dependencies:
+Cargo.toml
 ```
 [dependencies]
 xattr = "*"      # interacting with extended attributes

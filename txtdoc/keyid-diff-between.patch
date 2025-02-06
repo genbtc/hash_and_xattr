@@ -1,0 +1,19 @@
+--- tests/keyid-simple.rs	2025-02-04 16:55:56.415408818 -0500
++++ tests/keyid-skip24header.rs	2025-02-04 02:15:36.206535548 -0500
+@@ -15,14 +15,12 @@
+     
+     // Get the DER-encoded public key in PKCS#1 format.
+     // This returns only the modulus and exponent (without any OID structure).
+-//    let key_der = rsa.public_key_to_der()?;   //has 24 byte OID header
+-    let key_der = rsa.public_key_to_der_pkcs1()?;
++    let key_der = rsa.public_key_to_der()?;
+     println!("DER Public Key (PKCS#1) len({}): {}", key_der.len(), hex::encode(&key_der));
+ 
+     // Compute the SHA-1 hash of the DER bytes.
+     let mut hasher = Sha1::new();
+-    hasher.update(&key_der);
+-//    hasher.update(&key_der[24..]);    //old way
++    hasher.update(&key_der[24..]);
+     let hash = hasher.finish();
+     println!("SHA-1 Hash: {}", hex::encode(&hash));
+ 
