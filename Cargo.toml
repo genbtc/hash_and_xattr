@@ -1,6 +1,6 @@
 [package]
 name = "hash_and_xattr"
-version = "0.3.4"
+version = "0.3.5"
 edition = "2021"
 default-run = "hash_and_xattr"  #if many --bin subtargets, run (main.rs)
 
