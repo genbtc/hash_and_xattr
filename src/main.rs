@@ -1,8 +1,8 @@
-// hash_and_xattr v0.3.3 - by genr8eofl @2025 - LICENSE: AGPL3
+// hash_and_xattr v0.3.4 - by genr8eofl @2025 - LICENSE: AGPL3
 // Signs files with an IMA signature and verifies them
 #[allow(unused_imports)]
 use openssl::hash::MessageDigest;
-//use openssl::pkey::PKey;
+use openssl::pkey::PKey;
 use openssl::sign::{Signer,Verifier};
 use std::fs::{self};
 use std::io::{self,Error,ErrorKind};
@@ -64,7 +64,7 @@ fn calc_hash(file: &str, hash_algo: &HashAlgorithm) -> io::Result<Vec<u8>> {
 //^Turns out none of this is needed for this sign function itself
 //^but we need hashing later for the previous algo and also verifying. (TODO)
 
-fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8>) -> io::Result<()> {
+fn sign_ima(pkey: &PKey<openssl::pkey::Private>, file: &str, hash_algo: HashAlgorithm, keyid: &Vec<u8>) -> io::Result<()> {
     let hash_type = hash_algo.ima_xattr_type();
     //let calc_hash = calc_hash(file, &hash_algo); //TODO: use hash later
 
@@ -101,7 +101,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
     match find_xattr::llistxattr(file, xattr_name) {
         Ok(Some(xattr)) => { //TODO: Don't always skip, or add force ?
             let freadfile = fs::read(file)?;
-            match verify_signature(md, &freadfile, &xattr, key_path) {
+            match verify_signature(pkey, md, &freadfile, &xattr) {
                 Ok(success) => {
                   if success { 
                     /*println!("Success, Hash Matches! Write Skipped!");*/ return Ok(());
@@ -118,7 +118,7 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
 
     // IMA Sign the original file (openssl SHA512 + openssl RSA)
     let freadfile = fs::read(file)?;
-    let ima_sig = sign_bytes(md, &freadfile, key_path)?;
+    let ima_sig = sign_bytes(pkey, md, &freadfile)?;
     //println!("signature: {}", format_hex(&ima_sig));  //TODO: DebugPrint
     if ima_sig.len() != MAX_SIGNATURE_SIZE.into() {
         eprintln!{"signature length {} differs from expected MAX_SIGNATURE_SIZE {}",
@@ -147,10 +147,8 @@ fn sign_ima(file: &str, hash_algo: HashAlgorithm, key_path: &str, keyid: &Vec<u8
     }
 }
 
-fn sign_bytes(md: MessageDigest, data: &[u8], key_path: &str) -> io::Result<Vec<u8>> {
-//    let private_key = fs::read(key_path)?;
-//    let pkey = PKey::private_key_from_pem(&private_key)?;
-    let pkey = keyutils::load_private_key(Path::new(key_path)).expect("unexpected Error, Cannot load private key");
+fn sign_bytes(pkey: &PKey<openssl::pkey::Private>, md: MessageDigest, data: &[u8]) -> io::Result<Vec<u8>> {
+//    let pkey = keyutils::load_private_key(Path::new(key_path)).expect("unexpected Error, Cannot load private key");
 
     //let key_id = keyutils::calc_keyid_v2(&pkey.rsa()?);
     let mut signer = Signer::new(md, &pkey)?;
@@ -159,13 +157,8 @@ fn sign_bytes(md: MessageDigest, data: &[u8], key_path: &str) -> io::Result<Vec<
     Ok(signer.sign_to_vec().expect("unexpected Error, Signer output of signature failed"))
 }
 //TODO:DONE:load_private/public_key @ keyutils.rs
-fn verify_signature(md: MessageDigest, filedata: &[u8], xattr: &str, private_key_path: &str) -> io::Result<bool> {
-    // Read private key from PEM file
-//    let private_key = fs::read(private_key_path)
-//        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to read Private key"))?;
-//    let pkey = PKey::private_key_from_pem(&private_key)
-//        .map_err(|_| Error::new(ErrorKind::InvalidData, "Failed to init PKey<Private> key"))?;
-    let pkey = keyutils::load_private_key(Path::new(private_key_path)).expect("unexpected Error, Cannot load private key");
+fn verify_signature(pkey: &PKey<openssl::pkey::Private>, md: MessageDigest, filedata: &[u8], xattr: &str) -> io::Result<bool> {
+//    let pkey = keyutils::load_private_key(Path::new(key_path)).expect("unexpected Error, Cannot load private key");
 
     // Read signature from extended attribute
     let signature = hex::decode(xattr)
@@ -183,8 +176,8 @@ fn verify_signature(md: MessageDigest, filedata: &[u8], xattr: &str, private_key
         .map_err(|_| Error::new(ErrorKind::InvalidData, "Signature verification failed"))
 }
 
-fn run_sign_ima(targetfile: &str, hash_algo: HashAlgorithm, private_key_path: &str, keyid: &Vec<u8>) -> io::Result<()> {
-    match sign_ima(targetfile, hash_algo, private_key_path, &keyid) {
+fn run_sign_ima(pkey: &PKey<openssl::pkey::Private>, targetfile: &str, hash_algo: HashAlgorithm, keyid: &Vec<u8>) -> io::Result<()> {
+    match sign_ima(pkey, targetfile, hash_algo, &keyid) {
         Ok(_) => { println!("SIGNATURE(OK): \"{}\"",targetfile); return Ok(()); }
         Err(e) => { eprintln!("imafix2: Error signing IMA: {:?} - {:?}", e.kind(), e.to_string()); return Err(e); }
     }
@@ -219,7 +212,7 @@ fn test_a() -> io::Result<()> {
 //    let keyid: Vec<u8> = vec![0xAB, 0x6F, 0x20, 0x50]; //hardcoded - Option 4
     // IMA Sign the file, expect a Valid 3af28 Signature out.
     //TODO: Verify
-    let _ = run_sign_ima(test_filename, HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH, &keyid);
+    let _ = run_sign_ima(&pkey, test_filename, HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"), TEST_PRIVATE_KEY_PATH, &keyid);
     //not ready to pass itself as return since it errors out on repeated user.ima writes to the same file.
     Ok(())
 }
@@ -232,7 +225,7 @@ fn main() -> Result<(), Error> {
     let files: Result<Vec<PathBuf>, Error> = pathwalk::pathwalk();
     // Extract keyID from pub certificate. (once per program) - Method 2
     let keyid = keyid::extract_keyid_from_x509_pem(PUBLIC_CERT_PATH)?;
-    //let pkey = keyutils::load_private_key(Path::new(PRIVATE_KEY_PATH)).expect("unexpected Error, Cannot load private key");
+    let pkey = keyutils::load_private_key(Path::new(PRIVATE_KEY_PATH)).expect("unexpected Error, Cannot load private key");
     //let key_id = keyutils::calc_keyid_v2(&pkey.rsa()?); - Method 1
 
     // Match on the result
@@ -245,9 +238,10 @@ fn main() -> Result<(), Error> {
                 let filename = file.to_str().expect("unexpected Error, in filename to str");
                 println!(/*"Filename: */"{:?}", filename);
                 let _ = run_sign_ima(
+                    &pkey,
                     filename,
                     HashAlgorithm::from_str(DEFAULT_HASH_ALGO).expect("unexpected Error, Invalid hash algorithm"),
-                    PRIVATE_KEY_PATH, &keyid);
+                    &keyid);
             });
             Ok(()) // Return Ok(()) when everything is processed successfully
         },
