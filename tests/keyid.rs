@@ -5,8 +5,9 @@ use std::io::Read;
 use hash_and_xattr::format_hex;
 use yasna;
 //YASNA implementation:
+
 #[test]
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn keyid_calc_yasna() -> Result<(), Box<dyn std::error::Error>> {
     // Read the RSA private key from PEM file
     let mut file = File::open("test_private_key.pem").expect("Failed to open PEM file");
     let mut pem_data = Vec::new();

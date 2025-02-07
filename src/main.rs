@@ -7,8 +7,8 @@ use openssl::sign::{Signer,Verifier};
 use std::fs::{self};
 use std::io::{self,Error,ErrorKind};
 #[cfg(not(test))]
-use std::path::PathBuf;
-use std::path::Path;
+use std::path::{Path, PathBuf};
+//use std::path::Path;
 //Local mods (lib.rs)
 use hash_and_xattr::IMAhashAlgorithm::*;
 use hash_and_xattr::format_hex::format_hex;
@@ -33,8 +33,7 @@ const _TEST_PUBLIC_KEY_PATH: &'static str ="test_public_key.pem";
 #[cfg(not(test))]
 const PRIVATE_KEY_PATH: &'static str ="/home/genr8eofl/signing_key.priv"; // TODO: Replace with the default key file path
 #[cfg(not(test))]
-#[allow(dead_code)]
-const PUBLIC_CERT_PATH: &'static str ="/home/genr8eofl/signing_key.crt"; // TODO: ^^
+const _PUBLIC_CERT_PATH: &'static str ="/home/genr8eofl/signing_key.crt"; // TODO: ^^
 
 fn sign_ima(pkey: &PKey<openssl::pkey::Private>, file: &str, hash_algo: HashAlgorithm, keyid: &[u8]) -> io::Result<()> {
     let hash_type = hash_algo.ima_xattr_type();
@@ -140,7 +139,7 @@ fn test_a() -> io::Result<()> {
     use std::fs::File;
     use std::path::Path;
     //AutoGenerate RSA Public/Private Test Key in harness (depends on key existing)
-    //generate_rsa_keys(); (Crate can't be found during test mode over here)
+    //generate_rsa_keypair(); (Crate can't be found during test mode over here)
 
     // Create a new empty test file for writing
     let test_filename = "testA.txt";

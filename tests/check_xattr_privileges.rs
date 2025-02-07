@@ -19,6 +19,7 @@ fn check_xattr_privileges(file_path: &PathBuf, namespace: &str) -> bool {
     }
 }
 
+#[test]
 pub fn print_xattr_privileges() -> io::Result<()> {
     // Create the file in the current directory
     let file_name = "xattr_test_file";
@@ -41,7 +42,8 @@ pub fn print_xattr_privileges() -> io::Result<()> {
     Ok(())
 }
 
-#[test]
+/*
 fn output() -> io::Result<()> {
     print_xattr_privileges()
 }
+*/

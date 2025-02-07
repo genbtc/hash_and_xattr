@@ -4,7 +4,7 @@ use std::fs::File;
 use std::io::Read;
 
 #[test]
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn keyid_calc_simple() -> Result<(), Box<dyn std::error::Error>> {
     // Read the RSA private key from the PEM file.
     let mut file = File::open("test_private_key.pem")?;
     let mut pem_data = Vec::new();

@@ -3,25 +3,29 @@ use std::fs::File;
 use std::io::Write;
 use std::error::Error;
 
-pub fn generate_rsa_keys() -> Result<(),Box<dyn Error>> {
+#[test]
+pub fn generate_rsa_keypair() -> Result<(),Box<dyn Error>> {
     // Generate an RSA keypair (4096 bits)
     let rsa = Rsa::generate(4096)?;
 
     // Private key
     let private_key_pem = rsa.private_key_to_pem()?;
-    let mut private_key_file = File::create("./test_private_key.pem")?;
+    let priv_file = "test_private_key.pem";
+    let mut private_key_file = File::create(priv_file)?;
     private_key_file.write_all(&private_key_pem)?;
 
     // Public key
     let public_key_pem = rsa.public_key_to_pem()?;
-    let mut public_key_file = File::create("./test_public_key.pem")?;
+    let pub_file = "test_public_key.pem";
+    let mut public_key_file = File::create(pub_file)?;
     public_key_file.write_all(&public_key_pem)?;
 
-    println!("RSA keypair generated and saved as PEM files: test_public_key.pem, test_private_key.pem");
+    println!("RSA keypair generated and saved as PEM files: {}, {}", pub_file, priv_file);
     Ok(())
 }
 
-#[test]
+/*
 fn main()  {
-    generate_rsa_keys().expect("error generating RSA Keys!")
+    generate_rsa_keypair().expect("error generating RSA Keys!")
 }
+*/
