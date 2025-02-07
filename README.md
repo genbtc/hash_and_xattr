@@ -14,11 +14,11 @@ Also supports taking list of files by -f files.txt, or piped to stdin, or dir ./
 src/
 ```
 main.rs		-	main() IMA sign files (like imafix2)
-lib.rs		-   Lib.Rs Crate Module declarations (these files)
+lib.rs		-	Lib.Rs Crate Module declarations (these files)
 pathwalk.rs	-	Directory Traversal, STDIN support, input -f Filelist.txt of files
 find_xattr.rs	-	llistxattr wrapper to list/get xattrs
-set_ima_xattr.rs - 	logic to set IMA xattr security.ima/user.ima
-IMAhashAlgorithm.rs - equivalent of imaevm.h from ima-evm-utils, struct defs
+set_ima_xattr.rs -	logic to set IMA xattr security.ima/user.ima
+IMAhashAlgorithm.rs -   equivalent of imaevm.h from ima-evm-utils, struct defs
 keyid.rs	-	Extract Subject Key ID from X509 Cert (for IMA header)
 keyutils.rs	-	Calculate Subject Key ID from RSA Private Key (same as above but diff)
 hash_file.rs	-	SHA-512 hash wrapper function
@@ -27,8 +27,8 @@ format_hex.rs	-	tiny Utility function to convert u8 bytes to ascii hex string
 ## Tests (dev):
 tests/
 ```
-generate_rsa_keypair.rs	-	Generate random public/private RSA keypair
-verify_sig_hash_pub.rs	-	Verify known sig based on known key known text
+generate_rsa_keypair.rs	-   Generate random public/private RSA keypair
+verify_sig_hash_pub.rs	-   Verify known sig based on known key known text
 check_xattr_privileges.rs - check permissions user or security,trusted
 keyid.rs                -   Extract KeyID
 keyid-simple.rs         -   Calculate KeyID

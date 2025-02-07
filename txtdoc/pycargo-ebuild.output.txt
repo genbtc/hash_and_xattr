@@ -1,0 +1,97 @@
+genr8too /home/genr8eofl/src/hash_and_xattr # pycargoebuild ./
+
+02/07 11:10:21 [NOTICE] Downloading 28 item(s)
+02/07 11:10:22 [NOTICE] CUID#11 - Redirecting to https://static.crates.io/crates/rayon-core/rayon-core-1.12.1.crate
+02/07 11:10:22 [NOTICE] CUID#7 - Redirecting to https://static.crates.io/crates/bitflags/bitflags-2.8.0.crate
+02/07 11:10:22 [NOTICE] CUID#8 - Redirecting to https://static.crates.io/crates/quote/quote-1.0.38.crate
+02/07 11:10:22 [NOTICE] CUID#9 - Redirecting to https://static.crates.io/crates/foreign-types/foreign-types-0.3.2.crate
+02/07 11:10:22 [NOTICE] CUID#10 - Redirecting to https://static.crates.io/crates/openssl-sys/openssl-sys-0.9.104.crate
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/foreign-types-0.3.2.crate
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/rayon-core-1.12.1.crate
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/quote-1.0.38.crate
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/bitflags-2.8.0.crate
+02/07 11:10:22 [NOTICE] CUID#12 - Redirecting to https://static.crates.io/crates/hermit-abi/hermit-abi-0.1.19.crate
+02/07 11:10:22 [NOTICE] CUID#13 - Redirecting to https://static.crates.io/crates/rustix/rustix-0.38.44.crate
+02/07 11:10:22 [NOTICE] CUID#14 - Redirecting to https://static.crates.io/crates/winapi-util/winapi-util-0.1.9.crate
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/hermit-abi-0.1.19.crate
+02/07 11:10:22 [NOTICE] CUID#15 - Redirecting to https://static.crates.io/crates/vcpkg/vcpkg-0.2.15.crate
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/openssl-sys-0.9.104.crate
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/winapi-util-0.1.9.crate
+02/07 11:10:22 [NOTICE] CUID#16 - Redirecting to https://static.crates.io/crates/cc/cc-1.2.11.crate
+02/07 11:10:22 [NOTICE] CUID#17 - Redirecting to https://static.crates.io/crates/unicode-ident/unicode-ident-1.0.16.crate
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/rustix-0.38.44.crate
+02/07 11:10:22 [NOTICE] CUID#18 - Redirecting to https://static.crates.io/crates/foreign-types-shared/foreign-types-shared-0.1.1.crate
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/vcpkg-0.2.15.crate
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/unicode-ident-1.0.16.crate
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/cc-1.2.11.crate
+02/07 11:10:22 [NOTICE] CUID#19 - Redirecting to https://static.crates.io/crates/xattr/xattr-1.4.0.crate
+
+[DL:4.7MiB][#1a4162 0B/5.5KiB(0%)][#7b3829 0B/0B][#624bf6 0B/0B][#301403 0B/0B][#f7f3cc 0B/0B]                                                                                                           
+
+02/07 11:10:22 [NOTICE] Download complete: /var/cache/distfiles/foreign-types-shared-0.1.1.crate
+02/07 11:10:22 [NOTICE] CUID#21 - Redirecting to https://static.crates.io/crates/pkg-config/pkg-config-0.3.31.crate
+02/07 11:10:22 [NOTICE] CUID#20 - Redirecting to https://static.crates.io/crates/openssl/openssl-0.10.69.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/xattr-1.4.0.crate
+02/07 11:10:23 [NOTICE] CUID#22 - Redirecting to https://static.crates.io/crates/hex/hex-0.4.3.crate
+02/07 11:10:23 [NOTICE] CUID#23 - Redirecting to https://static.crates.io/crates/walkdir/walkdir-2.5.0.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/pkg-config-0.3.31.crate
+02/07 11:10:23 [NOTICE] CUID#24 - Redirecting to https://static.crates.io/crates/proc-macro2/proc-macro2-1.0.93.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/openssl-0.10.69.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/hex-0.4.3.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/walkdir-2.5.0.crate
+02/07 11:10:23 [NOTICE] CUID#25 - Redirecting to https://static.crates.io/crates/crossbeam-utils/crossbeam-utils-0.8.21.crate
+02/07 11:10:23 [NOTICE] CUID#27 - Redirecting to https://static.crates.io/crates/same-file/same-file-1.0.6.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/proc-macro2-1.0.93.crate
+02/07 11:10:23 [NOTICE] CUID#26 - Redirecting to https://static.crates.io/crates/crossbeam-deque/crossbeam-deque-0.8.6.crate
+02/07 11:10:23 [NOTICE] CUID#28 - Redirecting to https://static.crates.io/crates/syn/syn-2.0.96.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/crossbeam-utils-0.8.21.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/same-file-1.0.6.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/crossbeam-deque-0.8.6.crate
+02/07 11:10:23 [NOTICE] CUID#29 - Redirecting to https://static.crates.io/crates/yasna/yasna-0.5.2.crate
+02/07 11:10:23 [NOTICE] CUID#30 - Redirecting to https://static.crates.io/crates/openssl-macros/openssl-macros-0.1.1.crate
+02/07 11:10:23 [NOTICE] CUID#32 - Redirecting to https://static.crates.io/crates/atty/atty-0.2.14.crate
+02/07 11:10:23 [NOTICE] CUID#31 - Redirecting to https://static.crates.io/crates/libc/libc-0.2.169.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/yasna-0.5.2.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/syn-2.0.96.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/openssl-macros-0.1.1.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/atty-0.2.14.crate
+02/07 11:10:23 [NOTICE] CUID#34 - Redirecting to https://static.crates.io/crates/linux-raw-sys/linux-raw-sys-0.4.15.crate
+02/07 11:10:23 [NOTICE] CUID#33 - Redirecting to https://static.crates.io/crates/rayon/rayon-1.10.0.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/libc-0.2.169.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/rayon-1.10.0.crate
+02/07 11:10:23 [NOTICE] Download complete: /var/cache/distfiles/linux-raw-sys-0.4.15.crate
+
+Download Results:
+gid   |stat|avg speed  |path/URI
+======+====+===========+=======================================================
+16e801|OK  |   1.0MiB/s|/var/cache/distfiles/foreign-types-0.3.2.crate
+e7bba6|OK  |   2.8MiB/s|/var/cache/distfiles/rayon-core-1.12.1.crate
+4c0d9d|OK  |   4.2MiB/s|/var/cache/distfiles/quote-1.0.38.crate
+078848|OK  |   1.6MiB/s|/var/cache/distfiles/bitflags-2.8.0.crate
+374fd6|OK  |   4.7MiB/s|/var/cache/distfiles/hermit-abi-0.1.19.crate
+5dfd23|OK  |   2.2MiB/s|/var/cache/distfiles/openssl-sys-0.9.104.crate
+0df7a4|OK  |   2.9MiB/s|/var/cache/distfiles/winapi-util-0.1.9.crate
+98124c|OK  |   8.8MiB/s|/var/cache/distfiles/rustix-0.38.44.crate
+09371d|OK  |   4.9MiB/s|/var/cache/distfiles/vcpkg-0.2.15.crate
+eada10|OK  |    11MiB/s|/var/cache/distfiles/unicode-ident-1.0.16.crate
+cd2afd|OK  |   2.4MiB/s|/var/cache/distfiles/cc-1.2.11.crate
+1a4162|OK  |   1.8MiB/s|/var/cache/distfiles/foreign-types-shared-0.1.1.crate
+7b3829|OK  |   4.1MiB/s|/var/cache/distfiles/xattr-1.4.0.crate
+301403|OK  |   9.9MiB/s|/var/cache/distfiles/pkg-config-0.3.31.crate
+624bf6|OK  |   8.0MiB/s|/var/cache/distfiles/openssl-0.10.69.crate
+f7f3cc|OK  |   6.3MiB/s|/var/cache/distfiles/hex-0.4.3.crate
+c59a5f|OK  |   3.8MiB/s|/var/cache/distfiles/walkdir-2.5.0.crate
+63dd3e|OK  |    16MiB/s|/var/cache/distfiles/proc-macro2-1.0.93.crate
+ad18b3|OK  |    10MiB/s|/var/cache/distfiles/crossbeam-utils-0.8.21.crate
+2dd1cb|OK  |   3.2MiB/s|/var/cache/distfiles/same-file-1.0.6.crate
+555dd9|OK  |   5.3MiB/s|/var/cache/distfiles/crossbeam-deque-0.8.6.crate
+9f8805|OK  |    16MiB/s|/var/cache/distfiles/yasna-0.5.2.crate
+04422c|OK  |   5.7MiB/s|/var/cache/distfiles/syn-2.0.96.crate
+a5ef06|OK  |   2.6MiB/s|/var/cache/distfiles/openssl-macros-0.1.1.crate
+0b4bdf|OK  |   2.6MiB/s|/var/cache/distfiles/atty-0.2.14.crate
+0f9fb6|OK  |    12MiB/s|/var/cache/distfiles/libc-0.2.169.crate
+654c55|OK  |    34MiB/s|/var/cache/distfiles/rayon-1.10.0.crate
+4fd4f3|OK  |    35MiB/s|/var/cache/distfiles/linux-raw-sys-0.4.15.crate
+
+Status Legend:
+(OK):download completed. hash_and_xattr-0.3.5.ebuild
