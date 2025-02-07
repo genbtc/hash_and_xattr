@@ -6,7 +6,7 @@ use openssl::sha::Sha512;
 // Shared helper function to hash the file
 fn hash_file_internal<P: AsRef<Path>>(path: P) -> Result<Vec<u8>> {
     let mut file = File::open(path)?;
-    let mut hasher = Sha512::new();
+    let mut hasher = Sha512::new(); // Only SHA512
     let mut buffer = Vec::new();
 
     // Read the file in chunks to avoid loading it all into memory at once

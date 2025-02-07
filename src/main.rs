@@ -75,13 +75,14 @@ fn sign_ima(pkey: &PKey<openssl::pkey::Private>, file: &str, hash_algo: HashAlgo
     // IMA Sign the original file (openssl SHA512 + openssl RSA)
     let freadfile = fs::read(file)?;
     let ima_sig = sign_bytes(pkey, md, &freadfile)?;
-    //println!("signature: {}", format_hex(&ima_sig));  //DebugPrint
-    if ima_sig.len() != MAX_SIGNATURE_SIZE.into() {
-        eprintln!{"signature length {} differs from expected MAX_SIGNATURE_SIZE {}",
-                   ima_sig.len(), MAX_SIGNATURE_SIZE};
+    let ima_sig_len: [u8; 2] = (ima_sig.len() as u16).to_be_bytes();
+    //println!("signature({}b): {}", ima_sig_len, format_hex(&ima_sig));  //DebugPrint
+    if ima_sig_len != MAX_SIGNATURE_SIZE.to_be_bytes() {
+        eprintln!{"signature length {:?} differs from expected MAX_SIGNATURE_SIZE {}",
+                   ima_sig_len, MAX_SIGNATURE_SIZE};
     }
     // Append sig length to header
-    ima_sign_header.extend_from_slice(&ima_sig.len().to_be_bytes());  //(size 0x0200)
+    ima_sign_header.extend_from_slice(&ima_sig_len);  //(size 0x0200)
 
     // Finalize Signature
     let mut signature: Vec<u8> = vec![EVM_IMA_XATTR_DIGSIG];    //0x03
