@@ -1,0 +1,43 @@
+hash_and_xattr v0.3.5 (/home/genr8eofl/src/hash_and_xattr)
+├── atty v0.2.14
+│   └── libc v0.2.169
+├── hex v0.4.3
+├── openssl v0.10.69
+│   ├── bitflags v2.8.0
+│   ├── cfg-if v1.0.0
+│   ├── foreign-types v0.3.2
+│   │   └── foreign-types-shared v0.1.1
+│   ├── libc v0.2.169
+│   ├── once_cell v1.20.2
+│   ├── openssl-macros v0.1.1 (proc-macro)
+│   │   ├── proc-macro2 v1.0.93
+│   │   │   └── unicode-ident v1.0.16
+│   │   ├── quote v1.0.38
+│   │   │   └── proc-macro2 v1.0.93 (*)
+│   │   └── syn v2.0.96
+│   │       ├── proc-macro2 v1.0.93 (*)
+│   │       ├── quote v1.0.38 (*)
+│   │       └── unicode-ident v1.0.16
+│   └── openssl-sys v0.9.104
+│       └── libc v0.2.169
+│       [build-dependencies]
+│       ├── cc v1.2.11
+│       │   └── shlex v1.3.0
+│       ├── pkg-config v0.3.31
+│       └── vcpkg v0.2.15
+├── rayon v1.10.0
+│   ├── either v1.13.0
+│   └── rayon-core v1.12.1
+│       ├── crossbeam-deque v0.8.6
+│       │   ├── crossbeam-epoch v0.9.18
+│       │   │   └── crossbeam-utils v0.8.21
+│       │   └── crossbeam-utils v0.8.21
+│       └── crossbeam-utils v0.8.21
+├── walkdir v2.5.0
+│   └── same-file v1.0.6
+├── xattr v1.4.0
+│   ├── linux-raw-sys v0.4.15
+│   └── rustix v0.38.44
+│       ├── bitflags v2.8.0
+│       └── linux-raw-sys v0.4.15
+└── yasna v0.5.2
