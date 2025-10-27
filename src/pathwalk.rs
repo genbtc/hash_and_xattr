@@ -1,6 +1,6 @@
-//hash_and_xattr - pathwalkr.rs v0.2.6 - Feb 1, 2025
-//v0.2.7. Writes hash directly to security.ima
-//v0.3.3  Filters directories out
+//hash_and_xattr - pathwalkr.rs v0.3.5
+//v0.2.6 - Feb 1, 2025
+//v0.3.3 - Filters directories out
 use std::{env, fs::File, io::{BufRead,stdin,BufReader}, path::PathBuf};
 use std::io::Result;
 use walkdir::WalkDir;
@@ -69,6 +69,4 @@ pub fn pathwalk() -> Result<Vec<PathBuf>> {
         get_files_from_stdin()
     };
     files
-    // Simple SHA-512 Hash the files (hash set to xattr)
-    //hash_files(files)
 }

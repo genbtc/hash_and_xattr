@@ -8,7 +8,6 @@ use std::fs::{self};
 use std::io::{self,Error,ErrorKind};
 #[cfg(not(test))]
 use std::path::{Path, PathBuf};
-//use std::path::Path;
 //Local mods (lib.rs)
 use hash_and_xattr::IMAhashAlgorithm::*;
 use hash_and_xattr::format_hex::format_hex;
@@ -31,9 +30,9 @@ const _TEST_PUBLIC_KEY_PATH: &'static str ="test_public_key.pem";
 //const SYS_PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the system key file path
 //const SYS_PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.pem"; // TODO: Switch keys if privs allow?
 #[cfg(not(test))]
-const PRIVATE_KEY_PATH: &'static str ="/home/genr8eofl/signing_key.priv"; // TODO: Replace with the default key file path
+const PRIVATE_KEY_PATH: &'static str ="/etc/keys/signing_key.priv"; // TODO: Replace with the default key file path
 #[cfg(not(test))]
-const _PUBLIC_CERT_PATH: &'static str ="/home/genr8eofl/signing_key.crt"; // TODO: ^^
+const _PUBLIC_CERT_PATH: &'static str ="/etc/keys/signing_key.crt"; // TODO: ^^
 
 fn sign_ima(pkey: &PKey<openssl::pkey::Private>, file: &str, hash_algo: HashAlgorithm, keyid: &[u8]) -> io::Result<()> {
     let hash_type = hash_algo.ima_xattr_type();
@@ -102,18 +101,14 @@ fn sign_ima(pkey: &PKey<openssl::pkey::Private>, file: &str, hash_algo: HashAlgo
 }
 
 fn sign_bytes(pkey: &PKey<openssl::pkey::Private>, md: MessageDigest, data: &[u8]) -> io::Result<Vec<u8>> {
-//    let pkey = keyutils::load_private_key(Path::new(key_path)).expect("unexpected Error, Cannot load private key");
     let mut signer = Signer::new(md, &pkey)?;
     signer.update(data)?;
-//    Ok(signer.sign_to_vec()?)   //ErrorStack
     Ok(signer.sign_to_vec().expect("unexpected Error, Signer output of signature failed"))
 }
 fn verify_signature(pkey: &PKey<openssl::pkey::Private>, md: MessageDigest, filedata: &[u8], xattr: &str) -> io::Result<bool> {
-//    let pkey = keyutils::load_private_key(Path::new(key_path)).expect("unexpected Error, Cannot load private key");
     // Read signature from extended attribute
     let signature = hex::decode(xattr)
         .map_err(|_| Error::new(ErrorKind::InvalidData, "Hex decode error in signature"))?;
-//    println!("Vsignature: {:?}", signature);//DebugPrint
 
     // Hash the file data
     let mut verifier = Verifier::new(md, &pkey)
@@ -181,7 +176,6 @@ fn main() -> Result<(), Error> {
     match files {
         Ok(files) => {
             // Iterate over each file and call function
-            //for file in files {
             // PARALLEL PROCESSING WITH RAYON:
             files.par_iter().for_each(|file| {
                 let filename = file.to_str().expect("unexpected Error, in filename to str");
